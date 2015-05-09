@@ -19,12 +19,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    sleep(3);
     
     UITabBarController* tabBar = [UITabBarController new];
     
     UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:[NSClassFromString(@"SGCubicleViewController") new]];
+    nav1.tabBarItem.image = [UIImage imageNamed:@"tabbar_icon1_selected"];
+    nav1.tabBarItem.title = @"屏柜";
+    
     UINavigationController* nav2 = [[UINavigationController alloc] initWithRootViewController:[NSClassFromString(@"SGScanViewController") new]];
+    nav2.tabBarItem.image = [UIImage imageNamed:@"tabbar_icon2_selected"];
+    nav2.tabBarItem.title = @"扫描";
+
+    
     UINavigationController* nav3 = [[UINavigationController alloc] initWithRootViewController:[NSClassFromString(@"SGSettingViewController") new]];
+    nav3.tabBarItem.image = [UIImage imageNamed:@"tabbar_icon3_selected"];
+    nav3.tabBarItem.title = @"设置";
+
     
     tabBar.viewControllers = @[nav1,nav2,nav3];
     
@@ -49,9 +60,15 @@
     
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:NavBarColorAlpha(0.9)] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[[UIColor whiteColor] colorWithAlphaComponent:1.0],NSFontAttributeName:Lantinghei(22.0)}];
-    
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
     [UIBarButtonItem appearance].tintColor = [UIColor whiteColor];
+    
+    
+    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:RGBA(247, 247, 247,0.9)]];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:RGB(146, 146, 146),NSFontAttributeName:Lantinghei(10.0)} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:NavBarColorAlpha(1.0),NSFontAttributeName:Lantinghei(10.0)} forState:UIControlStateSelected];
+    [UITabBar appearance].tintColor = NavBarColorAlpha(1.0);
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
