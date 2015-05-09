@@ -8,6 +8,7 @@
 
 
 #import "SGMacro.h"
+#import "SGGCDSingleton.h"
 #import "UIImage+Category.h"
 #import "NSString+Category.h"
 

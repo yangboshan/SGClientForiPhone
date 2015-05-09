@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "SGHelper.h"
+#import "SGAPPConfig.h"
+#import "SGUtility.h"
 
 
 @interface AppDelegate ()
@@ -51,12 +53,14 @@
 
 - (void)initialSetup{
     
+    [SGAPPConfig sharedSGAPPConfig];
+    [SGUtility restoreDBChangeFlag];
+    
     [self customizeAppearance];
  
 }
 
 - (void)customizeAppearance{
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:NavBarColorAlpha(0.9)] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[[UIColor whiteColor] colorWithAlphaComponent:1.0],NSFontAttributeName:Lantinghei(22.0)}];
