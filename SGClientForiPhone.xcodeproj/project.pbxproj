@@ -32,6 +32,10 @@
 		3E3F0A441B08934900BF1EB9 /* SGCableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A431B08934900BF1EB9 /* SGCableViewController.m */; };
 		3E3F0A4A1B08961B00BF1EB9 /* NJKScrollFullScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A471B08961B00BF1EB9 /* NJKScrollFullScreen.m */; };
 		3E3F0A4B1B08961B00BF1EB9 /* UIViewController+NJKFullScreenSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A491B08961B00BF1EB9 /* UIViewController+NJKFullScreenSupport.m */; };
+		3E3F0A4E1B08BA7700BF1EB9 /* SGGenerateCubicleSvg.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A4D1B08BA7700BF1EB9 /* SGGenerateCubicleSvg.m */; };
+		3E3F0A511B08BA8200BF1EB9 /* SGCablePageBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A501B08BA8200BF1EB9 /* SGCablePageBussiness.m */; };
+		3E3F0A541B08BA9C00BF1EB9 /* SGFiberPageBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A531B08BA9C00BF1EB9 /* SGFiberPageBussiness.m */; };
+		3E3F0A571B08C3AA00BF1EB9 /* SGFiberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A561B08C3AA00BF1EB9 /* SGFiberViewController.m */; };
 		3EF914CF1AFDF16E00F823E7 /* SGUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914CC1AFDF16E00F823E7 /* SGUtility.m */; };
 		3EF914D01AFDF16E00F823E7 /* SGAPPConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914CE1AFDF16E00F823E7 /* SGAPPConfig.m */; };
 		3EF914DD1AFDF33D00F823E7 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914D41AFDF33D00F823E7 /* FMDatabase.m */; };
@@ -114,6 +118,14 @@
 		3E3F0A471B08961B00BF1EB9 /* NJKScrollFullScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKScrollFullScreen.m; sourceTree = "<group>"; };
 		3E3F0A481B08961B00BF1EB9 /* UIViewController+NJKFullScreenSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NJKFullScreenSupport.h"; sourceTree = "<group>"; };
 		3E3F0A491B08961B00BF1EB9 /* UIViewController+NJKFullScreenSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NJKFullScreenSupport.m"; sourceTree = "<group>"; };
+		3E3F0A4C1B08BA7700BF1EB9 /* SGGenerateCubicleSvg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGGenerateCubicleSvg.h; sourceTree = "<group>"; };
+		3E3F0A4D1B08BA7700BF1EB9 /* SGGenerateCubicleSvg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGGenerateCubicleSvg.m; sourceTree = "<group>"; };
+		3E3F0A4F1B08BA8200BF1EB9 /* SGCablePageBussiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGCablePageBussiness.h; sourceTree = "<group>"; };
+		3E3F0A501B08BA8200BF1EB9 /* SGCablePageBussiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGCablePageBussiness.m; sourceTree = "<group>"; };
+		3E3F0A521B08BA9C00BF1EB9 /* SGFiberPageBussiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFiberPageBussiness.h; sourceTree = "<group>"; };
+		3E3F0A531B08BA9C00BF1EB9 /* SGFiberPageBussiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFiberPageBussiness.m; sourceTree = "<group>"; };
+		3E3F0A551B08C3AA00BF1EB9 /* SGFiberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFiberViewController.h; sourceTree = "<group>"; };
+		3E3F0A561B08C3AA00BF1EB9 /* SGFiberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFiberViewController.m; sourceTree = "<group>"; };
 		3EF914CA1AFDF16E00F823E7 /* SGGCDSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGGCDSingleton.h; sourceTree = "<group>"; };
 		3EF914CB1AFDF16E00F823E7 /* SGUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGUtility.h; sourceTree = "<group>"; };
 		3EF914CC1AFDF16E00F823E7 /* SGUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGUtility.m; sourceTree = "<group>"; };
@@ -304,6 +316,8 @@
 		3E1E45131AFB0C90006DB63E /* Class_Fiber */ = {
 			isa = PBXGroup;
 			children = (
+				3E3F0A551B08C3AA00BF1EB9 /* SGFiberViewController.h */,
+				3E3F0A561B08C3AA00BF1EB9 /* SGFiberViewController.m */,
 			);
 			name = Class_Fiber;
 			sourceTree = "<group>";
@@ -463,6 +477,12 @@
 				3EF914F01AFDF91C00F823E7 /* SGBaseBussiness.m */,
 				3EF914F11AFDF91C00F823E7 /* SGMainPageBussiness.h */,
 				3EF914F21AFDF91C00F823E7 /* SGMainPageBussiness.m */,
+				3E3F0A4F1B08BA8200BF1EB9 /* SGCablePageBussiness.h */,
+				3E3F0A501B08BA8200BF1EB9 /* SGCablePageBussiness.m */,
+				3E3F0A521B08BA9C00BF1EB9 /* SGFiberPageBussiness.h */,
+				3E3F0A531B08BA9C00BF1EB9 /* SGFiberPageBussiness.m */,
+				3E3F0A4C1B08BA7700BF1EB9 /* SGGenerateCubicleSvg.h */,
+				3E3F0A4D1B08BA7700BF1EB9 /* SGGenerateCubicleSvg.m */,
 			);
 			name = Bussiness;
 			sourceTree = "<group>";
@@ -589,6 +609,7 @@
 				3EF914DE1AFDF33D00F823E7 /* FMResultSet.m in Sources */,
 				3EF914E81AFDF36200F823E7 /* SGDataBase.m in Sources */,
 				3EF914F41AFDF91C00F823E7 /* SGMainPageBussiness.m in Sources */,
+				3E3F0A511B08BA8200BF1EB9 /* SGCablePageBussiness.m in Sources */,
 				3EF914DD1AFDF33D00F823E7 /* FMDatabase.m in Sources */,
 				3EF914F71AFDF99700F823E7 /* SGEntity.m in Sources */,
 				3E3F0A4B1B08961B00BF1EB9 /* UIViewController+NJKFullScreenSupport.m in Sources */,
@@ -608,9 +629,12 @@
 				3E1E451C1AFB0D3D006DB63E /* SGCubicleViewController.m in Sources */,
 				3EF914F31AFDF91C00F823E7 /* SGBaseBussiness.m in Sources */,
 				3E3F0A3A1B08800100BF1EB9 /* NSLayoutConstraint+PureLayout.m in Sources */,
+				3E3F0A571B08C3AA00BF1EB9 /* SGFiberViewController.m in Sources */,
+				3E3F0A541B08BA9C00BF1EB9 /* SGFiberPageBussiness.m in Sources */,
 				3E3F0A391B08800100BF1EB9 /* NSArray+PureLayout.m in Sources */,
 				3E1E44E71AFB0BD8006DB63E /* main.m in Sources */,
 				3E3F0A4A1B08961B00BF1EB9 /* NJKScrollFullScreen.m in Sources */,
+				3E3F0A4E1B08BA7700BF1EB9 /* SGGenerateCubicleSvg.m in Sources */,
 				3E1E451F1AFB0D54006DB63E /* SGScanViewController.m in Sources */,
 				3EF914E11AFDF33D00F823E7 /* FMDatabasePool.m in Sources */,
 			);

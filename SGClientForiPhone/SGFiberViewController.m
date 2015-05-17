@@ -1,31 +1,22 @@
 //
-//  SGBaseViewController.m
+//  SGFiberViewController.m
 //  SGClientForiPhone
 //
-//  Created by yangboshan on 15/5/7.
+//  Created by yangboshan on 15/5/17.
 //  Copyright (c) 2015年 yangbs. All rights reserved.
 //
 
-#import "SGBaseViewController.h"
+#import "SGFiberViewController.h"
 
-@interface SGBaseViewController ()
+@interface SGFiberViewController ()
 
 @end
 
-@implementation SGBaseViewController
-
--(instancetype)init{
-    if (self = [super init]) {
-    }
-    return self;
-}
+@implementation SGFiberViewController
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
-    
-    [self.view setBackgroundColor:[UIColor whiteColor]];
-    
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

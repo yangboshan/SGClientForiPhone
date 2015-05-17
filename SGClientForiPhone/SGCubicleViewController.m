@@ -8,6 +8,8 @@
 
 #import "SGCubicleViewController.h"
 #import "SGMainPageBussiness.h"
+#import "SGCableViewController.h"
+
 
 #import "SGRoomCell.h"
 #import "SGSectionHeaderView.h"
@@ -45,6 +47,7 @@
 
 -(void)initialSetup{
     
+    
     self.title = [[SGUtility getCurrentDB] componentsSeparatedByString:@"."][0];
     
     NSError* error;
@@ -67,9 +70,9 @@
         self.itemSize = CGSizeMake((ScreenWidth - 15*3) /2., 200);
     }
     
-    _scrollProxy = [[NJKScrollFullScreen alloc] initWithForwardTarget:self];
-    self.roomView.delegate = (id)_scrollProxy;
-    _scrollProxy.delegate = self;
+//    _scrollProxy = [[NJKScrollFullScreen alloc] initWithForwardTarget:self];
+//    self.roomView.delegate = (id)_scrollProxy;
+//    _scrollProxy.delegate = self;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -93,13 +96,13 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [_scrollProxy reset];
-    [self showNavigationBar:animated];
-    [self showTabBar:animated];
-}
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//    [_scrollProxy reset];
+//    [self showNavigationBar:animated];
+//    [self showTabBar:animated];
+//}
 
 
 #pragma mark - UICollectionView delegate & datasource
@@ -190,51 +193,52 @@
     
     [self.roomView reloadData];
     
-    [_scrollProxy reset];
-    [self showNavigationBar:YES];
-    [self showTabBar:YES];
+//    [_scrollProxy reset];
+//    [self showNavigationBar:YES];
+//    [self showTabBar:YES];
 }
 
 #pragma cell - delegate
 
 -(void)cellDidSeletedWithCubicleId:(NSDictionary*)cubicleData{
-    
- 
-}
+    SGCableViewController* cableController = [[SGCableViewController alloc] init];
+    cableController.cubicleData = cubicleData;
+    [self.navigationController pushViewController:cableController animated:YES];
+ }
 
 
 #pragma mark NJKScrollFullScreenDelegate
 
-- (void)resetBars
-{
-    [_scrollProxy reset];
-    [self showNavigationBar:NO];
-    [self showTabBar:NO];
-}
-
-- (void)scrollFullScreen:(NJKScrollFullScreen *)proxy scrollViewDidScrollUp:(CGFloat)deltaY
-{
-    [self moveNavigationBar:deltaY animated:YES];
-    [self moveTabBar:-deltaY animated:YES]; // move to revese direction
-}
-
-- (void)scrollFullScreen:(NJKScrollFullScreen *)proxy scrollViewDidScrollDown:(CGFloat)deltaY
-{
-    [self moveNavigationBar:deltaY animated:YES];
-    [self moveTabBar:-deltaY animated:YES];
-}
-
-- (void)scrollFullScreenScrollViewDidEndDraggingScrollUp:(NJKScrollFullScreen *)proxy
-{
-    [self hideNavigationBar:YES];
-    [self hideTabBar:YES];
-}
-
-- (void)scrollFullScreenScrollViewDidEndDraggingScrollDown:(NJKScrollFullScreen *)proxy
-{
-    [self showNavigationBar:YES];
-    [self showTabBar:YES];
-}
+//- (void)resetBars
+//{
+//    [_scrollProxy reset];
+//    [self showNavigationBar:NO];
+//    [self showTabBar:NO];
+//}
+//
+//- (void)scrollFullScreen:(NJKScrollFullScreen *)proxy scrollViewDidScrollUp:(CGFloat)deltaY
+//{
+//    [self moveNavigationBar:deltaY animated:YES];
+//    [self moveTabBar:-deltaY animated:YES]; // move to revese direction
+//}
+//
+//- (void)scrollFullScreen:(NJKScrollFullScreen *)proxy scrollViewDidScrollDown:(CGFloat)deltaY
+//{
+//    [self moveNavigationBar:deltaY animated:YES];
+//    [self moveTabBar:-deltaY animated:YES];
+//}
+//
+//- (void)scrollFullScreenScrollViewDidEndDraggingScrollUp:(NJKScrollFullScreen *)proxy
+//{
+//    [self hideNavigationBar:YES];
+//    [self hideTabBar:YES];
+//}
+//
+//- (void)scrollFullScreenScrollViewDidEndDraggingScrollDown:(NJKScrollFullScreen *)proxy
+//{
+//    [self showNavigationBar:YES];
+//    [self showTabBar:YES];
+//}
 
 #pragma mark - property
 
@@ -247,12 +251,11 @@
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         _roomView = [[UICollectionView alloc] initWithFrame:CGRectMake(0,0,ScreenWidth,ScreenHeight)
                                            collectionViewLayout:flowLayout];
-        
         [_roomView registerNib:[UINib nibWithNibName:kSectionHeader bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kSectionHeader];
         
         [_roomView registerClass:[SGRoomCell class] forCellWithReuseIdentifier:kCellIdentifier];
         
-        [_roomView setBackgroundColor:[UIColor whiteColor]];
+        [_roomView setBackgroundColor:RGB(245, 245, 245)];
         [_roomView setDelegate:self];
         [_roomView setDataSource:self];
     }

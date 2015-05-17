@@ -8,6 +8,9 @@
 
 #import "SGBaseViewController.h"
 
-@interface SGBaseDrawViewController : SGBaseViewController
+@interface SGBaseDrawViewController : SGBaseViewController<UIWebViewDelegate>
+
+@property (nonatomic,strong) UIWebView *webView;
+
 
 @end

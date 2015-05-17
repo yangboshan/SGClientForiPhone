@@ -13,7 +13,9 @@
 #define ScreenWidth [[UIScreen mainScreen] bounds].size.width
 #define ScreenHeight [[UIScreen mainScreen] bounds].size.height
 
+#define NavBarHeightAlone 44
 #define NavBarHeight 64
+#define TabBarHeight 49
 
 #define IOSVersion                          [[[UIDevice currentDevice] systemVersion] floatValue]
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
@@ -54,11 +56,11 @@
 #define DrawTextClicked(x,y,z,c,f,s,i) [NSString stringWithFormat:@"<text x=\"%f\" y=\"%f\" font-size=\"%d\" fill =\"%@\" font-style=\"%@\" onclick=\"self.location.href='@@@@%@'\">%@</text>",x,y,z,c,f,i,s]
 
 
-#define DrawRectH(x,y,w,h) [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" style=\"fill:navy;stroke:white;stroke-width:1;opacity:0.5\"/>",x,y,w,h]
+#define DrawRectH(x,y,w,h) [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" style=\"fill:#0061b0;stroke:white;stroke-width:1;opacity:0.5\"/>",x,y,w,h]
 
-#define DrawRect(x,y,w,h) [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" style=\"fill:#5A5AAD;stroke:black;stroke-width:1;opacity:0.5\"/>",x,y,w,h]
+#define DrawRect(x,y,w,h) [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" style=\"fill:#0061b0;stroke:black;stroke-width:1;opacity:0.5\"/>",x,y,w,h]
 
-#define DrawRectD(x,y,w,h) [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" style=\"fill:#B8B8DC;stroke:black;stroke-width:1;opacity:0.5\"/>",x,y,w,h]
+#define DrawRectD(x,y,w,h) [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" style=\"fill:#0061b0;stroke:black;stroke-width:1;opacity:0.5\"/>",x,y,w,h]
 
 
 

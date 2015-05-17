@@ -30,10 +30,12 @@
         }
         self = [arrayOfViews objectAtIndex:0];
         self.deviceListView.layer.cornerRadius = 5.0;
+        self.deviceListView.layer.borderColor = BorderColor;
+        self.deviceListView.layer.borderWidth = 1.0;
         self.deviceListView.dataSource = self;
         self.deviceListView.delegate = self;
         
-        [self.deviceListView setBackgroundColor:TheameColor];
+//        [self.deviceListView setBackgroundColor:NavBarColorAlpha(0.7)];
         [self.roomInfo setTextColor:[UIColor darkGrayColor]];
         [self.roomInfo setFont:Lantinghei(16)];
         [self.roomInfo setNumberOfLines:0];
@@ -81,9 +83,9 @@
     
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
-    cell.contentView.backgroundColor = TheameColor;
+//    cell.contentView.backgroundColor = NavBarColorAlpha(0.7);
     cell.textLabel.font = Lantinghei(12);
-    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.textLabel.textColor = [UIColor darkGrayColor];
     id deviceobj = [self.data objectForKey:@"device"];
     if ([deviceobj isKindOfClass:[NSArray class]]) {
         id text =[[[deviceobj objectAtIndex:indexPath.row] objectForKey:@"devicename"] objectForKey:@"text"];

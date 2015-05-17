@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 yangbs. All rights reserved.
 //
 
-#import "SGBaseDrawViewController.h"
+#import "SGBaseViewController.h"
 #import "NJKScrollFullScreen.h"
 
-@interface SGCubicleViewController : SGBaseDrawViewController<NJKScrollFullscreenDelegate>
+@interface SGCubicleViewController : SGBaseViewController<NJKScrollFullscreenDelegate>
 
 @end
