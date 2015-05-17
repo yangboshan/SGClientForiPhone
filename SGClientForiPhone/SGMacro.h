@@ -56,18 +56,18 @@
 #define DrawTextClicked(x,y,z,c,f,s,i) [NSString stringWithFormat:@"<text x=\"%f\" y=\"%f\" font-size=\"%d\" fill =\"%@\" font-style=\"%@\" onclick=\"self.location.href='@@@@%@'\">%@</text>",x,y,z,c,f,i,s]
 
 
-#define DrawRectH(x,y,w,h) [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" style=\"fill:#0061b0;stroke:white;stroke-width:1;opacity:0.5\"/>",x,y,w,h]
+#define DrawRectH(x,y,w,h) [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" rx=\"10\" ry=\"10\" height=\"%f\" style=\"fill:#0061b0;stroke:white;stroke-width:1;opacity:0.5\"/>",x,y,w,h]
 
-#define DrawRect(x,y,w,h) [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" style=\"fill:#0061b0;stroke:black;stroke-width:1;opacity:0.5\"/>",x,y,w,h]
+#define DrawRect(x,y,w,h) [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" rx=\"10\" ry=\"10\" height=\"%f\" style=\"fill:#0061b0;stroke:black;stroke-width:1;opacity:0.5\"/>",x,y,w,h]
 
-#define DrawRectD(x,y,w,h) [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" style=\"fill:#0061b0;stroke:black;stroke-width:1;opacity:0.5\"/>",x,y,w,h]
-
-
+#define DrawRectD(x,y,w,h) [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" rx=\"10\" ry=\"10\" height=\"%f\" style=\"fill:#0061b0;stroke:black;stroke-width:1;opacity:0.5\"/>",x,y,w,h]
 
 
-#define DrawRectW(x,y,w,h,p) [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" style=\"fill:#5A5AAD;stroke:white;stroke-width:1;opacity:0.5\" onclick=\"self.location.href='@@@@%@'\"/>",x,y,w,h,p]
 
-#define DrawRectWD(x,y,w,h,p) [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" style=\"fill:#B8B8DC;stroke:white;stroke-width:1;opacity:0.5\" onclick=\"self.location.href='@@@@%@'\"/>",x,y,w,h,p]
+
+#define DrawRectW(x,y,w,h,p) [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" rx=\"10\" ry=\"10\" style=\"fill:#0061b0;stroke:white;stroke-width:1;opacity:0.5\" onclick=\"self.location.href='@@@@%@'\"/>",x,y,w,h,p]
+
+#define DrawRectWD(x,y,w,h,p) [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" rx=\"10\" ry=\"10\" style=\"fill:#0061b0;stroke:white;stroke-width:1;opacity:0.5\" onclick=\"self.location.href='@@@@%@'\"/>",x,y,w,h,p]
 
 #define LineInfo(n,c,i,t) [NSString stringWithFormat:@"%@*%@*%d*%d",n,c,i,t]
 

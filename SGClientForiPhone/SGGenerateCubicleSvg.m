@@ -29,7 +29,7 @@
     float margin_y = 50;
     float cWidth   = 240;
     float cHeight  = 35;
-    float linelen  = 100;
+    float linelen  = 110;
     float linetext_y_origin = 10;
     float cuVeMargin = 10;
     float offsetY = 0;
@@ -69,7 +69,7 @@
             //连接类型r
             [svgStr appendString:DrawText(margin_x,
                                           margin_y + offsetY - 15,18,
-                                          @"navy",
+                                          @"gray",
                                           @"italic",
                                           _type.allKeys[0])];
         }
@@ -349,7 +349,7 @@
         if (!self.isForFiberPage) {
             [svgStr appendString:DrawText(margin_x,
                                           margin_y + offsetY - 15,18,
-                                          @"navy",
+                                          @"gray",
                                           @"italic",
                                           @"跳纤连接")];
         }

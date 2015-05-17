@@ -64,12 +64,6 @@
     [self.roomView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:0];
     [self.roomView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:0];
     
-    if (CGRectGetWidth(self.view.frame) > CGRectGetHeight(self.view.frame)) {
-        self.itemSize = CGSizeMake((ScreenWidth - 15*4) /3., 200);
-    }else{
-        self.itemSize = CGSizeMake((ScreenWidth - 15*3) /2., 200);
-    }
-    
 //    _scrollProxy = [[NJKScrollFullScreen alloc] initWithForwardTarget:self];
 //    self.roomView.delegate = (id)_scrollProxy;
 //    _scrollProxy.delegate = self;
@@ -78,6 +72,15 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    
+    if (CGRectGetWidth(self.view.frame) > CGRectGetHeight(self.view.frame)) {
+        self.itemSize = CGSizeMake((ScreenWidth - 15*4) /3., 200);
+    }else{
+        self.itemSize = CGSizeMake((ScreenWidth - 15*3) /2., 200);
+    }
+    
+    [self.roomView reloadData];
+    
     
     //设置数据库后 reload数据
     self.title = [[SGUtility getCurrentDB] componentsSeparatedByString:@"."][0];
