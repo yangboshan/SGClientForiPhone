@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SGHelper.h"
 
 @interface SGBaseViewController : UIViewController
 

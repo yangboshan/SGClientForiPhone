@@ -7,7 +7,8 @@
 //
 
 #import "SGBaseDrawViewController.h"
+#import "NJKScrollFullScreen.h"
 
-@interface SGCubicleViewController : SGBaseDrawViewController
+@interface SGCubicleViewController : SGBaseDrawViewController<NJKScrollFullscreenDelegate>
 
 @end

@@ -20,9 +20,9 @@
 #define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 #define HEXCOLOR(c) [UIColor colorWithRed:((c>>16)&0xFF)/255.0 green:((c>>8)&0xFF)/255.0 blue:(c&0xFF)/255.0 alpha:1.0];
 
-#define TheameColor RGBA(32, 193, 122, 1)
-#define TheameColorAlpha(a) RGBA(32, 193, 122, a)
+#define TheameColor RGB(37,159,219)
 #define NavBarColorAlpha(a) RGBA(37,159,219,a)
+
 #define BorderColor RGB(223, 223, 223).CGColor
 #define MaskColor RGBA(0, 0, 0, 0.5)
 

@@ -85,6 +85,11 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGMainPageBussiness)
     
     return [self buildXMLForResultSet:resultList];
 }
+
+-(NSArray*)queryAllList{
+    return nil;
+}
+
 #pragma mark -
 
 

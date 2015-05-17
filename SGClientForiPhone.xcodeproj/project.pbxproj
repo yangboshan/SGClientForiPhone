@@ -22,6 +22,16 @@
 		3E1E452A1AFB0F47006DB63E /* NSString+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E45271AFB0F47006DB63E /* NSString+Category.m */; };
 		3E1E452B1AFB0F47006DB63E /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E45291AFB0F47006DB63E /* UIImage+Category.m */; };
 		3E1E452F1AFB0FD8006DB63E /* Lantinghei_0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E1E452E1AFB0FD8006DB63E /* Lantinghei_0.ttf */; };
+		3E3F0A2A1B086C8700BF1EB9 /* SGRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A241B086C8700BF1EB9 /* SGRoomCell.m */; };
+		3E3F0A2B1B086C8700BF1EB9 /* SGRoomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3F0A251B086C8700BF1EB9 /* SGRoomCell.xib */; };
+		3E3F0A381B08800100BF1EB9 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A301B08800100BF1EB9 /* ALView+PureLayout.m */; };
+		3E3F0A391B08800100BF1EB9 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A321B08800100BF1EB9 /* NSArray+PureLayout.m */; };
+		3E3F0A3A1B08800100BF1EB9 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A341B08800100BF1EB9 /* NSLayoutConstraint+PureLayout.m */; };
+		3E3F0A401B08915800BF1EB9 /* SGSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A3E1B08915800BF1EB9 /* SGSectionHeaderView.m */; };
+		3E3F0A411B08915800BF1EB9 /* SGSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3F0A3F1B08915800BF1EB9 /* SGSectionHeaderView.xib */; };
+		3E3F0A441B08934900BF1EB9 /* SGCableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A431B08934900BF1EB9 /* SGCableViewController.m */; };
+		3E3F0A4A1B08961B00BF1EB9 /* NJKScrollFullScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A471B08961B00BF1EB9 /* NJKScrollFullScreen.m */; };
+		3E3F0A4B1B08961B00BF1EB9 /* UIViewController+NJKFullScreenSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A491B08961B00BF1EB9 /* UIViewController+NJKFullScreenSupport.m */; };
 		3EF914CF1AFDF16E00F823E7 /* SGUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914CC1AFDF16E00F823E7 /* SGUtility.m */; };
 		3EF914D01AFDF16E00F823E7 /* SGAPPConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914CE1AFDF16E00F823E7 /* SGAPPConfig.m */; };
 		3EF914DD1AFDF33D00F823E7 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914D41AFDF33D00F823E7 /* FMDatabase.m */; };
@@ -38,6 +48,8 @@
 		3EF914F41AFDF91C00F823E7 /* SGMainPageBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914F21AFDF91C00F823E7 /* SGMainPageBussiness.m */; };
 		3EF914F71AFDF99700F823E7 /* SGEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914F61AFDF99700F823E7 /* SGEntity.m */; };
 		3EF914FB1AFDFCAB00F823E7 /* 4级交换机.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3EF914FA1AFDFCAB00F823E7 /* 4级交换机.sqlite */; };
+		3EF914FD1AFE025C00F823E7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EF914FC1AFE025C00F823E7 /* Localizable.strings */; };
+		3EF915011AFE052300F823E7 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF915001AFE052300F823E7 /* XMLReader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +93,27 @@
 		3E1E45281AFB0F47006DB63E /* UIImage+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Category.h"; sourceTree = "<group>"; };
 		3E1E45291AFB0F47006DB63E /* UIImage+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Category.m"; sourceTree = "<group>"; };
 		3E1E452E1AFB0FD8006DB63E /* Lantinghei_0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lantinghei_0.ttf; sourceTree = "<group>"; };
+		3E3F0A231B086C8700BF1EB9 /* SGRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGRoomCell.h; sourceTree = "<group>"; };
+		3E3F0A241B086C8700BF1EB9 /* SGRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGRoomCell.m; sourceTree = "<group>"; };
+		3E3F0A251B086C8700BF1EB9 /* SGRoomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SGRoomCell.xib; sourceTree = "<group>"; };
+		3E3F0A2F1B08800100BF1EB9 /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
+		3E3F0A301B08800100BF1EB9 /* ALView+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALView+PureLayout.m"; sourceTree = "<group>"; };
+		3E3F0A311B08800100BF1EB9 /* NSArray+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PureLayout.h"; sourceTree = "<group>"; };
+		3E3F0A321B08800100BF1EB9 /* NSArray+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PureLayout.m"; sourceTree = "<group>"; };
+		3E3F0A331B08800100BF1EB9 /* NSLayoutConstraint+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+PureLayout.h"; sourceTree = "<group>"; };
+		3E3F0A341B08800100BF1EB9 /* NSLayoutConstraint+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+PureLayout.m"; sourceTree = "<group>"; };
+		3E3F0A351B08800100BF1EB9 /* PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayout.h; sourceTree = "<group>"; };
+		3E3F0A361B08800100BF1EB9 /* PureLayout+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PureLayout+Internal.h"; sourceTree = "<group>"; };
+		3E3F0A371B08800100BF1EB9 /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
+		3E3F0A3D1B08915800BF1EB9 /* SGSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSectionHeaderView.h; sourceTree = "<group>"; };
+		3E3F0A3E1B08915800BF1EB9 /* SGSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSectionHeaderView.m; sourceTree = "<group>"; };
+		3E3F0A3F1B08915800BF1EB9 /* SGSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SGSectionHeaderView.xib; sourceTree = "<group>"; };
+		3E3F0A421B08934900BF1EB9 /* SGCableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGCableViewController.h; sourceTree = "<group>"; };
+		3E3F0A431B08934900BF1EB9 /* SGCableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGCableViewController.m; sourceTree = "<group>"; };
+		3E3F0A461B08961B00BF1EB9 /* NJKScrollFullScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKScrollFullScreen.h; sourceTree = "<group>"; };
+		3E3F0A471B08961B00BF1EB9 /* NJKScrollFullScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKScrollFullScreen.m; sourceTree = "<group>"; };
+		3E3F0A481B08961B00BF1EB9 /* UIViewController+NJKFullScreenSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NJKFullScreenSupport.h"; sourceTree = "<group>"; };
+		3E3F0A491B08961B00BF1EB9 /* UIViewController+NJKFullScreenSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NJKFullScreenSupport.m"; sourceTree = "<group>"; };
 		3EF914CA1AFDF16E00F823E7 /* SGGCDSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGGCDSingleton.h; sourceTree = "<group>"; };
 		3EF914CB1AFDF16E00F823E7 /* SGUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGUtility.h; sourceTree = "<group>"; };
 		3EF914CC1AFDF16E00F823E7 /* SGUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGUtility.m; sourceTree = "<group>"; };
@@ -111,6 +144,9 @@
 		3EF914F51AFDF99700F823E7 /* SGEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGEntity.h; sourceTree = "<group>"; };
 		3EF914F61AFDF99700F823E7 /* SGEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGEntity.m; sourceTree = "<group>"; };
 		3EF914FA1AFDFCAB00F823E7 /* 4级交换机.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "4级交换机.sqlite"; sourceTree = "<group>"; };
+		3EF914FC1AFE025C00F823E7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		3EF914FF1AFE052300F823E7 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
+		3EF915001AFE052300F823E7 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +242,7 @@
 		3E1E450A1AFB0BE1006DB63E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3E3F0A221B086C7100BF1EB9 /* Cubicle */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -258,6 +295,8 @@
 		3E1E45121AFB0C89006DB63E /* Class_Cable */ = {
 			isa = PBXGroup;
 			children = (
+				3E3F0A421B08934900BF1EB9 /* SGCableViewController.h */,
+				3E3F0A431B08934900BF1EB9 /* SGCableViewController.m */,
 			);
 			name = Class_Cable;
 			sourceTree = "<group>";
@@ -308,6 +347,9 @@
 		3E1E452C1AFB0FC4006DB63E /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				3E3F0A451B08960C00BF1EB9 /* ScrollFullScreen */,
+				3E3F0A2E1B087FCF00BF1EB9 /* PureLayout */,
+				3EF914FE1AFE051700F823E7 /* XMLReader */,
 				3EF914E21AFDF35200F823E7 /* HUD */,
 				3EF914D11AFDF33400F823E7 /* FMDB */,
 			);
@@ -317,10 +359,51 @@
 		3E1E452D1AFB0FCA006DB63E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				3EF914FC1AFE025C00F823E7 /* Localizable.strings */,
 				3EF914FA1AFDFCAB00F823E7 /* 4级交换机.sqlite */,
 				3E1E452E1AFB0FD8006DB63E /* Lantinghei_0.ttf */,
 			);
 			name = Resource;
+			sourceTree = "<group>";
+		};
+		3E3F0A221B086C7100BF1EB9 /* Cubicle */ = {
+			isa = PBXGroup;
+			children = (
+				3E3F0A231B086C8700BF1EB9 /* SGRoomCell.h */,
+				3E3F0A241B086C8700BF1EB9 /* SGRoomCell.m */,
+				3E3F0A251B086C8700BF1EB9 /* SGRoomCell.xib */,
+				3E3F0A3D1B08915800BF1EB9 /* SGSectionHeaderView.h */,
+				3E3F0A3E1B08915800BF1EB9 /* SGSectionHeaderView.m */,
+				3E3F0A3F1B08915800BF1EB9 /* SGSectionHeaderView.xib */,
+			);
+			name = Cubicle;
+			sourceTree = "<group>";
+		};
+		3E3F0A2E1B087FCF00BF1EB9 /* PureLayout */ = {
+			isa = PBXGroup;
+			children = (
+				3E3F0A2F1B08800100BF1EB9 /* ALView+PureLayout.h */,
+				3E3F0A301B08800100BF1EB9 /* ALView+PureLayout.m */,
+				3E3F0A311B08800100BF1EB9 /* NSArray+PureLayout.h */,
+				3E3F0A321B08800100BF1EB9 /* NSArray+PureLayout.m */,
+				3E3F0A331B08800100BF1EB9 /* NSLayoutConstraint+PureLayout.h */,
+				3E3F0A341B08800100BF1EB9 /* NSLayoutConstraint+PureLayout.m */,
+				3E3F0A351B08800100BF1EB9 /* PureLayout.h */,
+				3E3F0A361B08800100BF1EB9 /* PureLayout+Internal.h */,
+				3E3F0A371B08800100BF1EB9 /* PureLayoutDefines.h */,
+			);
+			name = PureLayout;
+			sourceTree = "<group>";
+		};
+		3E3F0A451B08960C00BF1EB9 /* ScrollFullScreen */ = {
+			isa = PBXGroup;
+			children = (
+				3E3F0A461B08961B00BF1EB9 /* NJKScrollFullScreen.h */,
+				3E3F0A471B08961B00BF1EB9 /* NJKScrollFullScreen.m */,
+				3E3F0A481B08961B00BF1EB9 /* UIViewController+NJKFullScreenSupport.h */,
+				3E3F0A491B08961B00BF1EB9 /* UIViewController+NJKFullScreenSupport.m */,
+			);
+			name = ScrollFullScreen;
 			sourceTree = "<group>";
 		};
 		3EF914C41AFDE0D000F823E7 /* Utility */ = {
@@ -384,6 +467,15 @@
 			name = Bussiness;
 			sourceTree = "<group>";
 		};
+		3EF914FE1AFE051700F823E7 /* XMLReader */ = {
+			isa = PBXGroup;
+			children = (
+				3EF914FF1AFE052300F823E7 /* XMLReader.h */,
+				3EF915001AFE052300F823E7 /* XMLReader.m */,
+			);
+			name = XMLReader;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -433,6 +525,7 @@
 				TargetAttributes = {
 					3E1E44E01AFB0BD8006DB63E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = W2S49VS6FE;
 					};
 					3E1E44F91AFB0BD8006DB63E = {
 						CreatedOnToolsVersion = 6.2;
@@ -465,6 +558,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EF914FB1AFDFCAB00F823E7 /* 4级交换机.sqlite in Resources */,
+				3EF914FD1AFE025C00F823E7 /* Localizable.strings in Resources */,
+				3E3F0A2B1B086C8700BF1EB9 /* SGRoomCell.xib in Resources */,
+				3E3F0A411B08915800BF1EB9 /* SGSectionHeaderView.xib in Resources */,
 				3E1E44F01AFB0BD8006DB63E /* Main.storyboard in Resources */,
 				3E1E44F51AFB0BD8006DB63E /* LaunchScreen.xib in Resources */,
 				3E1E452F1AFB0FD8006DB63E /* Lantinghei_0.ttf in Resources */,
@@ -488,11 +584,14 @@
 			files = (
 				3E1E44ED1AFB0BD8006DB63E /* ViewController.m in Sources */,
 				3E1E45101AFB0C65006DB63E /* SGBaseViewController.m in Sources */,
+				3E3F0A441B08934900BF1EB9 /* SGCableViewController.m in Sources */,
+				3E3F0A381B08800100BF1EB9 /* ALView+PureLayout.m in Sources */,
 				3EF914DE1AFDF33D00F823E7 /* FMResultSet.m in Sources */,
 				3EF914E81AFDF36200F823E7 /* SGDataBase.m in Sources */,
 				3EF914F41AFDF91C00F823E7 /* SGMainPageBussiness.m in Sources */,
 				3EF914DD1AFDF33D00F823E7 /* FMDatabase.m in Sources */,
 				3EF914F71AFDF99700F823E7 /* SGEntity.m in Sources */,
+				3E3F0A4B1B08961B00BF1EB9 /* UIViewController+NJKFullScreenSupport.m in Sources */,
 				3E1E44EA1AFB0BD8006DB63E /* AppDelegate.m in Sources */,
 				3EF914DF1AFDF33D00F823E7 /* FMDatabaseQueue.m in Sources */,
 				3E1E45221AFB0D5E006DB63E /* SGSettingViewController.m in Sources */,
@@ -500,12 +599,18 @@
 				3E1E45191AFB0D21006DB63E /* SGBaseDrawViewController.m in Sources */,
 				3E1E452B1AFB0F47006DB63E /* UIImage+Category.m in Sources */,
 				3E1E452A1AFB0F47006DB63E /* NSString+Category.m in Sources */,
+				3E3F0A2A1B086C8700BF1EB9 /* SGRoomCell.m in Sources */,
+				3EF915011AFE052300F823E7 /* XMLReader.m in Sources */,
+				3E3F0A401B08915800BF1EB9 /* SGSectionHeaderView.m in Sources */,
 				3EF914D01AFDF16E00F823E7 /* SGAPPConfig.m in Sources */,
 				3EF914CF1AFDF16E00F823E7 /* SGUtility.m in Sources */,
 				3EF914E51AFDF35800F823E7 /* MBProgressHUD.m in Sources */,
 				3E1E451C1AFB0D3D006DB63E /* SGCubicleViewController.m in Sources */,
 				3EF914F31AFDF91C00F823E7 /* SGBaseBussiness.m in Sources */,
+				3E3F0A3A1B08800100BF1EB9 /* NSLayoutConstraint+PureLayout.m in Sources */,
+				3E3F0A391B08800100BF1EB9 /* NSArray+PureLayout.m in Sources */,
 				3E1E44E71AFB0BD8006DB63E /* main.m in Sources */,
+				3E3F0A4A1B08961B00BF1EB9 /* NJKScrollFullScreen.m in Sources */,
 				3E1E451F1AFB0D54006DB63E /* SGScanViewController.m in Sources */,
 				3EF914E11AFDF33D00F823E7 /* FMDatabasePool.m in Sources */,
 			);
@@ -629,10 +734,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SGClientForiPhone/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -640,10 +748,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SGClientForiPhone/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

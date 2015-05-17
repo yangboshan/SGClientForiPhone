@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="m4N-Ru-8M8" customClass="SGRoomCell">
+            <rect key="frame" x="0.0" y="0.0" width="232" height="255"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="232" height="255"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="scj-4L-whJ">
+                        <rect key="frame" x="0.0" y="0.0" width="232" height="205"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </tableView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="179" translatesAutoresizingMaskIntoConstraints="NO" id="qFY-5v-iwx">
+                        <rect key="frame" x="0.0" y="205" width="232" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="aV6-7J-h7R"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="italicSystem" pointSize="18"/>
+                        <color key="textColor" red="0.41960784313725491" green="0.40392156862745099" blue="0.72549019607843135" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="scj-4L-whJ" firstAttribute="top" secondItem="m4N-Ru-8M8" secondAttribute="top" id="4lC-f7-faI"/>
+                <constraint firstAttribute="bottom" secondItem="qFY-5v-iwx" secondAttribute="bottom" id="ApD-Dr-2E4"/>
+                <constraint firstItem="qFY-5v-iwx" firstAttribute="top" secondItem="scj-4L-whJ" secondAttribute="bottom" id="OD0-38-q8l"/>
+                <constraint firstAttribute="trailing" secondItem="scj-4L-whJ" secondAttribute="trailing" id="OxX-zs-bvC"/>
+                <constraint firstAttribute="trailing" secondItem="qFY-5v-iwx" secondAttribute="trailing" id="aBd-h8-veE"/>
+                <constraint firstItem="qFY-5v-iwx" firstAttribute="leading" secondItem="m4N-Ru-8M8" secondAttribute="leading" id="oQo-X8-NQL"/>
+                <constraint firstItem="scj-4L-whJ" firstAttribute="leading" secondItem="m4N-Ru-8M8" secondAttribute="leading" id="yMd-7E-YSO"/>
+            </constraints>
+            <size key="customSize" width="232" height="230"/>
+            <connections>
+                <outlet property="deviceListView" destination="scj-4L-whJ" id="una-g0-jlB"/>
+                <outlet property="roomInfo" destination="qFY-5v-iwx" id="iIQ-9f-m4b"/>
+            </connections>
+            <point key="canvasLocation" x="90" y="201.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
