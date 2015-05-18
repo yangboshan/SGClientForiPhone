@@ -63,7 +63,7 @@
 - (void)customizeAppearance{
     
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:NavBarColorAlpha(0.9)] forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[[UIColor whiteColor] colorWithAlphaComponent:1.0],NSFontAttributeName:Lantinghei(18.0)}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[[UIColor whiteColor] colorWithAlphaComponent:1.0],NSFontAttributeName:Lantinghei(22.0)}];
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
     [UIBarButtonItem appearance].tintColor = [UIColor whiteColor];
     

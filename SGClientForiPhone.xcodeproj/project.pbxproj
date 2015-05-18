@@ -36,6 +36,12 @@
 		3E3F0A511B08BA8200BF1EB9 /* SGCablePageBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A501B08BA8200BF1EB9 /* SGCablePageBussiness.m */; };
 		3E3F0A541B08BA9C00BF1EB9 /* SGFiberPageBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A531B08BA9C00BF1EB9 /* SGFiberPageBussiness.m */; };
 		3E3F0A571B08C3AA00BF1EB9 /* SGFiberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A561B08C3AA00BF1EB9 /* SGFiberViewController.m */; };
+		3E7774C21B09E47300ED6FE9 /* SGPortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7774C11B09E47300ED6FE9 /* SGPortViewController.m */; };
+		3EB3A4D01B0A19EC002EB7FA /* SGPortPageBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A4CD1B0A19EC002EB7FA /* SGPortPageBussiness.m */; };
+		3EB3A4D11B0A19EC002EB7FA /* SGPortPageDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A4CF1B0A19EC002EB7FA /* SGPortPageDataModel.m */; };
+		3EB3A4D41B0A1A27002EB7FA /* SGSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A4D31B0A1A27002EB7FA /* SGSelectViewController.m */; };
+		3EB3A4D71B0A2723002EB7FA /* SGDBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A4D61B0A2723002EB7FA /* SGDBViewController.m */; };
+		3EB3A4D91B0A2CFA002EB7FA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB3A4D81B0A2CFA002EB7FA /* AVFoundation.framework */; };
 		3EF914CF1AFDF16E00F823E7 /* SGUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914CC1AFDF16E00F823E7 /* SGUtility.m */; };
 		3EF914D01AFDF16E00F823E7 /* SGAPPConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914CE1AFDF16E00F823E7 /* SGAPPConfig.m */; };
 		3EF914DD1AFDF33D00F823E7 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914D41AFDF33D00F823E7 /* FMDatabase.m */; };
@@ -126,6 +132,17 @@
 		3E3F0A531B08BA9C00BF1EB9 /* SGFiberPageBussiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFiberPageBussiness.m; sourceTree = "<group>"; };
 		3E3F0A551B08C3AA00BF1EB9 /* SGFiberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFiberViewController.h; sourceTree = "<group>"; };
 		3E3F0A561B08C3AA00BF1EB9 /* SGFiberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFiberViewController.m; sourceTree = "<group>"; };
+		3E7774C01B09E47300ED6FE9 /* SGPortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPortViewController.h; sourceTree = "<group>"; };
+		3E7774C11B09E47300ED6FE9 /* SGPortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGPortViewController.m; sourceTree = "<group>"; };
+		3EB3A4CC1B0A19EC002EB7FA /* SGPortPageBussiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPortPageBussiness.h; sourceTree = "<group>"; };
+		3EB3A4CD1B0A19EC002EB7FA /* SGPortPageBussiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGPortPageBussiness.m; sourceTree = "<group>"; };
+		3EB3A4CE1B0A19EC002EB7FA /* SGPortPageDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPortPageDataModel.h; sourceTree = "<group>"; };
+		3EB3A4CF1B0A19EC002EB7FA /* SGPortPageDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGPortPageDataModel.m; sourceTree = "<group>"; };
+		3EB3A4D21B0A1A27002EB7FA /* SGSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSelectViewController.h; sourceTree = "<group>"; };
+		3EB3A4D31B0A1A27002EB7FA /* SGSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSelectViewController.m; sourceTree = "<group>"; };
+		3EB3A4D51B0A2723002EB7FA /* SGDBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGDBViewController.h; sourceTree = "<group>"; };
+		3EB3A4D61B0A2723002EB7FA /* SGDBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGDBViewController.m; sourceTree = "<group>"; };
+		3EB3A4D81B0A2CFA002EB7FA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3EF914CA1AFDF16E00F823E7 /* SGGCDSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGGCDSingleton.h; sourceTree = "<group>"; };
 		3EF914CB1AFDF16E00F823E7 /* SGUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGUtility.h; sourceTree = "<group>"; };
 		3EF914CC1AFDF16E00F823E7 /* SGUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGUtility.m; sourceTree = "<group>"; };
@@ -166,6 +183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EB3A4D91B0A2CFA002EB7FA /* AVFoundation.framework in Frameworks */,
 				3EF914EE1AFDF3BD00F823E7 /* libxml2.2.dylib in Frameworks */,
 				3EF914EC1AFDF3B600F823E7 /* libxml2.dylib in Frameworks */,
 				3EF914EA1AFDF3A900F823E7 /* libsqlite3.dylib in Frameworks */,
@@ -185,6 +203,7 @@
 		3E1E44D81AFB0BD8006DB63E = {
 			isa = PBXGroup;
 			children = (
+				3EB3A4D81B0A2CFA002EB7FA /* AVFoundation.framework */,
 				3E1E44E31AFB0BD8006DB63E /* SGClientForiPhone */,
 				3E1E44FD1AFB0BD8006DB63E /* SGClientForiPhoneTests */,
 				3E1E44E21AFB0BD8006DB63E /* Products */,
@@ -280,6 +299,8 @@
 				3E1E45141AFB0C98006DB63E /* Class_VPort */,
 				3E1E45161AFB0CCB006DB63E /* Class_Scan */,
 				3E1E45151AFB0CC2006DB63E /* Class_Setting */,
+				3EB3A4D21B0A1A27002EB7FA /* SGSelectViewController.h */,
+				3EB3A4D31B0A1A27002EB7FA /* SGSelectViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -325,6 +346,8 @@
 		3E1E45141AFB0C98006DB63E /* Class_VPort */ = {
 			isa = PBXGroup;
 			children = (
+				3E7774C01B09E47300ED6FE9 /* SGPortViewController.h */,
+				3E7774C11B09E47300ED6FE9 /* SGPortViewController.m */,
 			);
 			name = Class_VPort;
 			sourceTree = "<group>";
@@ -334,6 +357,8 @@
 			children = (
 				3E1E45201AFB0D5E006DB63E /* SGSettingViewController.h */,
 				3E1E45211AFB0D5E006DB63E /* SGSettingViewController.m */,
+				3EB3A4D51B0A2723002EB7FA /* SGDBViewController.h */,
+				3EB3A4D61B0A2723002EB7FA /* SGDBViewController.m */,
 			);
 			name = Class_Setting;
 			sourceTree = "<group>";
@@ -483,6 +508,10 @@
 				3E3F0A531B08BA9C00BF1EB9 /* SGFiberPageBussiness.m */,
 				3E3F0A4C1B08BA7700BF1EB9 /* SGGenerateCubicleSvg.h */,
 				3E3F0A4D1B08BA7700BF1EB9 /* SGGenerateCubicleSvg.m */,
+				3EB3A4CC1B0A19EC002EB7FA /* SGPortPageBussiness.h */,
+				3EB3A4CD1B0A19EC002EB7FA /* SGPortPageBussiness.m */,
+				3EB3A4CE1B0A19EC002EB7FA /* SGPortPageDataModel.h */,
+				3EB3A4CF1B0A19EC002EB7FA /* SGPortPageDataModel.m */,
 			);
 			name = Bussiness;
 			sourceTree = "<group>";
@@ -603,6 +632,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E1E44ED1AFB0BD8006DB63E /* ViewController.m in Sources */,
+				3EB3A4D11B0A19EC002EB7FA /* SGPortPageDataModel.m in Sources */,
+				3EB3A4D01B0A19EC002EB7FA /* SGPortPageBussiness.m in Sources */,
 				3E1E45101AFB0C65006DB63E /* SGBaseViewController.m in Sources */,
 				3E3F0A441B08934900BF1EB9 /* SGCableViewController.m in Sources */,
 				3E3F0A381B08800100BF1EB9 /* ALView+PureLayout.m in Sources */,
@@ -614,9 +645,12 @@
 				3EF914F71AFDF99700F823E7 /* SGEntity.m in Sources */,
 				3E3F0A4B1B08961B00BF1EB9 /* UIViewController+NJKFullScreenSupport.m in Sources */,
 				3E1E44EA1AFB0BD8006DB63E /* AppDelegate.m in Sources */,
+				3EB3A4D71B0A2723002EB7FA /* SGDBViewController.m in Sources */,
 				3EF914DF1AFDF33D00F823E7 /* FMDatabaseQueue.m in Sources */,
 				3E1E45221AFB0D5E006DB63E /* SGSettingViewController.m in Sources */,
 				3EF914E01AFDF33D00F823E7 /* FMDatabaseAdditions.m in Sources */,
+				3EB3A4D41B0A1A27002EB7FA /* SGSelectViewController.m in Sources */,
+				3E7774C21B09E47300ED6FE9 /* SGPortViewController.m in Sources */,
 				3E1E45191AFB0D21006DB63E /* SGBaseDrawViewController.m in Sources */,
 				3E1E452B1AFB0F47006DB63E /* UIImage+Category.m in Sources */,
 				3E1E452A1AFB0F47006DB63E /* NSString+Category.m in Sources */,

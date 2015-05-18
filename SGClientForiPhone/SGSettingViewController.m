@@ -7,32 +7,120 @@
 //
 
 #import "SGSettingViewController.h"
+#import "SGPortPageBussiness.h"
+#import "SGDBViewController.h"
+#import "PureLayout.h"
 
-@interface SGSettingViewController ()
+
+@interface SGSettingViewController ()<UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic,strong) UITableView *listView;
+@property (nonatomic,strong) NSArray* dataList;
 
 @end
 
 @implementation SGSettingViewController
 
-- (void)viewDidLoad {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.title = @"设置";
-    // Do any additional setup after loading the view.
+    [self.view addSubview:self.listView];
+    
+    self.listView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.listView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
+    [self.listView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:0];
+    [self.listView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:0];
+    [self.listView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:0];
+    
 }
 
-- (void)didReceiveMemoryWarning {
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
+
+#pragma mark - tableview delegate
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [self.dataList[section] count];
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.dataList.count;
+}
+
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString* identifier = @"identifier";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.text = [self.dataList[indexPath.section] objectAtIndex:indexPath.row];
+    cell.textLabel.textColor = [UIColor darkGrayColor];
+    cell.textLabel.font = Lantinghei(15);
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    id controller;
+    
+    switch (indexPath.section) {
+            
+        case 0:
+            
+            switch (indexPath.row) {
+                case 0:
+                    controller = [SGDBViewController new];
+                    break;
+                default:
+                    break;
+            }
+            
+            break;
+            
+        default:
+            break;
+    }
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma mark - getter
+
+-(UITableView*)listView{
+    if (!_listView) {
+        _listView = [[UITableView alloc] initWithFrame:CGRectZero
+                                                 style:UITableViewStyleGrouped];
+        [_listView setDelegate:self];
+        [_listView setDataSource:self];
+        [_listView setBackgroundColor:RGB(247, 247, 247)];
+    }
+    return _listView;
+}
+
+-(NSArray*)dataList{
+    if (!_dataList) {
+        _dataList = @[@[@"数据库配置",@"绘图配置"],@[@"其他配置"]];
+    }
+    return _dataList;
+}
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

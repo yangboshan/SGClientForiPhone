@@ -51,8 +51,8 @@
         
         SGFiberViewController *fiber = [SGFiberViewController new];
         
-        [fiber setCableId:[NSString stringWithFormat:@"%tu",_scannedCableId]];
-        [fiber setCubicleId:[NSString stringWithFormat:@"%tu",_scannedCubicleId]];
+        [fiber setCableId:[NSString stringWithFormat:@"%d",_scannedCableId]];
+        [fiber setCubicleId:[NSString stringWithFormat:@"%d",_scannedCubicleId]];
         [fiber setCableName:[cable valueForKey:@"cable_name"]];
         [fiber setCableType:[[cable valueForKey:@"cable_type"] integerValue]];
         
