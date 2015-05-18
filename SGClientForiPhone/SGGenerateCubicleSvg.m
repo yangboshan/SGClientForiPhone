@@ -142,19 +142,13 @@
             for(int k = 0; k < self.mergedCubicles.count; k++){
                 
                 SGCableTmpItem* t = self.mergedCubicles[k];
+ 
                 
-                //交替色
-                if (k%2 == 0) {
-                    [svgStr appendString:DrawRectD(margin_x+offsetTmp + cWidth + linelen,
+                [svgStr appendString:DrawRect(margin_x+offsetTmp + cWidth + linelen,
                                                   offsetYTmp,
                                                   cWidth,
                                                   t.count*cHeight + (t.count-1)*cuVeMargin)];
-                }else{
-                    [svgStr appendString:DrawRect(margin_x+offsetTmp + cWidth + linelen,
-                                                  offsetYTmp,
-                                                  cWidth,
-                                                  t.count*cHeight + (t.count-1)*cuVeMargin)];
-                }
+                
                 
  
                 
@@ -198,17 +192,12 @@
                         }
                     } else {
                         
-                        if (vPostion%2==0) {
-                            [svgStr appendString:DrawRectD(margin_x  + hPosition*(cWidth+linelen),
+ 
+                        [svgStr appendString:DrawRect(margin_x  + hPosition*(cWidth+linelen),
                                                           margin_y + vPostion*(cuVeMargin+cHeight)+offsetY,
                                                           cWidth,
                                                           cHeight)];
-                        }else{
-                            [svgStr appendString:DrawRect(margin_x  + hPosition*(cWidth+linelen),
-                                                          margin_y + vPostion*(cuVeMargin+cHeight)+offsetY,
-                                                          cWidth,
-                                                          cHeight)];
-                        }
+                        
 
                         
                         [svgStr appendString:DrawText(margin_x  + hPosition*(cWidth+linelen),
@@ -241,17 +230,12 @@
                             if ([[cubicle valueForKey:@"cubicle_id"] isEqualToString:self.cubicleData[@"id"]]){
                             }else{
                                 
-                                if (vPostion%2==0) {
-                                    [svgStr appendString:DrawRectD(margin_x + hPosition*(cWidth+linelen),
+   
+                                [svgStr appendString:DrawRect(margin_x + hPosition*(cWidth+linelen),
                                                                   margin_y + vPostion*(cuVeMargin+cHeight)+offsetY,
                                                                   cWidth,
                                                                   cHeight)];
-                                }else{
-                                    [svgStr appendString:DrawRect(margin_x + hPosition*(cWidth+linelen),
-                                                                  margin_y + vPostion*(cuVeMargin+cHeight)+offsetY,
-                                                                  cWidth,
-                                                                  cHeight)];
-                                }
+                                
 
                                 
                                 
@@ -281,21 +265,15 @@
                         if ([[cubicle valueForKey:@"cubicle_id"] isEqualToString:self.cubicleData[@"id"]]){
                         }else{
                             
-                            if (vPostion%2==0) {
-                                [svgStr appendString:DrawRectD(margin_x + hPosition*(cWidth+linelen),
+ 
+                            [svgStr appendString:DrawRect(margin_x + hPosition*(cWidth+linelen),
                                                               margin_y + vPostion*(cuVeMargin+cHeight)+offsetY,
                                                               cWidth,
                                                               cHeight)];
-                            }else{
-                                [svgStr appendString:DrawRect(margin_x + hPosition*(cWidth+linelen),
-                                                              margin_y + vPostion*(cuVeMargin+cHeight)+offsetY,
-                                                              cWidth,
-                                                              cHeight)];
-                            }
 
                             
                             
-                            [svgStr appendString:DrawText(margin_x  + hPosition*(cWidth+linelen),
+                            [svgStr appendString:DrawText(margin_x  + hPosition*(cWidth+linelen) + 10,
                                                           margin_y + vPostion*(cuVeMargin+cHeight)+offsetY + cHeight/2,14,
                                                           @"white",
                                                           @"italic",
@@ -363,7 +341,7 @@
                                           types.count*cHeight)];
             
             [svgStr appendString:DrawText(i*(linelen + cWidth) + margin_x + 10,
-                                          margin_y + offsetY + (types.count*cHeight + (types.count-1)*cuVeMargin)*0.5,14,
+                                          margin_y + offsetY + (types.count*cHeight + (types.count-1)*cuVeMargin)/2,14,
                                           @"white",
                                           @"italic",
                                           self.cubicleData[@"name"])];
@@ -398,6 +376,7 @@
     //计算出总高总宽并填回
     if (!self.isForFiberPage) {
         result = [result stringByReplacingOccurrencesOfString:@"++@@@++" withString:[NSString stringWithFormat:@"%f",offsetY]];
+        
         result = [result stringByReplacingOccurrencesOfString:@"##@@@##" withString:[NSString stringWithFormat:@"%f",2*margin_x+hPostionMax*cWidth+(hPostionMax-1)*linelen]];
     }
 
