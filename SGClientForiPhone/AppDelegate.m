@@ -29,7 +29,7 @@
     nav1.tabBarItem.image = [UIImage imageNamed:@"tabbar_icon1_selected"];
     nav1.tabBarItem.title = @"屏柜";
     
-    UINavigationController* nav2 = [[UINavigationController alloc] initWithRootViewController:[NSClassFromString(@"SGScanViewController") new]];
+    UINavigationController* nav2 = [[UINavigationController alloc] initWithRootViewController:[NSClassFromString(@"SGScanContainerViewController") new]];
     nav2.tabBarItem.image = [UIImage imageNamed:@"tabbar_icon2_selected"];
     nav2.tabBarItem.title = @"扫描";
 

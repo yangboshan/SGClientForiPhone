@@ -109,7 +109,6 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = self.dataList[indexPath.row];
     cell.textLabel.textColor = [UIColor darkGrayColor];
     cell.textLabel.font = Lantinghei(15);
@@ -121,6 +120,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     for(int i = 0; i<self.dataList.count;i++){
         UITableViewCell* cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
         cell.accessoryType = UITableViewCellAccessoryNone;

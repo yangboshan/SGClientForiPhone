@@ -9,6 +9,7 @@
 #import "SGCubicleViewController.h"
 #import "SGMainPageBussiness.h"
 #import "SGCableViewController.h"
+#import "SGPortViewController.h"
 
 
 #import "SGRoomCell.h"
@@ -74,9 +75,9 @@
     [super viewWillAppear:animated];
     
     if (CGRectGetWidth(self.view.frame) > CGRectGetHeight(self.view.frame)) {
-        self.itemSize = CGSizeMake((ScreenWidth - 15*4) /3., 200);
+        self.itemSize = CGSizeMake((CGRectGetWidth(self.view.frame) - 15*4) /3., 200);
     }else{
-        self.itemSize = CGSizeMake((ScreenWidth - 15*3) /2., 200);
+        self.itemSize = CGSizeMake((CGRectGetWidth(self.view.frame) - 15*3) /2., 200);
     }
     
     [self.roomView reloadData];
@@ -265,5 +266,38 @@
     return _roomView;
 }
 
+#pragma mark -scan
+
+#pragma mark - 扫码入口 加载下一级界面 跳转第三级
+-(void)scanModeWithCubicleId:(NSInteger)cubicleId withCableId:(NSInteger)cableId{
+    
+    for(NSDictionary* dic in self.roomList){
+        for(id subDic in dic[@"cubicle"]){
+            if ([subDic isKindOfClass:[NSDictionary class]]) {
+                if ([subDic[@"id"] integerValue] == cubicleId) {
+                    SGCableViewController* cableController = [[SGCableViewController alloc] initWithCubicleData:subDic withCubicleId:cubicleId withCableId:cableId];
+                    [self.navigationController pushViewController:cableController animated:NO];
+                    break;
+                }
+            }else{
+                
+                if ([dic[@"cubicle"][@"id"] integerValue] == cubicleId) {
+                    SGCableViewController* cableController = [[SGCableViewController alloc] initWithCubicleData:dic[@"cubicle"] withCubicleId:cubicleId withCableId:cableId];
+                    [self.navigationController pushViewController:cableController animated:NO];
+                    break;
+                }
+                
+            }
+        }
+    }
+}
+
+#pragma mark - 扫码入口 加载下一级界面 跳转第四级
+-(void)scanModeWithPortId:(NSString*)portId{
+    
+    SGPortViewController* portViewController = [SGPortViewController new];
+    [portViewController setPortId:portId];
+    [self.navigationController pushViewController:portViewController animated:YES];
+}
 
 @end

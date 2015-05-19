@@ -7,32 +7,219 @@
 //
 
 #import "SGScanViewController.h"
+#import "PureLayout.h"
+#import "SGCubicleViewController.h"
 
-@interface SGScanViewController ()
+
+#define Line_Width 220
+@interface SGScanViewController (){
+    
+    int num;
+    BOOL upOrdown;
+    NSTimer * timer;
+}
+
+
+@property (strong,nonatomic) AVCaptureDevice * device;
+@property (strong,nonatomic) AVCaptureDeviceInput * input;
+@property (strong,nonatomic) AVCaptureMetadataOutput * output;
+@property (strong,nonatomic) AVCaptureSession * session;
+@property (strong,nonatomic) AVCaptureVideoPreviewLayer * preview;
+
+@property (nonatomic,strong) UIImageView * line;
+@property (nonatomic,strong) UIImageView* rectImageView;
 
 @end
 
 @implementation SGScanViewController
 
-- (void)viewDidLoad {
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.title = @"扫描";
-    // Do any additional setup after loading the view.
+    
+    self.rectImageView = [[UIImageView alloc]initWithFrame:CGRectZero];
+    self.rectImageView.image = [UIImage imageNamed:@"pick_bg"];
+    [self.view addSubview:self.rectImageView];
+    
+    [self.rectImageView autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    [self.rectImageView autoAlignAxisToSuperviewAxis:ALAxisVertical];
+    [self.rectImageView autoSetDimension:ALDimensionWidth toSize:Line_Width];
+    [self.rectImageView autoSetDimension:ALDimensionHeight toSize:Line_Width];
+    
+    UIButton* lightBtn = [UIButton new];
+    lightBtn.alpha = 0.6;
+    [lightBtn setBackgroundImage:[UIImage imageNamed:@"icon_light_off"] forState:UIControlStateNormal];
+    [lightBtn addTarget:self action:@selector(lightAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:lightBtn];
+
+    [lightBtn autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:70];
+    [lightBtn autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:20];
+
+    [lightBtn autoSetDimension:ALDimensionWidth toSize:40];
+    [lightBtn autoSetDimension:ALDimensionHeight toSize:40];
+    
+    
+    _line = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.rectImageView.frame), CGRectGetMinY(self.rectImageView.frame), Line_Width, 2)];
+    _line.image = [UIImage imageNamed:@"line.png"];
+    [self.view addSubview:_line];
+    
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:.02 target:self selector:@selector(animation1) userInfo:nil repeats:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)lightAction:(UIButton*)sender{
+    
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if (![device hasTorch]) {
+        return;
+    }
+    
+    if(device.torchMode == AVCaptureTorchModeOff){
+        
+        [device lockForConfiguration:nil];
+        [device setTorchMode: AVCaptureTorchModeOn];
+        [device unlockForConfiguration];
+        [sender setBackgroundImage:[UIImage imageNamed:@"icon_light_on"] forState:UIControlStateNormal];
+    }else{
+        [device lockForConfiguration:nil];
+        [device setTorchMode: AVCaptureTorchModeOff];
+        [device unlockForConfiguration];
+        [sender setBackgroundImage:[UIImage imageNamed:@"icon_light_off"] forState:UIControlStateNormal];
+    }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)animation1
+{
+    if (upOrdown == NO) {
+        num ++;
+        _line.frame = CGRectMake(CGRectGetMinX(self.rectImageView.frame), CGRectGetMinY(self.rectImageView.frame) + 2*num, Line_Width, 2);
+        if (2*num == Line_Width) {
+            upOrdown = YES;
+        }
+    }
+    else {
+        num --;
+        _line.frame = CGRectMake(CGRectGetMinX(self.rectImageView.frame), CGRectGetMinY(self.rectImageView.frame) + 2*num, Line_Width, 2);
+        if (num == 0) {
+            upOrdown = NO;
+        }
+    }
 }
-*/
+-(void)afterwardsClean{
+    
+    [timer invalidate];
+    
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if (![device hasTorch]) {
+        return;
+    }
+    
+    if(device.torchMode == AVCaptureTorchModeOn){
+        
+        [device lockForConfiguration:nil];
+        [device setTorchMode: AVCaptureTorchModeOff];
+        [device unlockForConfiguration];
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self setupCamera];
+    [self setOrientationForCamara:self.interfaceOrientation];
+}
+- (void)setupCamera
+{
+    _device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    
+    _input = [AVCaptureDeviceInput deviceInputWithDevice:self.device error:nil];
+    
+    _output = [[AVCaptureMetadataOutput alloc]init];
+    [_output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
+    
+    _session = [[AVCaptureSession alloc]init];
+    [_session setSessionPreset:AVCaptureSessionPresetHigh];
+    if ([_session canAddInput:self.input])
+    {
+        [_session addInput:self.input];
+    }
+    
+    if ([_session canAddOutput:self.output])
+    {
+        [_session addOutput:self.output];
+    }
+    
+    _output.metadataObjectTypes =@[AVMetadataObjectTypeQRCode];
+    
+    self.preview =[AVCaptureVideoPreviewLayer layerWithSession:self.session];
+    self.preview.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    self.preview.frame =CGRectMake(0,0,ScreenWidth,ScreenHeight);
+    [self.view.layer insertSublayer:self.preview atIndex:0];
+
+    
+    [_session startRunning];
+}
+
+-(void)dealloc{
+    NSLog(@"");
+}
+
+-(void)viewDidLayoutSubviews{
+    
+    [super viewDidLayoutSubviews];
+    self.preview.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame),  CGRectGetHeight(self.view.frame));
+}
+
+#pragma mark AVCaptureMetadataOutputObjectsDelegate
+- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
+{
+    
+    NSString *stringValue;
+    
+    if ([metadataObjects count] >0)
+    {
+        AVMetadataMachineReadableCodeObject * metadataObject = [metadataObjects objectAtIndex:0];
+        stringValue = metadataObject.stringValue;
+    }
+    [_session stopRunning];
+    
+    stringValue = @"C:C10.1B(Y)-GL103A";
+    
+    SGCubicleViewController* cubicleController = (SGCubicleViewController*)[self.tabBarController.viewControllers[0] viewControllers][0];
+    [cubicleController.navigationController popToRootViewControllerAnimated:NO];
+    [cubicleController scanModeWithCubicleId:0 withCableId:0];
+    self.tabBarController.selectedIndex = 0;
+}
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+    
+    [self setOrientationForCamara:toInterfaceOrientation];
+}
+
+-(void)setOrientationForCamara:(UIInterfaceOrientation)orientation{
+    
+    AVCaptureConnection *previewLayerConnection=self.preview.connection;
+    
+    switch (orientation) {
+        case UIInterfaceOrientationPortrait:
+            [previewLayerConnection setVideoOrientation:AVCaptureVideoOrientationPortrait];
+            break;
+        case UIInterfaceOrientationPortraitUpsideDown:
+            [previewLayerConnection setVideoOrientation:AVCaptureVideoOrientationPortraitUpsideDown];
+            break;
+            
+        case UIInterfaceOrientationLandscapeLeft:
+            [previewLayerConnection setVideoOrientation:AVCaptureVideoOrientationLandscapeLeft];
+            break;
+        case UIInterfaceOrientationLandscapeRight:
+            [previewLayerConnection setVideoOrientation:AVCaptureVideoOrientationLandscapeRight];
+            break;
+        case UIInterfaceOrientationUnknown:
+            break;
+    }
+}
+
 
 @end
+
