@@ -432,13 +432,15 @@ float rOffset = 10;
     NSLog(@"%@",_url);
     if ([_url rangeOfString:@"@@@@"].location != NSNotFound) {
         
-        NSString *retValue = [[_url componentsSeparatedByString:@"@@@@"] objectAtIndex:1];
-        if (retValue) {
-            if (![retValue isEqualToString:@""]) {
-                SGPortViewController* controller = [SGPortViewController new];
-                [controller setPortId:retValue];
-                
-                [self.navigationController pushViewController:controller animated:YES];
+        if ([_url rangeOfString:@"*"].location==NSNotFound) {
+            NSString *retValue = [[_url componentsSeparatedByString:@"@@@@"] objectAtIndex:1];
+            if (retValue) {
+                if (![retValue isEqualToString:@""]) {
+                    SGPortViewController* controller = [SGPortViewController new];
+                    [controller setPortId:retValue];
+                    
+                    [self.navigationController pushViewController:controller animated:YES];
+                }
             }
         }
     }
