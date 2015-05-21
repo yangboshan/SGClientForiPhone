@@ -189,7 +189,7 @@
     
     [_session stopRunning];
     
-    if (stringValue.length>=2) {
+    if (stringValue.length>=3) {
         if ([[stringValue substringToIndex:2] isEqualToString:@"C:"]) {
             NSArray* a = [[stringValue substringFromIndex:2] componentsSeparatedByString:@"."];
             
