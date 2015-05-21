@@ -40,7 +40,7 @@ static NSString *SETTING_FIRST_TIME_RUN = @"SETTING_FIRST_TIME_RUN";
         if (setting == nil)
         {
             [self.userDefaults setObject:[NSNumber numberWithInt:1] forKey:SETTING_FIRST_TIME_RUN];
-            [SGUtility setCurrentDB:@"4级交换机.sqlite"];
+            [SGUtility setCurrentDB:NSLocalizedString(@"DB_NAME", nil)];
             /*－－－－－－－－－－－－－－－－－－－－－－－－－－－
              初次运行判断沙盒下是否存在Sqlite 文件，如无则复制之。
   

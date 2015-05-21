@@ -43,12 +43,14 @@
     
     [super viewDidLoad];
     [self initialSetup];
-    
 }
 
 -(void)initialSetup{
     
-    
+    if (IOSVersion>=8.0) {
+        self.navigationController.hidesBarsOnSwipe = YES;
+    }
+        
     self.title = [[SGUtility getCurrentDB] componentsSeparatedByString:@"."][0];
     
     NSError* error;

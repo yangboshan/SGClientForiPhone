@@ -37,7 +37,7 @@
         
 //        [self.deviceListView setBackgroundColor:NavBarColorAlpha(0.7)];
         [self.roomInfo setTextColor:[UIColor darkGrayColor]];
-        [self.roomInfo setFont:Lantinghei(16)];
+        [self.roomInfo setFont:Lantinghei(14)];
         [self.roomInfo setNumberOfLines:0];
  
         

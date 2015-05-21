@@ -63,7 +63,7 @@
 - (void)customizeAppearance{
     
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:NavBarColorAlpha(0.9)] forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[[UIColor whiteColor] colorWithAlphaComponent:1.0],NSFontAttributeName:Lantinghei(22.0)}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[[UIColor whiteColor] colorWithAlphaComponent:1.0],NSFontAttributeName:Lantinghei(20.0)}];
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
     [UIBarButtonItem appearance].tintColor = [UIColor whiteColor];
     
@@ -72,6 +72,8 @@
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:RGB(146, 146, 146),NSFontAttributeName:Lantinghei(10.0)} forState:UIControlStateNormal];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:NavBarColorAlpha(1.0),NSFontAttributeName:Lantinghei(10.0)} forState:UIControlStateSelected];
     [UITabBar appearance].tintColor = NavBarColorAlpha(1.0);
+    
+//    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
 
 }
 

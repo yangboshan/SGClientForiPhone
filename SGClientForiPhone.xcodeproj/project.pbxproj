@@ -44,6 +44,7 @@
 		3EB3A4D41B0A1A27002EB7FA /* SGSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A4D31B0A1A27002EB7FA /* SGSelectViewController.m */; };
 		3EB3A4D71B0A2723002EB7FA /* SGDBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A4D61B0A2723002EB7FA /* SGDBViewController.m */; };
 		3EB3A4D91B0A2CFA002EB7FA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB3A4D81B0A2CFA002EB7FA /* AVFoundation.framework */; };
+		3ECC66A61B0D7C98006056E3 /* 郁桥变标签.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3ECC66A51B0D7C98006056E3 /* 郁桥变标签.sqlite */; };
 		3EF914CF1AFDF16E00F823E7 /* SGUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914CC1AFDF16E00F823E7 /* SGUtility.m */; };
 		3EF914D01AFDF16E00F823E7 /* SGAPPConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914CE1AFDF16E00F823E7 /* SGAPPConfig.m */; };
 		3EF914DD1AFDF33D00F823E7 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914D41AFDF33D00F823E7 /* FMDatabase.m */; };
@@ -59,7 +60,6 @@
 		3EF914F31AFDF91C00F823E7 /* SGBaseBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914F01AFDF91C00F823E7 /* SGBaseBussiness.m */; };
 		3EF914F41AFDF91C00F823E7 /* SGMainPageBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914F21AFDF91C00F823E7 /* SGMainPageBussiness.m */; };
 		3EF914F71AFDF99700F823E7 /* SGEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914F61AFDF99700F823E7 /* SGEntity.m */; };
-		3EF914FB1AFDFCAB00F823E7 /* 4级交换机.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3EF914FA1AFDFCAB00F823E7 /* 4级交换机.sqlite */; };
 		3EF914FD1AFE025C00F823E7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EF914FC1AFE025C00F823E7 /* Localizable.strings */; };
 		3EF915011AFE052300F823E7 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF915001AFE052300F823E7 /* XMLReader.m */; };
 /* End PBXBuildFile section */
@@ -149,6 +149,7 @@
 		3EB3A4D51B0A2723002EB7FA /* SGDBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGDBViewController.h; sourceTree = "<group>"; };
 		3EB3A4D61B0A2723002EB7FA /* SGDBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGDBViewController.m; sourceTree = "<group>"; };
 		3EB3A4D81B0A2CFA002EB7FA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3ECC66A51B0D7C98006056E3 /* 郁桥变标签.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "郁桥变标签.sqlite"; sourceTree = "<group>"; };
 		3EF914CA1AFDF16E00F823E7 /* SGGCDSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGGCDSingleton.h; sourceTree = "<group>"; };
 		3EF914CB1AFDF16E00F823E7 /* SGUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGUtility.h; sourceTree = "<group>"; };
 		3EF914CC1AFDF16E00F823E7 /* SGUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGUtility.m; sourceTree = "<group>"; };
@@ -178,7 +179,6 @@
 		3EF914F21AFDF91C00F823E7 /* SGMainPageBussiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGMainPageBussiness.m; sourceTree = "<group>"; };
 		3EF914F51AFDF99700F823E7 /* SGEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGEntity.h; sourceTree = "<group>"; };
 		3EF914F61AFDF99700F823E7 /* SGEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGEntity.m; sourceTree = "<group>"; };
-		3EF914FA1AFDFCAB00F823E7 /* 4级交换机.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "4级交换机.sqlite"; sourceTree = "<group>"; };
 		3EF914FC1AFE025C00F823E7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		3EF914FF1AFE052300F823E7 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
 		3EF915001AFE052300F823E7 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
@@ -406,8 +406,8 @@
 		3E1E452D1AFB0FCA006DB63E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				3ECC66A51B0D7C98006056E3 /* 郁桥变标签.sqlite */,
 				3EF914FC1AFE025C00F823E7 /* Localizable.strings */,
-				3EF914FA1AFDFCAB00F823E7 /* 4级交换机.sqlite */,
 				3E1E452E1AFB0FD8006DB63E /* Lantinghei_0.ttf */,
 			);
 			name = Resource;
@@ -616,11 +616,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EF914FB1AFDFCAB00F823E7 /* 4级交换机.sqlite in Resources */,
 				3EF914FD1AFE025C00F823E7 /* Localizable.strings in Resources */,
 				3E3F0A2B1B086C8700BF1EB9 /* SGRoomCell.xib in Resources */,
 				3E3F0A411B08915800BF1EB9 /* SGSectionHeaderView.xib in Resources */,
 				3E1E44F01AFB0BD8006DB63E /* Main.storyboard in Resources */,
+				3ECC66A61B0D7C98006056E3 /* 郁桥变标签.sqlite in Resources */,
 				3E1E44F51AFB0BD8006DB63E /* LaunchScreen.xib in Resources */,
 				3E1E452F1AFB0FD8006DB63E /* Lantinghei_0.ttf in Resources */,
 				3E1E44F21AFB0BD8006DB63E /* Images.xcassets in Resources */,
