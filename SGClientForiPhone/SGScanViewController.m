@@ -10,6 +10,8 @@
 #import "PureLayout.h"
 #import "SGCubicleViewController.h"
 #import "SGCablePageBussiness.h"
+#import "SGPortPageBussiness.h"
+
 
 #define Line_Width 220
 @interface SGScanViewController ()<UIAlertViewDelegate>{
@@ -201,9 +203,12 @@
             self.tabBarController.selectedIndex = 0;
             
         }else if ([[stringValue substringToIndex:2] isEqualToString:@"F:"]){
+            
+            NSArray* a = [stringValue componentsSeparatedByString:@"."];
+            NSString* portId = [[SGPortPageBussiness sharedSGPortPageBussiness] queryPortIdByDeviceName:a[1] boardPostion:a[2] portName:a[3]];
             SGCubicleViewController* cubicleController = (SGCubicleViewController*)[self.tabBarController.viewControllers[0] viewControllers][0];
             [cubicleController.navigationController popToRootViewControllerAnimated:NO];
-            [cubicleController scanModeWithPortId:@""];
+            [cubicleController scanModeWithPortId:portId];
             self.tabBarController.selectedIndex = 0;
             
         }else{

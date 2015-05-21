@@ -58,6 +58,13 @@ where (switch1_id != 0 or switch1_txport_id != 0 or switch1_rxport_id != 0 or sw
 
 #define FP_GetFiberInfo(p) [NSString stringWithFormat:@"select port1_id as port_id,port2_id as direction from fiber where port1_id = %@ or port2_id = %@",p,p]
 
+
+
+/*－－－－－－－－－－－－－－－－－－－－－－－－－－－
+ 根据device.name board.postion port.name 获取port_id
+ －－－－－－－－－－－－－－－－－－－－－－－－－－－*/
+#define FP_GetPortIdByInfo(d,b,p) [NSString stringWithFormat:@"select port.port_id from port where port.board_id = (SELECT  board.board_id  FROM board inner join device on board.device_id = device.device_id where device.name = '%@' and board.position = '%@')  and  port.name = '%@'",d,b,p]
+
 @interface SGPortPageBussiness()
 
 @property (nonatomic,strong) SGPortPageDataModel *dataModel0;
@@ -89,6 +96,18 @@ where (switch1_id != 0 or switch1_txport_id != 0 or switch1_rxport_id != 0 or sw
 GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
 
 
+
+-(NSString*)queryPortIdByDeviceName:(NSString*)deviceName boardPostion:(NSString*)boardPostion portName:(NSString*)portName{
+    
+    NSArray* a = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetPortIdByInfo(deviceName,boardPostion,portName)]
+                                       withEntity:@"SGPortInfo"];
+    if (a.count) {
+        SGPortInfo* item = a[0];
+        return item.port_id;
+    }
+    
+    return @"0";
+}
 
 //获取设备名称
 -(NSString*)getDeviceInfoById:(NSString*)deviceId{

@@ -17,8 +17,9 @@ typedef void(^finishBlock)(NSArray* result);
 
 +(SGPortPageBussiness*)sharedSGPortPageBussiness;
 
--(void)queryResultWithType:(NSInteger)type portId:(NSString*)portId complete:(finishBlock)finish;
 
+-(void)queryResultWithType:(NSInteger)type portId:(NSString*)portId complete:(finishBlock)finish;
+-(NSString*)queryPortIdByDeviceName:(NSString*)deviceName boardPostion:(NSString*)boardPostion portName:(NSString*)portName;
 
 @property (nonatomic,strong) UIViewController* controller;
 @property (nonatomic,assign) BOOL multiFlag;
