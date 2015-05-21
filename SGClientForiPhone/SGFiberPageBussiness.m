@@ -271,13 +271,13 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGFiberPageBussiness)
  －－－－－－－－－－－－－－－－－*/
 -(void)fillOdfFieldWithSGResult:(SGResult*)resultItem withSGFiberItem:(SGFiberItem*)fiberItem{
     
-    NSArray* desc = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetODFInfo(fiberItem.port1_id)]
+    NSArray* desc = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetODFInfo(fiberItem.port2_id)]
                                           withEntity:@"SGInfoSetItem"];
     if ([desc count]) {
         resultItem.odf1 = [(SGInfoSetItem*)[desc objectAtIndex:0] name];
     }
     
-    desc = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetODFInfo(fiberItem.port2_id)]
+    desc = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetODFInfo(fiberItem.port1_id)]
                                  withEntity:@"SGInfoSetItem"];
     
     if ([desc count]) {
