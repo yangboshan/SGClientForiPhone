@@ -79,12 +79,12 @@ where port.port_id = %@",p]
 /*－－－－－－－－－－－－－－－－－
  根据端口号 获取port board信息
  －－－－－－－－－－－－－－－－－*/
-#define FP_GetPortInfo(p) [NSString stringWithFormat:@"select  board.position||'/'||port.name as  description  from port inner join board on board.board_id = port.board_id where port.port_id = %@",p]
+#define FP_GetPortInfo(p) [NSString stringWithFormat:@"select (case board.position when '' then '' else board.position||'/' end)||port.name as  description  from port inner join board on board.board_id = port.board_id where port.port_id = %@",p]
 
 /*－－－－－－－－－－－－－－－－－
  获取TX信息
  －－－－－－－－－－－－－－－－－*/
-#define FP_GetTXInfo(p1,p2) [NSString stringWithFormat:@"select (case cable.cable_type when '0' then cable.name_bay||'-GL'||(case length(cable.name_number) when 3 then cable.name_number when 2 then '0' ||cable.name_number when 1 then '00' || cable.name_number end) ||cable.name_set when '1' then cable.name_bay||'-WL'||(case length(cable.name_number) when 3 then cable.name_number when 2 then '0' || cable.name_number when 1 then '00' || cable.name_number end) ||cable.name_set when '2' then 'TX'||(case length(cable.name_number) when 3 then cable.name_number when 2 then '0' || cable.name_number when 1 then '00' || cable.name_number end ) end) ||':'||fiber.[index] as description from cable \
+#define FP_GetTXInfo(p1,p2) [NSString stringWithFormat:@"select (case cable.cable_type when '0' then cable.name_bay||'-GL'||(case length(cable.name_number) when 3 then cable.name_number when 2 then '0' ||cable.name_number when 1 then '00' || cable.name_number end) ||cable.name_set when '1' then cable.name_bay||'-WL'||(case length(cable.name_number) when 3 then cable.name_number when 2 then '0' || cable.name_number when 1 then '00' || cable.name_number end) ||cable.name_set when '2' then 'TX'||(case length(cable.name_number) when 3 then cable.name_number when 2 then '0' || cable.name_number when 1 then '00' || cable.name_number end ) end) ||(case fiber.[index] when '0'  then ''  else  ':'||fiber.[index] end ) as description from cable \
                                                       inner join fiber on cable.cable_id = fiber.cable_id \
                                                             where (fiber.port1_id = %@ and fiber.port2_id = %@) or (fiber.port2_id = %@ and fiber.port1_id = %@)",p1,p2,p1,p2]
 /*－－－－－－－－－－－－－－－－－

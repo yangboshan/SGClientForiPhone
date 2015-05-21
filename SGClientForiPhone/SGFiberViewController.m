@@ -199,7 +199,7 @@ float rOffset = 10;
             
             _propertyList = @[@"device1",@"port1",@"tx1",@"odf1",@"middle",@"odf2",@"tx2",@"port2",@"device2",@"type2"];
             
-            _headList = @[@"设备",@"端口",@"TX",@"ODF",@"",@"ODF",@"TX",@"端口",@"设备",@"数据类型"];
+            _headList = @[@"设备",@"端口",@"跳纤",@"ODF",@"纤芯",@"ODF",@"跳纤",@"端口",@"设备",@"数据类型"];
             
             break;
             
