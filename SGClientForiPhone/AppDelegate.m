@@ -23,6 +23,8 @@
     
     sleep(3);
     
+    [self initialSetup];
+    
     UITabBarController* tabBar = [UITabBarController new];
     
     UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:[NSClassFromString(@"SGCubicleViewController") new]];
@@ -43,10 +45,6 @@
     
     self.window.rootViewController = tabBar;
     [self.window makeKeyAndVisible];
-    
-    [self initialSetup];
-
-    
     return YES;
 }
 

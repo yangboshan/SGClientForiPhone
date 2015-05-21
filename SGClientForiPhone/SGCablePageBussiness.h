@@ -2,8 +2,8 @@
 //  SGCablePageBussiness.h
 //  SGClient
 //
-//  Created by JY on 14-5-19.
-//  Copyright (c) 2014年 XLDZ. All rights reserved.
+//  Created by yangboshan on 15/5/7.
+//  Copyright (c) 2015年 yangbs. All rights reserved.
 //
 
 #import "SGBaseBussiness.h"

@@ -2,8 +2,8 @@
 //  SGGenerateCubicleSvg.h
 //  SGClient
 //
-//  Created by yangboshan on 14-7-13.
-//  Copyright (c) 2014年 XLDZ. All rights reserved.
+//  Created by yangboshan on 15/5/7.
+//  Copyright (c) 2015年 yangbs. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

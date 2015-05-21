@@ -2,8 +2,8 @@
 //  SGFiberPageBussiness.h
 //  SGClient
 //
-//  Created by JY on 14-6-3.
-//  Copyright (c) 2014年 XLDZ. All rights reserved.
+//  Created by yangboshan on 15/5/7.
+//  Copyright (c) 2015年 yangbs. All rights reserved.
 //
 
 #import "SGBaseBussiness.h"
