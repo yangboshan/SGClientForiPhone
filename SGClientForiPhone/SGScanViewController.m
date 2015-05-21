@@ -9,10 +9,10 @@
 #import "SGScanViewController.h"
 #import "PureLayout.h"
 #import "SGCubicleViewController.h"
-
+#import "SGCablePageBussiness.h"
 
 #define Line_Width 220
-@interface SGScanViewController (){
+@interface SGScanViewController ()<UIAlertViewDelegate>{
     
     int num;
     BOOL upOrdown;
@@ -182,14 +182,43 @@
         AVMetadataMachineReadableCodeObject * metadataObject = [metadataObjects objectAtIndex:0];
         stringValue = metadataObject.stringValue;
     }
+    
+    NSLog(@"--------------------->>>>>>>>%@",stringValue);
+    
     [_session stopRunning];
     
-    stringValue = @"C:C10.1B(Y)-GL103A";
-    
-    SGCubicleViewController* cubicleController = (SGCubicleViewController*)[self.tabBarController.viewControllers[0] viewControllers][0];
-    [cubicleController.navigationController popToRootViewControllerAnimated:NO];
-    [cubicleController scanModeWithCubicleId:0 withCableId:0];
-    self.tabBarController.selectedIndex = 0;
+    if (stringValue.length>=2) {
+        if ([[stringValue substringToIndex:2] isEqualToString:@"C:"]) {
+            NSArray* a = [[stringValue substringFromIndex:2] componentsSeparatedByString:@"."];
+            
+            
+            NSInteger cubicileId = [[SGCablePageBussiness sharedSGCablePageBussiness] queryCubicleIdByInfo:a[0]];
+            NSInteger cableId = [[SGCablePageBussiness sharedSGCablePageBussiness] queryCableIdByInfo:a[1]];
+            
+            SGCubicleViewController* cubicleController = (SGCubicleViewController*)[self.tabBarController.viewControllers[0] viewControllers][0];
+            [cubicleController.navigationController popToRootViewControllerAnimated:NO];
+            [cubicleController scanModeWithCubicleId:cubicileId withCableId:cableId];
+            self.tabBarController.selectedIndex = 0;
+            
+        }else if ([[stringValue substringToIndex:2] isEqualToString:@"F:"]){
+            SGCubicleViewController* cubicleController = (SGCubicleViewController*)[self.tabBarController.viewControllers[0] viewControllers][0];
+            [cubicleController.navigationController popToRootViewControllerAnimated:NO];
+            [cubicleController scanModeWithPortId:@""];
+            self.tabBarController.selectedIndex = 0;
+            
+        }else{
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:stringValue delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:stringValue delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    [_session startRunning];
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
