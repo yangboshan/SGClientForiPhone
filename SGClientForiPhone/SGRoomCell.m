@@ -66,15 +66,26 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSArray* ary = (NSArray*)[self.data objectForKey:@"device"];
-    if(ary)
-        return ary.count;
-    else
-    {
-        NSDictionary* dict = (NSDictionary*)[self.data objectForKey:@"device"];
-        if(dict)
-            return 1;
+    
+    if ([[self.data objectForKey:@"device"] isKindOfClass:[NSDictionary class]]) {
+        return 1;
     }
+    if ([[self.data objectForKey:@"device"] isKindOfClass:[NSArray class]]) {
+        
+        NSArray* a = (NSArray*)[self.data objectForKey:@"device"];
+        return a.count;
+    }
+    
+    
+//    NSArray* ary = (NSArray*)[self.data objectForKey:@"device"];
+//    if(ary)
+//        return ary.count;
+//    else
+//    {
+//        NSDictionary* dict = (NSDictionary*)[self.data objectForKey:@"device"];
+//        if(dict)
+//            return 1;
+//    }
     return 0;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
