@@ -202,10 +202,10 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
             }            
         }
         
-        ls = [ls valueForKeyPath:@"@distinctUnionOfObjects.self"];
+        t = [t valueForKeyPath:@"@distinctUnionOfObjects.self"];
         
         
-        if (ls.count == 1||self.multiFlag) {
+        if (t.count == 1||self.multiFlag) {
             
             self.selectedInfoset = self.tmpInfoSetLists[0];
             if (self.multiFlag) {
@@ -251,16 +251,16 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
         
         for(SGInfoSetItem* item in self.tmpInfoSetLists){
             
-            NSString* deviceName = [self getDeviceInfoById:item.rxied_id];
+            NSString* deviceName = [self getDeviceInfoById:item.txied_id];
             if (![t containsObject:[NSString stringWithFormat:@"%@****%@",item.txied_id,deviceName]]) {
                 [t addObject:[NSString stringWithFormat:@"%@****%@",item.txied_id,deviceName]];
                 [ls addObject:[NSString stringWithFormat:@"%@****%@****%@",item.txied_id,deviceName,item.infoset_id]];
             }
         }
         
-        ls = [ls valueForKeyPath:@"@distinctUnionOfObjects.self"];
+        t = [t valueForKeyPath:@"@distinctUnionOfObjects.self"];
         
-        if (ls.count == 1||self.multiFlag) {
+        if (t.count == 1||self.multiFlag) {
             
             self.selectedInfoset = self.tmpInfoSetLists[0];
             
@@ -508,9 +508,9 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
                     
                     NSString* conditions;
                     if (idx2 == 0) {
-                        conditions = [NSString stringWithFormat:@"rxvterminal_id = %@",vterminalItem.vterminal_id];
+                        conditions = [NSString stringWithFormat:@"rxvterminal_id = %@ and straight == 0",vterminalItem.vterminal_id];
                     }else {
-                        conditions = [NSString stringWithFormat:@"txvterminal_id = %@",vterminalItem.vterminal_id];
+                        conditions = [NSString stringWithFormat:@"txvterminal_id = %@ and straight == 0",vterminalItem.vterminal_id];
                     }
                     
                     NSString* condition2 = @"";
