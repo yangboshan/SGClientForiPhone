@@ -121,7 +121,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    [self.delegate userDidSelectItem:indexPath.row];
+    NSArray* ret = [self.dataSource[indexPath.row] componentsSeparatedByString:@"****"];
+
+    [self.delegate userDidSelectItem:[ret[2] integerValue]];
     
     [self dismissViewControllerAnimated:YES completion:^{
     }];

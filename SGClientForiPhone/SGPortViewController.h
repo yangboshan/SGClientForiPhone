@@ -8,9 +8,19 @@
 
 #import "SGBaseDrawViewController.h"
 
+
+typedef NS_ENUM(NSInteger, kConnectTypeFlag){
+    kConnectTypeFlagGoose = 0,
+    kConnectTypeFlagGooseD,
+    kConnectTypeFlagSV,
+    kConnectTypeFlagSVD,
+    kConnectTypeFlagGooseSV,
+    kConnectTypeFlagGooseSVD
+};
+
 @interface SGPortViewController : SGBaseDrawViewController
 
 @property (nonatomic,strong) NSString* portId;
-
+@property (nonatomic,strong) NSString* cableType;
 
 @end

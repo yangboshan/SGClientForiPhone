@@ -44,6 +44,7 @@
     
     [[SGPortPageBussiness sharedSGPortPageBussiness] setController:self];
     [[SGPortPageBussiness sharedSGPortPageBussiness] setMultiFlag:NO];
+    [[SGPortPageBussiness sharedSGPortPageBussiness] setCableType:self.cableType];
     [[SGPortPageBussiness sharedSGPortPageBussiness] queryResultWithType:0 portId:self.portId complete:^(NSArray *result) {
         weakSelf.result = result;
         [weakSelf loadSVG];
@@ -71,8 +72,12 @@
     self.cubicleWidth = MAX([self getCubicleWidth:self.result[0]], [self getCubicleWidth:self.result[1]]);
     self.cubicleWidth+=20;
     
-    [svgStr appendString:[self generateDrawString:self.result[0]]];
-    [svgStr appendString:[self generateDrawString:self.result[1]]];
+    if ([self.cableType rangeOfString:@"GOOSE"].location!=NSNotFound) {
+        [svgStr appendString:[self generateDrawString:self.result[0]]];
+    }
+    if ([self.cableType rangeOfString:@"SV"].location!=NSNotFound) {
+        [svgStr appendString:[self generateDrawString:self.result[1]]];
+    }
     [svgStr appendString:@"</svg>"];
     
     NSString* result = [NSString stringWithString:svgStr];

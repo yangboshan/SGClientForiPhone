@@ -190,10 +190,16 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
         
         self.tmpInfoSetLists = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetInfoSetList0(self.mainPortId)] withEntity:@"SGInfoSetItem"];
         
+        NSMutableArray* t = [NSMutableArray array];
         NSMutableArray* ls = [NSMutableArray array];
+        
         for(SGInfoSetItem* item in self.tmpInfoSetLists){
+            
             NSString* deviceName = [self getDeviceInfoById:item.rxied_id];
-            [ls addObject:[NSString stringWithFormat:@"%@****%@",item.rxied_id,deviceName]];
+            if (![t containsObject:[NSString stringWithFormat:@"%@****%@",item.rxied_id,deviceName]]) {
+                [t addObject:[NSString stringWithFormat:@"%@****%@",item.rxied_id,deviceName]];
+                [ls addObject:[NSString stringWithFormat:@"%@****%@****%@",item.rxied_id,deviceName,item.infoset_id]];
+            }            
         }
         
         ls = [ls valueForKeyPath:@"@distinctUnionOfObjects.self"];
@@ -240,10 +246,16 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
     if ([portInfo.direction isEqualToString:@"1"]) {
         self.tmpInfoSetLists = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetInfoSetList1(self.mainPortId)] withEntity:@"SGInfoSetItem"];
         
+        NSMutableArray* t = [NSMutableArray array];
         NSMutableArray* ls = [NSMutableArray array];
+        
         for(SGInfoSetItem* item in self.tmpInfoSetLists){
-            NSString* deviceName = [self getDeviceInfoById:item.txied_id];
-            [ls addObject:[NSString stringWithFormat:@"%@****%@",item.txied_id,deviceName]];
+            
+            NSString* deviceName = [self getDeviceInfoById:item.rxied_id];
+            if (![t containsObject:[NSString stringWithFormat:@"%@****%@",item.txied_id,deviceName]]) {
+                [t addObject:[NSString stringWithFormat:@"%@****%@",item.txied_id,deviceName]];
+                [ls addObject:[NSString stringWithFormat:@"%@****%@****%@",item.txied_id,deviceName,item.infoset_id]];
+            }
         }
         
         ls = [ls valueForKeyPath:@"@distinctUnionOfObjects.self"];
@@ -400,9 +412,18 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
 
     self.cache = [NSMutableDictionary dictionary];
     [self.cache setValue:@"YES" forKey:self.mainPortId];
-    self.multiIndex = index;
     
-    self.selectedInfoset = self.tmpInfoSetLists[index];
+    for(int i = 0; i < self.tmpInfoSetLists.count; i++){
+        SGInfoSetItem* item = self.tmpInfoSetLists[i];
+        if ([item.infoset_id integerValue] == index) {
+            self.multiIndex = i;
+            self.selectedInfoset = self.tmpInfoSetLists[i];
+            break;
+        }
+    }
+    
+//    self.multiIndex = index;
+//    self.selectedInfoset = self.tmpInfoSetLists[index];
     
     if ([self.direction isEqualToString:@"0"]) {
         
@@ -492,7 +513,26 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
                         conditions = [NSString stringWithFormat:@"txvterminal_id = %@",vterminalItem.vterminal_id];
                     }
                     
-                    NSArray* tmpConnection = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetVterminalConnection(conditions)] withEntity:@"SGVterminalConnection"];
+                    NSString* condition2 = @"";
+                    if ([self.cableType rangeOfString:@"GOOSE直"].location!=NSNotFound) {
+                        if(idx1 == 0){
+                            condition2 = [NSString stringWithFormat:@"%@%@",conditions,@" and straight == 1"];
+                        }
+                    }
+                    if ([self.cableType rangeOfString:@"SV直"].location!=NSNotFound) {
+                        if (idx1 == 1) {
+                            condition2 = [NSString stringWithFormat:@"%@%@",conditions,@" and straight == 1"];
+                        }
+                    }
+                    
+                    NSArray* tmpConnection = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetVterminalConnection(([condition2 isEqualToString:@""])? conditions:condition2
+)] withEntity:@"SGVterminalConnection"];
+                    
+                    if (!tmpConnection.count) {
+                        if (![condition2 isEqualToString:@""]) {
+                            tmpConnection = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetVterminalConnection(conditions)] withEntity:@"SGVterminalConnection"];
+                        }
+                    }
                     
                     for(SGVterminalConnection* connection in tmpConnection){
                         

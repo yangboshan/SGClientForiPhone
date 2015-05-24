@@ -215,7 +215,7 @@ float rOffset = 10;
             
             _propertyList = @[@"device1",@"port1",@"middle",@"port2",@"device2",@"type2"];
             
-            _headList = @[@"设备",@"端口",@"",@"端口",@"设备",@"数据类型"];
+            _headList = @[@"设备",@"端口",@"纤芯",@"端口",@"设备",@"数据类型"];
             
             break;
         default:
@@ -346,16 +346,17 @@ float rOffset = 10;
                 }
                 
             }else{
+                NSString* ret = [NSString stringWithFormat:@"%@@@@@%@",port,[self.fiberList[i] valueForKey:@"type2"]];
                 if (i%2==0) {
                     [svgStr appendString:DrawRectW(hOffset,
                                                    margin_y + 30 + vOffset,
                                                    [self getTotalLengthForArray:_offsetList withBegin:beginIndex withEnd:endIndex] + rOffset,
-                                                   60.0,port)];
+                                                   60.0,ret)];
                 }else{
                     [svgStr appendString:DrawRectWD(hOffset,
                                                     margin_y + 30 + vOffset,
                                                     [self getTotalLengthForArray:_offsetList withBegin:beginIndex withEnd:endIndex] + rOffset,
-                                                    60.0,port)];
+                                                    60.0,ret)];
                 }
                 
             }
@@ -433,12 +434,15 @@ float rOffset = 10;
     if ([_url rangeOfString:@"@@@@"].location != NSNotFound) {
         
         if ([_url rangeOfString:@"*"].location==NSNotFound) {
+            _url = [_url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; 
+            
             NSString *retValue = [[_url componentsSeparatedByString:@"@@@@"] objectAtIndex:1];
+            NSString *type = [[_url componentsSeparatedByString:@"@@@@"] objectAtIndex:2];
             if (retValue) {
                 if (![retValue isEqualToString:@""]) {
                     SGPortViewController* controller = [SGPortViewController new];
                     [controller setPortId:retValue];
-                    
+                    [controller setCableType:type];
                     [self.navigationController pushViewController:controller animated:YES];
                 }
             }

@@ -21,7 +21,8 @@ typedef void(^finishBlock)(NSArray* result);
 -(void)queryResultWithType:(NSInteger)type portId:(NSString*)portId complete:(finishBlock)finish;
 -(NSString*)queryPortIdByDeviceName:(NSString*)deviceName boardPostion:(NSString*)boardPostion portName:(NSString*)portName;
 
-@property (nonatomic,strong) UIViewController* controller;
+@property (nonatomic,weak) UIViewController* controller;
 @property (nonatomic,assign) BOOL multiFlag;
+@property (nonatomic,strong) NSString* cableType;
 
 @end
