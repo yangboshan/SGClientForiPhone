@@ -262,7 +262,7 @@ float offsetY_ = 0;
                                   type)];
     
     //画主设
-    [svgStr appendString:DrawRectW(margin,
+    [svgStr appendString:DrawRectWD(margin,
                                    margin_y_ + offsetY_,
                                    width,
                                    height-10,dataModel.mainPortId)];

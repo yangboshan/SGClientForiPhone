@@ -339,7 +339,7 @@ float rOffset = 10;
                                                    [self getTotalLengthForArray:_offsetList withBegin:beginIndex withEnd:endIndex] + rOffset,
                                                    60.0,@"")];
                 }else{
-                    [svgStr appendString:DrawRectWD(hOffset,
+                    [svgStr appendString:DrawRectW(hOffset,
                                                     margin_y + 30 + vOffset,
                                                     [self getTotalLengthForArray:_offsetList withBegin:beginIndex withEnd:endIndex] + rOffset,
                                                     60.0,@"")];
@@ -353,7 +353,7 @@ float rOffset = 10;
                                                    [self getTotalLengthForArray:_offsetList withBegin:beginIndex withEnd:endIndex] + rOffset,
                                                    60.0,ret)];
                 }else{
-                    [svgStr appendString:DrawRectWD(hOffset,
+                    [svgStr appendString:DrawRectW(hOffset,
                                                     margin_y + 30 + vOffset,
                                                     [self getTotalLengthForArray:_offsetList withBegin:beginIndex withEnd:endIndex] + rOffset,
                                                     60.0,ret)];
