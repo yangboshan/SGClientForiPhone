@@ -22,5 +22,5 @@ typedef NS_ENUM(NSInteger, kConnectTypeFlag){
 
 @property (nonatomic,strong) NSString* portId;
 @property (nonatomic,strong) NSString* cableType;
-
+@property (nonatomic,strong) NSString* deviceName;
 @end

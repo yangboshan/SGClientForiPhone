@@ -321,13 +321,17 @@ float rOffset = 10;
         
         vOffset = 0;
         NSString* port = @"";
+        NSString* deviceName;
+
         for (int i = 0; i < _fiberList.count; i++) {
             vOffset += 60;
             
             if (s == 0) {
+                deviceName = [self.fiberList[i] valueForKey:@"device1"];
                 port = [self.fiberList[i] valueForKey:@"portId1"];
             }
             if (s == 2) {
+                deviceName = [self.fiberList[i] valueForKey:@"device2"];
                 port = [self.fiberList[i] valueForKey:@"portId2"];
             }
             
@@ -346,7 +350,8 @@ float rOffset = 10;
                 }
                 
             }else{
-                NSString* ret = [NSString stringWithFormat:@"%@@@@@%@",port,[self.fiberList[i] valueForKey:@"type2"]];
+                
+                NSString* ret = [NSString stringWithFormat:@"%@@@@@%@@@@@%@",port,[self.fiberList[i] valueForKey:@"type2"],deviceName];
                 if (i%2==0) {
                     [svgStr appendString:DrawRectW(hOffset,
                                                    margin_y + 30 + vOffset,
@@ -438,11 +443,14 @@ float rOffset = 10;
             
             NSString *retValue = [[_url componentsSeparatedByString:@"@@@@"] objectAtIndex:1];
             NSString *type = [[_url componentsSeparatedByString:@"@@@@"] objectAtIndex:2];
+            NSString *device = [[_url componentsSeparatedByString:@"@@@@"] objectAtIndex:3];
+
             if (retValue) {
                 if (![retValue isEqualToString:@""]) {
                     SGPortViewController* controller = [SGPortViewController new];
                     [controller setPortId:retValue];
                     [controller setCableType:type];
+                    [controller setDeviceName:device];
                     [self.navigationController pushViewController:controller animated:YES];
                 }
             }

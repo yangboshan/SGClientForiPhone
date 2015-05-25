@@ -37,7 +37,7 @@
 {
     
     [super viewDidLoad];
-    self.title = @"设备虚端子连接图";
+    self.title = [NSString stringWithFormat:@"%@虚端子图",self.deviceName];
     self.showAll = NO;
     
     __weak typeof(self) weakSelf = self;
