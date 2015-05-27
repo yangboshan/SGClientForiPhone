@@ -47,7 +47,7 @@
     [[SGPortPageBussiness sharedSGPortPageBussiness] setCableType:self.cableType];
     [[SGPortPageBussiness sharedSGPortPageBussiness] queryResultWithType:0 portId:self.portId complete:^(NSArray *result) {
         SGPortPageDataModel*model = result[0];
-        weakSelf.title = model.mainDeviceName;
+        weakSelf.title = [NSString stringWithFormat:@"%@虚端子图",model.mainDeviceName];
         weakSelf.result = result;
         [weakSelf loadSVG];
     }];
