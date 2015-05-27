@@ -51,7 +51,6 @@
         weakSelf.result = result;
         [weakSelf loadSVG];
     }];
-    
 }
 
 -(void)loadSVG{
