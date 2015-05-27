@@ -143,8 +143,9 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
         //type 0 非全部 1全部
         switch (type) {
             case 0:
+                return;
                 //获取非全部列表
-                ret = [self queryByIdSub];
+//                ret = [self queryByIdSub];
                 break;
             case 1:
                 //获取全部列表
@@ -207,31 +208,65 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
         
         if (t.count == 1||self.multiFlag) {
             
-            self.selectedInfoset = self.tmpInfoSetLists[0];
-            if (self.multiFlag) {
-                self.selectedInfoset = self.tmpInfoSetLists[self.multiIndex];
+            NSMutableArray* t = [NSMutableArray array];
+            for(int i = 0; i < self.tmpInfoSetLists.count; i++){
+                
+                self.dataModel0 = [SGPortPageDataModel new];
+                self.dataModel1 = [SGPortPageDataModel new];
+                self.dataModel0.type = @"0";
+                self.dataModel1.type = @"1";
+                
+                
+                self.selectedInfoset = self.tmpInfoSetLists[i];
+                if (self.multiFlag) {
+                    self.selectedInfoset = self.tmpInfoSetLists[self.multiIndex];
+                }
+                
+                NSArray* glist = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetGroupInfo(self.selectedInfoset.group,self.selectedInfoset.infoset_id)] withEntity:@"SGInfoSetItem"];
+                if (glist.count>0) {
+                    self.groupInfoset = glist[0];
+                }else{
+                    self.groupInfoset = nil;
+                }
+                
+                
+                self.dataModel0.mainDeviceId = self.selectedInfoset.rxied_id;
+                self.dataModel0.mainDeviceName = [self getDeviceInfoById:self.dataModel0.mainDeviceId];
+                self.dataModel0.mainPortId = self.mainPortId;
+                
+                
+                self.dataModel1.mainDeviceId = self.selectedInfoset.rxied_id;
+                self.dataModel1.mainDeviceName = [self getDeviceInfoById:self.dataModel1.mainDeviceId];
+                self.dataModel1.mainPortId = self.mainPortId;
+ 
+                self.cntedDeviceId = self.selectedInfoset.txied_id;
+                
+                [t addObject:[self queryByIdSub]];
             }
             
-            NSArray* glist = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetGroupInfo(self.selectedInfoset.group,self.selectedInfoset.infoset_id)] withEntity:@"SGInfoSetItem"];
-            if (glist.count>0) {
-                self.groupInfoset = glist[0];
-            }else{
-                self.groupInfoset = nil;
+            SGPortPageDataModel* d0 = t[0][0];
+            SGPortPageDataModel* d1 = t[0][1];
+            
+            NSMutableArray* l1 = [NSMutableArray array];
+            NSMutableArray* r1 = [NSMutableArray array];
+            NSMutableArray* l2 = [NSMutableArray array];
+            NSMutableArray* r2 = [NSMutableArray array];
+            
+            for(int i = 0; i < t.count; i++){
+                
+                SGPortPageDataModel* d0 = t[i][0];
+                SGPortPageDataModel* d1 = t[i][1];
+                
+                [l1 addObjectsFromArray:d0.leftChilds];
+                [r1 addObjectsFromArray:d0.rightChilds];
+                [l2 addObjectsFromArray:d1.leftChilds];
+                [r2 addObjectsFromArray:d1.rightChilds];
             }
+            d0.leftChilds = l1;d0.rightChilds = r1;
+            d1.leftChilds = l2; d1.rightChilds = r2;
+            self.completeBlock(@[d0,d1]);
             
-            
-            self.dataModel0.mainDeviceId = self.selectedInfoset.rxied_id;
-            self.dataModel0.mainDeviceName = [self getDeviceInfoById:self.dataModel0.mainDeviceId];
-            self.dataModel0.mainPortId = self.mainPortId;
-            
-            
-            self.dataModel1.mainDeviceId = self.selectedInfoset.rxied_id;
-            self.dataModel1.mainDeviceName = [self getDeviceInfoById:self.dataModel1.mainDeviceId];
-            self.dataModel1.mainPortId = self.mainPortId;
-            
-            
-            
-            self.cntedDeviceId = self.selectedInfoset.txied_id;
+
         }else{
             
             
@@ -262,33 +297,69 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
         
         if (t.count == 1||self.multiFlag) {
             
-            self.selectedInfoset = self.tmpInfoSetLists[0];
-            
-            if (self.multiFlag) {
-                self.selectedInfoset = self.tmpInfoSetLists[self.multiIndex];
+            NSMutableArray* t = [NSMutableArray array];
+            for(int i = 0; i < self.tmpInfoSetLists.count; i++){
+                
+                self.dataModel0 = [SGPortPageDataModel new];
+                self.dataModel1 = [SGPortPageDataModel new];
+                self.dataModel0.type = @"0";
+                self.dataModel1.type = @"1";
+                
+                self.selectedInfoset = self.tmpInfoSetLists[i];
+                
+                if (self.multiFlag) {
+                    self.selectedInfoset = self.tmpInfoSetLists[self.multiIndex];
+                }
+                
+                NSArray* glist = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetGroupInfo(self.selectedInfoset.group,self.selectedInfoset.infoset_id)] withEntity:@"SGInfoSetItem"];
+                if (glist.count>0) {
+                    self.groupInfoset = glist[0];
+                }else{
+                    self.groupInfoset = nil;
+                }
+                
+                
+                self.dataModel0.mainDeviceId = self.selectedInfoset.txied_id;
+                self.dataModel0.mainDeviceName = [self getDeviceInfoById:self.dataModel0.mainDeviceId];
+                self.dataModel0.mainPortId = self.mainPortId;
+                
+                
+                
+                
+                self.dataModel1.mainDeviceId = self.selectedInfoset.txied_id;
+                self.dataModel1.mainDeviceName = [self getDeviceInfoById:self.dataModel1.mainDeviceId];
+                self.dataModel1.mainPortId = self.mainPortId;
+                
+                
+                self.cntedDeviceId = self.selectedInfoset.rxied_id;
+                
+                [t addObject:[self queryByIdSub]];
             }
             
-            NSArray* glist = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetGroupInfo(self.selectedInfoset.group,self.selectedInfoset.infoset_id)] withEntity:@"SGInfoSetItem"];
-            if (glist.count>0) {
-                self.groupInfoset = glist[0];
-            }else{
-                self.groupInfoset = nil;
+            SGPortPageDataModel* d0 = t[0][0];
+            SGPortPageDataModel* d1 = t[0][1];
+            
+            NSMutableArray* l1 = [NSMutableArray array];
+            NSMutableArray* r1 = [NSMutableArray array];
+            NSMutableArray* l2 = [NSMutableArray array];
+            NSMutableArray* r2 = [NSMutableArray array];
+            
+            for(int i = 0; i < t.count; i++){
+                
+                SGPortPageDataModel* d0 = t[i][0];
+                SGPortPageDataModel* d1 = t[i][1];
+                
+                [l1 addObjectsFromArray:d0.leftChilds];
+                [r1 addObjectsFromArray:d0.rightChilds];
+                [l2 addObjectsFromArray:d1.leftChilds];
+                [r2 addObjectsFromArray:d1.rightChilds];
             }
+            d0.leftChilds = l1;d0.rightChilds = r1;
+            d1.leftChilds = l2; d1.rightChilds = r2;
+            self.completeBlock(@[d0,d1]);
+ 
             
-            
-            self.dataModel0.mainDeviceId = self.selectedInfoset.txied_id;
-            self.dataModel0.mainDeviceName = [self getDeviceInfoById:self.dataModel0.mainDeviceId];
-            self.dataModel0.mainPortId = self.mainPortId;
-            
-            
-            
-            
-            self.dataModel1.mainDeviceId = self.selectedInfoset.txied_id;
-            self.dataModel1.mainDeviceName = [self getDeviceInfoById:self.dataModel1.mainDeviceId];
-            self.dataModel1.mainPortId = self.mainPortId;
-            
-            
-            self.cntedDeviceId = self.selectedInfoset.rxied_id;
+
         }else{
             
             SGSelectViewController* select = [SGSelectViewController new];
@@ -421,9 +492,6 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
             break;
         }
     }
-    
-//    self.multiIndex = index;
-//    self.selectedInfoset = self.tmpInfoSetLists[index];
     
     if ([self.direction isEqualToString:@"0"]) {
         

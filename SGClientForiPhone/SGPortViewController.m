@@ -46,6 +46,8 @@
     [[SGPortPageBussiness sharedSGPortPageBussiness] setMultiFlag:NO];
     [[SGPortPageBussiness sharedSGPortPageBussiness] setCableType:self.cableType];
     [[SGPortPageBussiness sharedSGPortPageBussiness] queryResultWithType:0 portId:self.portId complete:^(NSArray *result) {
+        SGPortPageDataModel*model = result[0];
+        weakSelf.title = model.mainDeviceName;
         weakSelf.result = result;
         [weakSelf loadSVG];
     }];
@@ -281,6 +283,10 @@ float offsetY_ = 0;
         
         for(SGPortPageChildData *child in dataModel.leftChilds){
             
+            if (!child.mainProDes.count) {
+                continue;
+            }
+            
             [svgStr appendString:DrawRect(margin_x_,
                                           offsetLeft,
                                           maxLeftL,
@@ -341,7 +347,9 @@ float offsetY_ = 0;
         float offsetRight = margin_y_ + offsetY_;
         
         for(SGPortPageChildData *child in dataModel.rightChilds){
-            
+            if (!child.mainProDes.count) {
+                continue;
+            }
             
             [svgStr appendString:DrawRect(margin + width + linelen_,
                                           offsetRight,

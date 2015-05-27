@@ -67,7 +67,7 @@
 
 #define DrawRectW(x,y,w,h,p) [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" rx=\"10\" ry=\"10\" style=\"fill:#0061b0;stroke:white;stroke-width:1;opacity:0.5\" onclick=\"self.location.href='@@@@%@'\"/>",x,y,w,h,p]
 
-#define DrawRectWD(x,y,w,h,p) [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" rx=\"10\" ry=\"10\" style=\"fill:#0061cf;stroke:white;stroke-width:1;opacity:0.5\" onclick=\"self.location.href='@@@@%@'\"/>",x,y,w,h,p]
+#define DrawRectWD(x,y,w,h,p) [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" rx=\"10\" ry=\"10\" style=\"fill:#2061b0;stroke:white;stroke-width:1;opacity:0.5\" onclick=\"self.location.href='@@@@%@'\"/>",x,y,w,h,p]
 
 #define LineInfo(n,c,i,t) [NSString stringWithFormat:@"%@*%@*%d*%d",n,c,i,t]
 

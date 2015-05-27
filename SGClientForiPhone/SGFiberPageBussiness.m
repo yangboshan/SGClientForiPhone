@@ -161,6 +161,10 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGFiberPageBussiness)
     
     [fiberList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
+        if (idx == 3) {
+            NSLog(@"");
+        }
+        
         SGResult *resultItem   = [[SGResult alloc] init];
         SGFiberItem *fiberItem = (SGFiberItem*)obj;
         self.currentFiber = fiberItem;
@@ -454,38 +458,57 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGFiberPageBussiness)
                                                                                                                       [self.typePortList objectAtIndex:1])]
                                                              withEntity:@"SGInfoSetItem"];
                 //用这两个端口遍历infoset表的顺序链
+                NSMutableString* type = [[NSMutableString alloc] init];
+                
                 for(SGInfoSetItem* infosetItem in infoSetList){
                     //两个端口匹配顺序链
                     if ([self checkInfoSetChainWithInfoSetItem:infosetItem withPorts:self.typePortList]) {
-                        NSMutableString* type = [[NSMutableString alloc] init];
+                        
                         BOOL flag = [self checkIfSwFieldAllZeroWithInfoSetItem:infosetItem];
                         switch ([infosetItem.type integerValue]) {
                             case 0:
                                 break;
                             case 1:
-                                [type appendString:@"GOOSE"];
+                                
+                                if ([type rangeOfString:@"GOOSE"].location==NSNotFound) {
+                                    if (type.length) {
+                                        [type appendString:@"/GOOSE"];
+                                    }else{
+                                        [type appendString:@"GOOSE"];
+                                    }
+                                }
                                 if (flag) {[type appendString:@"直跳"];}
                                 break;
                             case 2:
-                                [type appendString:@"SV"];
+                                if ([type rangeOfString:@""].location==NSNotFound) {
+                                    if (type.length) {
+                                        [type appendString:@"/SV"];
+                                    }else{
+                                        [type appendString:@"SV"];
+                                    }
+                                }
                                 if (flag) {[type appendString:@"直采"];}
                                 break;
                             case 3:
                                 [type appendString:@"TIME"];
                                 break;
                             case 4:
+                                type = [NSMutableString string];
                                 [type appendString:@"GOOSE/SV"];
                                 if (flag) {[type appendString:@"直连"];}
                                 break;
                         }
                         
-                        resultItem.type1 = type;
-                        resultItem.type2 = type;
-                        resultItem.portId1 = self.typePortList[0];
-                        resultItem.portId2 = self.typePortList[1];
+
                     };
                 }
-        }}
+                resultItem.type1 = type;
+                resultItem.type2 = type;
+                resultItem.portId1 = self.typePortList[0];
+                resultItem.portId2 = self.typePortList[1];
+                
+        }
+    }
     return YES;
 }
 

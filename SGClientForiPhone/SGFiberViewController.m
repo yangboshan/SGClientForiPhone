@@ -328,11 +328,11 @@ float rOffset = 10;
             
             if (s == 0) {
                 deviceName = [self.fiberList[i] valueForKey:@"device1"];
-                port = [self.fiberList[i] valueForKey:@"portId1"];
+                port = [self.fiberList[i] valueForKey:@"portId2"];
             }
             if (s == 2) {
                 deviceName = [self.fiberList[i] valueForKey:@"device2"];
-                port = [self.fiberList[i] valueForKey:@"portId2"];
+                port = [self.fiberList[i] valueForKey:@"portId1"];
             }
             
             if ((s == 1) || [[self.fiberList[i] valueForKey:@"type2"] isEqualToString:@"备用"]) {
