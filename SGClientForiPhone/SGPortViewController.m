@@ -37,7 +37,9 @@
 {
     
     [super viewDidLoad];
-    self.title = [NSString stringWithFormat:@"%@虚端子图",self.deviceName];
+    NSString* n = [self.deviceName isEqual:[NSNull null]] ? @"" : self.deviceName;
+    self.title = [NSString stringWithFormat:@"%@虚端子图",n];
+    
     self.showAll = NO;
     
     __weak typeof(self) weakSelf = self;
@@ -47,7 +49,8 @@
     [[SGPortPageBussiness sharedSGPortPageBussiness] setCableType:self.cableType];
     [[SGPortPageBussiness sharedSGPortPageBussiness] queryResultWithType:0 portId:self.portId complete:^(NSArray *result) {
         SGPortPageDataModel*model = result[0];
-        weakSelf.title = [NSString stringWithFormat:@"%@虚端子图",model.mainDeviceName];
+        NSString* n = model ? model.mainDeviceName : @"";
+        weakSelf.title = [NSString stringWithFormat:@"%@虚端子图",n];
         weakSelf.result = result;
         [weakSelf loadSVG];
     }];

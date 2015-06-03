@@ -161,10 +161,6 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGFiberPageBussiness)
     
     [fiberList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
-        if (idx == 3) {
-            NSLog(@"");
-        }
-        
         SGResult *resultItem   = [[SGResult alloc] init];
         SGFiberItem *fiberItem = (SGFiberItem*)obj;
         self.currentFiber = fiberItem;
@@ -198,28 +194,31 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGFiberPageBussiness)
         //如果是跳纤再找出Group对应的数据
         if (self.cableType == CABLETYPE2) {
             
-            _findGroupRecord = YES;
-            SGResult *resultItem   = [[SGResult alloc] init];
-            [self fillTypeFieldWithSGResult  :resultItem withSGFiberItem:fiberItem];
-            [self fillDeviceFieldWithSGResult:resultItem withSGFiberItem:fiberItem];
-            [self fillPortFieldWithSGResult  :resultItem withSGFiberItem:fiberItem];
-            
-            fiberItem.cable_id = self.cableId;
-            [self fillMiddleFieldForType2WithResultItem:resultItem withFiber:fiberItem];
-            
-            [retList addObject:resultItem];
-            _findGroupRecord = NO;
-            
-            if ([[resultItem.port1 lowercaseString] rangeOfString:@"tx"].location!=NSNotFound) {
-                retList = [[[retList reverseObjectEnumerator] allObjects] mutableCopy];
-             }
+            [@[fiberItem.port1_id,fiberItem.port2_id] enumerateObjectsUsingBlock:^(NSString* portid, NSUInteger idx, BOOL *stop) {
+                
+                NSArray* a  = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetTLGroupPort(portid)]
+                                                    withEntity:@"SGFiberItem"];
+                if (a.count) {
+                    SGFiberItem* f = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetFiberItems([a[0] port1_id])]
+                                                           withEntity:@"SGFiberItem"][0];
+                    if (f) {
+                        
+                        NSString* cableName = [(SGInfoSetItem*)[[SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetCableName(f.cable_id)] withEntity:@"SGInfoSetItem"] objectAtIndex:0] type];
+                        
+                        SGResult *resultItem   = [[SGResult alloc] init];
+                        [self fillTypeFieldWithSGResult  :resultItem withSGFiberItem:f];
+                        [self fillDeviceFieldWithSGResult:resultItem withSGFiberItem:fiberItem];
+                        [self fillTXGroupPortFieldWithSGResult  :resultItem withSGFiberItem:f];
+                        resultItem.middle = cableName;
+                        [retList addObject:resultItem];
+                    }
+                }
+            }];
         }
-        
     }];
  
     
     return retList;
-//    return [self buildXMLForResultSet:retList];
 }
 
 -(void)fillMiddleFieldForType2WithResultItem:(SGResult*)resultItem withFiber:(SGFiberItem*)fiber{
@@ -235,33 +234,46 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGFiberPageBussiness)
     
     if (self.cableType == CABLETYPE1 || self.cableType == CABLETYPE2) {
         resultItem.middle = [NSString stringWithFormat:@"%@",fiberItem.index];
+        
     } else if (self.cableType == CABLETYPE0){
         NSString* color;
         switch ([fiberItem.fiber_color integerValue]) {
             case 0:
-                color = @"蓝";break;
+                color = @"蓝";
+                break;
             case 1:
-                color = @"橙";break;
+                color = @"橙";
+                break;
             case 2:
-                color = @"绿";break;
+                color = @"绿";
+                break;
             case 3:
-                color = @"棕";break;
+                color = @"棕";
+                break;
             case 4:
-                color = @"灰";break;
+                color = @"灰";
+                break;
             case 5:
-                color = @"本";break;
+                color = @"本";
+                break;
             case 6:
-                color = @"红";break;
+                color = @"红";
+                break;
             case 7:
-                color = @"黑";break;
+                color = @"黑";
+                break;
             case 8:
-                color = @"黄";break;
+                color = @"黄";
+                break;
             case 9:
-                color = @"紫";break;
+                color = @"紫";
+                break;
             case 10:
-                color = @"粉红";break;
+                color = @"粉红";
+                break;
             case 11:
-                color = @"青绿";break;
+                color = @"青绿";
+                break;
             default:
                 break;
         }
@@ -275,13 +287,25 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGFiberPageBussiness)
  －－－－－－－－－－－－－－－－－*/
 -(void)fillOdfFieldWithSGResult:(SGResult*)resultItem withSGFiberItem:(SGFiberItem*)fiberItem{
     
-    NSArray* desc = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetODFInfo(fiberItem.port2_id)]
+    BOOL flag = NO;
+    
+    NSArray* a = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetCubicleIdWithPort(fiberItem.port1_id)]
+                                          withEntity:@"SGFiberItem"];
+    if (a.count) {
+        SGFiberItem* fiberItem = a[0];
+        if (!([fiberItem.port1_id integerValue] == self.cubicleId)) {
+            flag = YES;
+        }
+    }
+    
+    
+    NSArray* desc = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetODFInfo(flag?fiberItem.port2_id:fiberItem.port1_id)]
                                           withEntity:@"SGInfoSetItem"];
     if ([desc count]) {
         resultItem.odf1 = [(SGInfoSetItem*)[desc objectAtIndex:0] name];
     }
     
-    desc = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetODFInfo(fiberItem.port1_id)]
+    desc = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetODFInfo(flag?fiberItem.port1_id:fiberItem.port2_id)]
                                  withEntity:@"SGInfoSetItem"];
     
     if ([desc count]) {
@@ -305,11 +329,7 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGFiberPageBussiness)
                 resultItem.tx1 = [[desc objectAtIndex:0] description];
             }
         }
-    
-    
-    
-    
-    
+
     desc = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetTXInfo([self.portList objectAtIndex:1],fiberItem.port2_id)]
                                  withEntity:@"SGInfoSetItem"];
     
@@ -336,6 +356,20 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGFiberPageBussiness)
     
     desc = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetPortInfo([self.portList objectAtIndex:1])]
                                           withEntity:@"SGInfoSetItem"];
+    resultItem.port2 = [(SGInfoSetItem*)[desc objectAtIndex:0] description];
+}
+
+/*－－－－－－－－－－－－－－－－－
+ TX GROUP 获取Port
+ －－－－－－－－－－－－－－－－－*/
+-(void)fillTXGroupPortFieldWithSGResult:(SGResult*)resultItem withSGFiberItem:(SGFiberItem*)fiberItem{
+    
+    NSArray* desc = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetPortInfo(fiberItem.port1_id)]
+                                          withEntity:@"SGInfoSetItem"];
+    resultItem.port1 = [(SGInfoSetItem*)[desc objectAtIndex:0] description];
+    
+    desc = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetPortInfo(fiberItem.port2_id)]
+                                 withEntity:@"SGInfoSetItem"];
     resultItem.port2 = [(SGInfoSetItem*)[desc objectAtIndex:0] description];
 }
 
@@ -380,7 +414,7 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGFiberPageBussiness)
 
 -(void)resortPortList{
  
-    NSArray* desc = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetCubicleIdWithPort(self.currentFiber.port1_id)]
+    NSArray* desc = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetCubicleIdWithPort(self.portList[0])]
                                           withEntity:@"SGFiberItem"];
     if (desc.count) {
         SGFiberItem* fiberItem = desc[0];
@@ -404,11 +438,11 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGFiberPageBussiness)
         resultItem.type1 = @"备用";
         resultItem.type2 = resultItem.type1;
         return NO;
+        
     }else{
         
         switch (self.cableType) {
-                
-                //如果是光缆
+            //如果是光缆
             case CABLETYPE0:
                 self.portList = [[SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetAnotherTwoPorts(fiberItem.port1_id,fiberItem.port2_id)]
                                                        withEntity:@"SGFiberItem"] copy];
@@ -419,23 +453,23 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGFiberPageBussiness)
                                                                  [[self.portList objectAtIndex:1] port1_id],nil];
                 
                 if ([self checkPortListOrderWithSGFiberItem:fiberItem]) {
-                    
                     self.portList = [[[self.portList reverseObjectEnumerator] allObjects] copy];
                 }
                 
                 self.typePortList = [self.portList mutableCopy];
                 break;
                 
-                //如果是尾缆
+            //如果是尾缆
             case CABLETYPE1:
                 self.portList = [NSMutableArray arrayWithObjects:fiberItem.port1_id,fiberItem.port2_id, nil];
                 [self getNonOdfPortsForWLWithSGFiberItem:fiberItem];
                 break;
                 
-                //如果是跳纤
+            //如果是跳纤
             case CABLETYPE2:
 
                 if (_findGroupRecord) {
+                    
                     self.portList = [NSMutableArray arrayWithObjects:fiberItem.port1_id,fiberItem.port2_id, nil];
                     [self getNewPairPortsByGroupForType2];
                     
@@ -453,6 +487,11 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGFiberPageBussiness)
         }
         
         [self resortPortList];
+        if (self.cableType != CABLETYPE2) {
+            self.typePortList = [self.portList mutableCopy];
+        }
+        
+
             if ([self.typePortList count]) {
                 NSArray* infoSetList = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetInfoSetList([self.typePortList objectAtIndex:0],
                                                                                                                       [self.typePortList objectAtIndex:1])]
@@ -466,21 +505,24 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGFiberPageBussiness)
                         
                         BOOL flag = [self checkIfSwFieldAllZeroWithInfoSetItem:infosetItem];
                         switch ([infosetItem.type integerValue]) {
+                                
                             case 0:
                                 break;
-                            case 1:
                                 
-                                if ([type rangeOfString:@"GOOSE"].location==NSNotFound) {
+                            case 1:
+                                if ([type rangeOfString:@"GOOSE"].location == NSNotFound) {
                                     if (type.length) {
                                         [type appendString:@"/GOOSE"];
+                                        
                                     }else{
                                         [type appendString:@"GOOSE"];
                                     }
                                 }
                                 if (flag) {[type appendString:@"直跳"];}
                                 break;
+                                
                             case 2:
-                                if ([type rangeOfString:@""].location==NSNotFound) {
+                                if ([type rangeOfString:@"SV"].location==NSNotFound) {
                                     if (type.length) {
                                         [type appendString:@"/SV"];
                                     }else{
@@ -489,6 +531,7 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGFiberPageBussiness)
                                 }
                                 if (flag) {[type appendString:@"直采"];}
                                 break;
+                                
                             case 3:
                                 [type appendString:@"TIME"];
                                 break;
@@ -518,8 +561,6 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGFiberPageBussiness)
 -(void)getNewPairPortsByGroupForType2{
     
     NSArray* tmp = [self.portList copy];
-//    self.portList = [NSMutableArray array];
-    
     for(NSString* port in tmp){
         NSArray* portInfo = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetTLGroupPort(port)]
                                                   withEntity:@"SGFiberItem"];
