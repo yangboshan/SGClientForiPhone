@@ -134,7 +134,7 @@
  
  获取Cable信息
  －－－－－－－－－－－－－－－－－*/
-#define CP_GetCableId(i) [NSString stringWithFormat:@"select cable_id  from cable where   name_bay || '-' ||  (case cable_type when '0' then 'GL' when '1' then 'WL' when '2' then 'TX' end )   || name_number || name_set ='%@'",i]
+#define CP_GetCableId(i) [NSString stringWithFormat:@"select cable_id  from cable where   name_bay || '-' ||  name_prefix   || name_number || name_set ='%@'",i]
 
 @implementation SGCablePageBussiness
 
