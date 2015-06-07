@@ -14,6 +14,8 @@
  根据CableId 获取纤芯信息列表
  －－－－－－－－－－－－－－－－－*/
 -(NSArray*)queryFiberInfoWithCableId:(NSInteger)cableId withCubicleId:(NSInteger)cubicleId;
+-(NSArray*)queryDeviceInfoForCablePageWithCableId:(NSString*)cableId cubicleId:(NSInteger)cubicleId;
+
 
 +(SGFiberPageBussiness*)sharedSGFiberPageBussiness;
 

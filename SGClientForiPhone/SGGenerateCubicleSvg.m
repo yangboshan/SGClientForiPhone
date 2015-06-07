@@ -8,6 +8,7 @@
 
 #import "SGGenerateCubicleSvg.h"
 #import "SGCablePageBussiness.h"
+#import "SGFiberPageBussiness.h"
 
 
 @implementation SGCableTmpItem
@@ -338,14 +339,15 @@
             [svgStr appendString:DrawRect(i*(linelen + cWidth) + margin_x,
                                           margin_y + offsetY,
                                           cWidth,
-                                          types.count*cHeight)];
+                                          types.count*cHeight + 20)];
             
             [svgStr appendString:DrawText(i*(linelen + cWidth) + margin_x + 10,
-                                          margin_y + offsetY + (types.count*cHeight + (types.count-1)*cuVeMargin)/2,14,
+                                          margin_y + offsetY + 20,14,
                                           @"white",
                                           @"italic",
                                           self.cubicleData[@"name"])];
         }
+        offsetY += 20;
         //画线缆
         for(int i = 0; i < types.count; i++){
             id cubicle = types[i];
@@ -360,6 +362,22 @@
                                           @"gray",
                                           @"italic",
                                           [cubicle valueForKey:@"cable_name"],LineInfo([cubicle valueForKey:@"cable_name"],[cubicle valueForKey:@"cable_id"], i,2))];
+            
+            
+            NSArray* a = [[SGFiberPageBussiness sharedSGFiberPageBussiness] queryDeviceInfoForCablePageWithCableId:[cubicle valueForKey:@"cable_id"] cubicleId:[[cubicle valueForKey:@"cubicle_id"] integerValue]];
+            
+            [svgStr appendString:DrawTextR(margin_x + cWidth,
+                                          margin_y + offsetY + (0.5+i)*cHeight + 3,12,
+                                          @"white",
+                                          @"italic",
+                                          a[0])];
+            
+            [svgStr appendString:DrawTextL(linelen + margin_x + cWidth,
+                                           margin_y + offsetY + (0.5+i)*cHeight + 3,12,
+                                           @"white",
+                                           @"italic",
+                                           a[1])];
+            
             
         }
         if (types.count) {

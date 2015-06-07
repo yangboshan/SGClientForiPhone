@@ -84,7 +84,7 @@ where port.port_id = %@",p]
 /*－－－－－－－－－－－－－－－－－
  获取TX信息
  －－－－－－－－－－－－－－－－－*/
-#define FP_GetTXInfo(p1,p2) [NSString stringWithFormat:@"select (case cable.cable_type when '0' then cable.name_bay||'-GL'||(case length(cable.name_number) when 3 then cable.name_number when 2 then '0' ||cable.name_number when 1 then '00' || cable.name_number end) ||cable.name_set when '1' then cable.name_bay||'-WL'||(case length(cable.name_number) when 3 then cable.name_number when 2 then '0' || cable.name_number when 1 then '00' || cable.name_number end) ||cable.name_set when '2' then 'TX'||(case length(cable.name_number) when 3 then cable.name_number when 2 then '0' || cable.name_number when 1 then '00' || cable.name_number end ) end) ||(case fiber.[index] when '0'  then ''  else  ':'||fiber.[index] end ) as description from cable \
+#define FP_GetTXInfo(p1,p2) [NSString stringWithFormat:@"select (case cable.cable_type when '0' then cable.name_bay||'-'||name_prefix||(case length(cable.name_number) when 3 then cable.name_number when 2 then '0' ||cable.name_number when 1 then '00' || cable.name_number end) ||cable.name_set when '1' then cable.name_bay||'-'||name_prefix||(case length(cable.name_number) when 3 then cable.name_number when 2 then '0' || cable.name_number when 1 then '00' || cable.name_number end) ||cable.name_set when '2' then name_prefix||(case length(cable.name_number) when 3 then cable.name_number when 2 then '0' || cable.name_number when 1 then '00' || cable.name_number end ) end) ||(case fiber.[index] when '0'  then ''  else  ':'||fiber.[index] end ) as description from cable \
                                                       inner join fiber on cable.cable_id = fiber.cable_id \
                                                             where (fiber.port1_id = %@ and fiber.port2_id = %@) or (fiber.port2_id = %@ and fiber.port1_id = %@)",p1,p2,p1,p2]
 /*－－－－－－－－－－－－－－－－－
@@ -97,7 +97,7 @@ where port.port_id = %@",p]
 
 #define FP_GetCableType(c) [NSString stringWithFormat:@"select cable_type as type from cable where cable_id = %@",c]
 
-#define FP_GetCableName(c) [NSString stringWithFormat:@"select (case cable_type when '0' then name_bay||'-GL'||(case length(name_number) when 3 then name_number when 2 then '0' ||name_number when 1 then '00' || name_number end) ||name_set when '1' then name_bay||'-WL'||(case length(name_number) when 3 then name_number when 2 then '0' || name_number when 1 then '00' || name_number end) ||name_set when '2' then 'TX'||(case length(name_number) when 3 then name_number when 2 then '0' || name_number when 1 then '00' || name_number end ) end) as type from cable where cable_id = %@",c]
+#define FP_GetCableName(c) [NSString stringWithFormat:@"select (case cable_type when '0' then name_bay||'-'||name_prefix||(case length(name_number) when 3 then name_number when 2 then '0' ||name_number when 1 then '00' || name_number end) ||name_set when '1' then name_bay||'-'||name_prefix||(case length(name_number) when 3 then name_number when 2 then '0' || name_number when 1 then '00' || name_number end) ||name_set when '2' then name_prefix||(case length(name_number) when 3 then name_number when 2 then '0' || name_number when 1 then '00' || name_number end ) end) as type from cable where cable_id = %@",c]
 
 #define FP_GetTLGroupPort(p) [NSString stringWithFormat:@"select port_id as port1_id from  \
                                   (select port_id from port where board_id = ( \
@@ -143,6 +143,21 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGFiberPageBussiness)
     }
     return self;
 }
+
+-(NSArray*)queryDeviceInfoForCablePageWithCableId:(NSString*)cableId cubicleId:(NSInteger)cubicleId{
+    
+    self.cubicleId = cubicleId;
+    NSArray* fiberList = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetFiberItemList([cableId integerValue])]
+                                               withEntity:@"SGFiberItem"];
+    SGFiberItem* fiberItem = fiberList[0];
+    self.portList = [NSMutableArray arrayWithObjects:fiberItem.port1_id,fiberItem.port2_id, nil];
+    [self resortPortList];
+    SGResult *resultItem   = [[SGResult alloc] init];
+    [self fillDeviceFieldWithSGResult:resultItem withSGFiberItem:fiberItem];
+    
+    return @[resultItem.device1,resultItem.device2];
+}
+
 /*－－－－－－－－－－－－－－－－－
  根据CableId 获取纤芯信息列表
  －－－－－－－－－－－－－－－－－*/
