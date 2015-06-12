@@ -10,7 +10,7 @@
 
 @interface NSString (FRCategory)
 
--(BOOL)stringIsNilOrEmpty;
++(BOOL)stringIsNilOrEmpty:(NSString*)s;
 
 +(NSString*)documentPath;
 

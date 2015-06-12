@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 yangbs. All rights reserved.
 //
 
-#import "SGBaseViewController.h"
+#import "SGBackViewController.h"
 
-@interface SGBaseDrawViewController : SGBaseViewController<UIWebViewDelegate>
+@interface SGBaseDrawViewController : SGBackViewController<UIWebViewDelegate>
 
 @property (nonatomic,strong) UIWebView *webView;
 

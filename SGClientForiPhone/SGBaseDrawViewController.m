@@ -20,11 +20,7 @@
 {
     [super viewDidLoad];
     
-    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_back"] style:UIBarButtonItemStylePlain target:self action:@selector(pop)];
-    self.navigationItem.leftBarButtonItem = leftBarButtonItem;
-    
-    self.navigationController.interactivePopGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)self;
-    [self.navigationController.interactivePopGestureRecognizer setEnabled:YES];
+
     
     self.webView = [[UIWebView alloc] init];
     self.webView.dataDetectorTypes = UIDataDetectorTypeAll;
@@ -52,14 +48,6 @@
 }
 
 
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.navigationController.interactivePopGestureRecognizer.delegate = nil;
-    
-}
 
--(void)pop{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 @end

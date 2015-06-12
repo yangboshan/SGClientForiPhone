@@ -226,6 +226,7 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGFiberPageBussiness)
                         [self fillTXGroupPortFieldWithSGResult  :resultItem withSGFiberItem:f];
                         resultItem.middle = cableName;
                         [retList addObject:resultItem];
+                        *stop = YES;
                     }
                 }
             }];

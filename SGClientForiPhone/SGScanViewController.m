@@ -11,7 +11,9 @@
 #import "SGCubicleViewController.h"
 #import "SGCablePageBussiness.h"
 #import "SGPortPageBussiness.h"
+#import "FRModel.h"
 
+#import "MasterViewController.h"
 
 #define Line_Width 220
 @interface SGScanViewController ()<UIAlertViewDelegate>{
@@ -189,37 +191,66 @@
     
     [_session stopRunning];
     
-    if (stringValue.length>=3) {
-        if ([[stringValue substringToIndex:2] isEqualToString:@"C:"]) {
-            NSArray* a = [[stringValue substringFromIndex:2] componentsSeparatedByString:@"."];
+    if ([stringValue rangeOfString:@":"].location != NSNotFound) {
+        
+        if (stringValue.length >= 3) {
             
-            
-            NSInteger cubicileId = [[SGCablePageBussiness sharedSGCablePageBussiness] queryCubicleIdByInfo:a[0]];
-            NSInteger cableId = [[SGCablePageBussiness sharedSGCablePageBussiness] queryCableIdByInfo:a[1]];
-            
-            SGCubicleViewController* cubicleController = (SGCubicleViewController*)[self.tabBarController.viewControllers[0] viewControllers][0];
-            [cubicleController.navigationController popToRootViewControllerAnimated:NO];
-            [cubicleController scanModeWithCubicleId:cubicileId withCableId:cableId];
-            self.tabBarController.selectedIndex = 0;
-            
-        }else if ([[stringValue substringToIndex:2] isEqualToString:@"F:"]){
-            
-            NSArray* a = [stringValue componentsSeparatedByString:@"."];
-            NSString* portId = [[SGPortPageBussiness sharedSGPortPageBussiness] queryPortIdByDeviceName:a[1] boardPostion:a[2] portName:a[3]];
-            SGCubicleViewController* cubicleController = (SGCubicleViewController*)[self.tabBarController.viewControllers[0] viewControllers][0];
-            [cubicleController.navigationController popToRootViewControllerAnimated:NO];
-            [cubicleController scanModeWithPortId:portId];
-            self.tabBarController.selectedIndex = 0;
-            
+            if ([[stringValue substringToIndex:2] isEqualToString:@"C:"]) {
+                NSArray* a = [[stringValue substringFromIndex:2] componentsSeparatedByString:@"."];
+                
+                
+                NSInteger cubicileId = [[SGCablePageBussiness sharedSGCablePageBussiness] queryCubicleIdByInfo:a[0]];
+                NSInteger cableId = [[SGCablePageBussiness sharedSGCablePageBussiness] queryCableIdByInfo:a[1]];
+                
+                SGCubicleViewController* cubicleController = (SGCubicleViewController*)[self.tabBarController.viewControllers[0] viewControllers][0];
+                [cubicleController.navigationController popToRootViewControllerAnimated:NO];
+                [cubicleController scanModeWithCubicleId:cubicileId withCableId:cableId];
+                self.tabBarController.selectedIndex = 0;
+                
+            }else if ([[stringValue substringToIndex:2] isEqualToString:@"F:"]){
+                
+                NSArray* a = [stringValue componentsSeparatedByString:@"."];
+                NSString* portId = [[SGPortPageBussiness sharedSGPortPageBussiness] queryPortIdByDeviceName:a[1] boardPostion:a[2] portName:a[3]];
+                SGCubicleViewController* cubicleController = (SGCubicleViewController*)[self.tabBarController.viewControllers[0] viewControllers][0];
+                [cubicleController.navigationController popToRootViewControllerAnimated:NO];
+                [cubicleController scanModeWithPortId:portId];
+                self.tabBarController.selectedIndex = 0;
+                
+            }else{
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:stringValue delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
+            }
         }else{
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:stringValue delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
         }
     }else{
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:stringValue delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-    }
+        
+        NSArray* results = [[FRModel sharedFRModel] searchDirectoryByFileName:stringValue];
+        
+        if (results.count) {
+            
+            MasterViewController* master = (MasterViewController*)[self.tabBarController.viewControllers[1] viewControllers][0];
+            [master.navigationController popToRootViewControllerAnimated:NO];
+            
+            //记录超过1条 显示列表供用户选择
+            if (results.count>1) {
+                [master handleScanResults:results flag:YES];
+                
+                //只有一条 直接显示文档
+            }else{
+                [master handleScanResults:results flag:NO];
+             }
+            self.tabBarController.selectedIndex = 1;
 
+            //没有记录
+        }else{
+
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:stringValue delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

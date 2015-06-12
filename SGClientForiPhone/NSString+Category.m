@@ -10,8 +10,8 @@
 
 @implementation NSString (Category)
 
--(BOOL)stringIsNilOrEmpty{
-    return !(self && self.length);
++(BOOL)stringIsNilOrEmpty:(NSString*)s{
+    return !(s && s.length);
 }
 
 

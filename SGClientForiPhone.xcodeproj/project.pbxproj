@@ -45,6 +45,17 @@
 		3EB3A4D41B0A1A27002EB7FA /* SGSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A4D31B0A1A27002EB7FA /* SGSelectViewController.m */; };
 		3EB3A4D71B0A2723002EB7FA /* SGDBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A4D61B0A2723002EB7FA /* SGDBViewController.m */; };
 		3EB3A4D91B0A2CFA002EB7FA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB3A4D81B0A2CFA002EB7FA /* AVFoundation.framework */; };
+		3EB8EFFD1B2A671200C53AF6 /* FRModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8EFFC1B2A671200C53AF6 /* FRModel.m */; };
+		3EB8F0001B2A671800C53AF6 /* FRNodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8EFFF1B2A671800C53AF6 /* FRNodeModel.m */; };
+		3EB8F0031B2A673600C53AF6 /* FRSettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8F0021B2A673600C53AF6 /* FRSettingManager.m */; };
+		3EB8F0081B2A678B00C53AF6 /* FRNodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8F0061B2A678B00C53AF6 /* FRNodeTableViewCell.m */; };
+		3EB8F0091B2A678B00C53AF6 /* FRNodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB8F0071B2A678B00C53AF6 /* FRNodeTableViewCell.xib */; };
+		3EB8F00E1B2A67E800C53AF6 /* FRScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8F00D1B2A67E800C53AF6 /* FRScanViewController.m */; };
+		3EB8F0111B2A67EF00C53AF6 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8F0101B2A67EF00C53AF6 /* MasterViewController.m */; };
+		3EB8F0141B2A67F600C53AF6 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8F0131B2A67F600C53AF6 /* DetailViewController.m */; };
+		3EB8F0171B2A688C00C53AF6 /* FRSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8F0161B2A688C00C53AF6 /* FRSearchResultViewController.m */; };
+		3EB8F01A1B2A6A2E00C53AF6 /* FRSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8F0191B2A6A2E00C53AF6 /* FRSearchViewController.m */; };
+		3EB8F01D1B2AA92100C53AF6 /* SGBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8F01C1B2AA92100C53AF6 /* SGBackViewController.m */; };
 		3EF914CF1AFDF16E00F823E7 /* SGUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914CC1AFDF16E00F823E7 /* SGUtility.m */; };
 		3EF914D01AFDF16E00F823E7 /* SGAPPConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914CE1AFDF16E00F823E7 /* SGAPPConfig.m */; };
 		3EF914DD1AFDF33D00F823E7 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914D41AFDF33D00F823E7 /* FMDatabase.m */; };
@@ -150,6 +161,28 @@
 		3EB3A4D51B0A2723002EB7FA /* SGDBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGDBViewController.h; sourceTree = "<group>"; };
 		3EB3A4D61B0A2723002EB7FA /* SGDBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGDBViewController.m; sourceTree = "<group>"; };
 		3EB3A4D81B0A2CFA002EB7FA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3EB8EFFB1B2A671200C53AF6 /* FRModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRModel.h; sourceTree = "<group>"; };
+		3EB8EFFC1B2A671200C53AF6 /* FRModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRModel.m; sourceTree = "<group>"; };
+		3EB8EFFE1B2A671800C53AF6 /* FRNodeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRNodeModel.h; sourceTree = "<group>"; };
+		3EB8EFFF1B2A671800C53AF6 /* FRNodeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRNodeModel.m; sourceTree = "<group>"; };
+		3EB8F0011B2A673600C53AF6 /* FRSettingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRSettingManager.h; sourceTree = "<group>"; };
+		3EB8F0021B2A673600C53AF6 /* FRSettingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRSettingManager.m; sourceTree = "<group>"; };
+		3EB8F0051B2A678B00C53AF6 /* FRNodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRNodeTableViewCell.h; sourceTree = "<group>"; };
+		3EB8F0061B2A678B00C53AF6 /* FRNodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRNodeTableViewCell.m; sourceTree = "<group>"; };
+		3EB8F0071B2A678B00C53AF6 /* FRNodeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FRNodeTableViewCell.xib; sourceTree = "<group>"; };
+		3EB8F00B1B2A67D700C53AF6 /* FRGCDSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRGCDSingleton.h; sourceTree = "<group>"; };
+		3EB8F00C1B2A67E800C53AF6 /* FRScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRScanViewController.h; sourceTree = "<group>"; };
+		3EB8F00D1B2A67E800C53AF6 /* FRScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRScanViewController.m; sourceTree = "<group>"; };
+		3EB8F00F1B2A67EF00C53AF6 /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		3EB8F0101B2A67EF00C53AF6 /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		3EB8F0121B2A67F600C53AF6 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		3EB8F0131B2A67F600C53AF6 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		3EB8F0151B2A688C00C53AF6 /* FRSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRSearchResultViewController.h; sourceTree = "<group>"; };
+		3EB8F0161B2A688C00C53AF6 /* FRSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRSearchResultViewController.m; sourceTree = "<group>"; };
+		3EB8F0181B2A6A2E00C53AF6 /* FRSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRSearchViewController.h; sourceTree = "<group>"; };
+		3EB8F0191B2A6A2E00C53AF6 /* FRSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRSearchViewController.m; sourceTree = "<group>"; };
+		3EB8F01B1B2AA92100C53AF6 /* SGBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBackViewController.h; sourceTree = "<group>"; };
+		3EB8F01C1B2AA92100C53AF6 /* SGBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBackViewController.m; sourceTree = "<group>"; };
 		3EF914CA1AFDF16E00F823E7 /* SGGCDSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGGCDSingleton.h; sourceTree = "<group>"; };
 		3EF914CB1AFDF16E00F823E7 /* SGUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGUtility.h; sourceTree = "<group>"; };
 		3EF914CC1AFDF16E00F823E7 /* SGUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGUtility.m; sourceTree = "<group>"; };
@@ -279,6 +312,7 @@
 		3E1E450A1AFB0BE1006DB63E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3EB8F0041B2A677E00C53AF6 /* FileReader */,
 				3E3F0A221B086C7100BF1EB9 /* Cubicle */,
 			);
 			name = View;
@@ -291,6 +325,7 @@
 				3EF914E71AFDF36200F823E7 /* SGDataBase.m */,
 				3EF914F81AFDF9AA00F823E7 /* AppConfig */,
 				3EF914F91AFDF9B800F823E7 /* Bussiness */,
+				3EB8EFFA1B2A670200C53AF6 /* FileReader */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -298,6 +333,7 @@
 		3E1E450C1AFB0BEE006DB63E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3EB8F00A1B2A67AB00C53AF6 /* FilerReader */,
 				3E1E450D1AFB0C3D006DB63E /* Base */,
 				3E1E45111AFB0C7D006DB63E /* Class_Cubicle */,
 				3E1E45121AFB0C89006DB63E /* Class_Cable */,
@@ -314,6 +350,8 @@
 			children = (
 				3E1E450E1AFB0C65006DB63E /* SGBaseViewController.h */,
 				3E1E450F1AFB0C65006DB63E /* SGBaseViewController.m */,
+				3EB8F01B1B2AA92100C53AF6 /* SGBackViewController.h */,
+				3EB8F01C1B2AA92100C53AF6 /* SGBackViewController.m */,
 				3E1E45171AFB0D21006DB63E /* SGBaseDrawViewController.h */,
 				3E1E45181AFB0D21006DB63E /* SGBaseDrawViewController.m */,
 			);
@@ -451,6 +489,47 @@
 				3E3F0A491B08961B00BF1EB9 /* UIViewController+NJKFullScreenSupport.m */,
 			);
 			name = ScrollFullScreen;
+			sourceTree = "<group>";
+		};
+		3EB8EFFA1B2A670200C53AF6 /* FileReader */ = {
+			isa = PBXGroup;
+			children = (
+				3EB8F00B1B2A67D700C53AF6 /* FRGCDSingleton.h */,
+				3EB8F0011B2A673600C53AF6 /* FRSettingManager.h */,
+				3EB8F0021B2A673600C53AF6 /* FRSettingManager.m */,
+				3EB8EFFB1B2A671200C53AF6 /* FRModel.h */,
+				3EB8EFFC1B2A671200C53AF6 /* FRModel.m */,
+				3EB8EFFE1B2A671800C53AF6 /* FRNodeModel.h */,
+				3EB8EFFF1B2A671800C53AF6 /* FRNodeModel.m */,
+			);
+			name = FileReader;
+			sourceTree = "<group>";
+		};
+		3EB8F0041B2A677E00C53AF6 /* FileReader */ = {
+			isa = PBXGroup;
+			children = (
+				3EB8F0051B2A678B00C53AF6 /* FRNodeTableViewCell.h */,
+				3EB8F0061B2A678B00C53AF6 /* FRNodeTableViewCell.m */,
+				3EB8F0071B2A678B00C53AF6 /* FRNodeTableViewCell.xib */,
+			);
+			name = FileReader;
+			sourceTree = "<group>";
+		};
+		3EB8F00A1B2A67AB00C53AF6 /* FilerReader */ = {
+			isa = PBXGroup;
+			children = (
+				3EB8F0181B2A6A2E00C53AF6 /* FRSearchViewController.h */,
+				3EB8F0191B2A6A2E00C53AF6 /* FRSearchViewController.m */,
+				3EB8F0151B2A688C00C53AF6 /* FRSearchResultViewController.h */,
+				3EB8F0161B2A688C00C53AF6 /* FRSearchResultViewController.m */,
+				3EB8F00C1B2A67E800C53AF6 /* FRScanViewController.h */,
+				3EB8F00D1B2A67E800C53AF6 /* FRScanViewController.m */,
+				3EB8F00F1B2A67EF00C53AF6 /* MasterViewController.h */,
+				3EB8F0101B2A67EF00C53AF6 /* MasterViewController.m */,
+				3EB8F0121B2A67F600C53AF6 /* DetailViewController.h */,
+				3EB8F0131B2A67F600C53AF6 /* DetailViewController.m */,
+			);
+			name = FilerReader;
 			sourceTree = "<group>";
 		};
 		3EF914C41AFDE0D000F823E7 /* Utility */ = {
@@ -624,6 +703,7 @@
 				3E1E44F51AFB0BD8006DB63E /* LaunchScreen.xib in Resources */,
 				3E1E452F1AFB0FD8006DB63E /* Lantinghei_0.ttf in Resources */,
 				3E1E44F21AFB0BD8006DB63E /* Images.xcassets in Resources */,
+				3EB8F0091B2A678B00C53AF6 /* FRNodeTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,7 +725,9 @@
 				3EB3A4D11B0A19EC002EB7FA /* SGPortPageDataModel.m in Sources */,
 				3EB3A4D01B0A19EC002EB7FA /* SGPortPageBussiness.m in Sources */,
 				3E1E45101AFB0C65006DB63E /* SGBaseViewController.m in Sources */,
+				3EB8F0031B2A673600C53AF6 /* FRSettingManager.m in Sources */,
 				3E3F0A441B08934900BF1EB9 /* SGCableViewController.m in Sources */,
+				3EB8F0141B2A67F600C53AF6 /* DetailViewController.m in Sources */,
 				3E3F0A381B08800100BF1EB9 /* ALView+PureLayout.m in Sources */,
 				3EF914DE1AFDF33D00F823E7 /* FMResultSet.m in Sources */,
 				3EF914E81AFDF36200F823E7 /* SGDataBase.m in Sources */,
@@ -660,21 +742,29 @@
 				3EF914DF1AFDF33D00F823E7 /* FMDatabaseQueue.m in Sources */,
 				3E1E45221AFB0D5E006DB63E /* SGSettingViewController.m in Sources */,
 				3EF914E01AFDF33D00F823E7 /* FMDatabaseAdditions.m in Sources */,
+				3EB8F0171B2A688C00C53AF6 /* FRSearchResultViewController.m in Sources */,
 				3EB3A4D41B0A1A27002EB7FA /* SGSelectViewController.m in Sources */,
+				3EB8F00E1B2A67E800C53AF6 /* FRScanViewController.m in Sources */,
 				3E7774C21B09E47300ED6FE9 /* SGPortViewController.m in Sources */,
 				3E1E45191AFB0D21006DB63E /* SGBaseDrawViewController.m in Sources */,
+				3EB8F0081B2A678B00C53AF6 /* FRNodeTableViewCell.m in Sources */,
 				3E1E452B1AFB0F47006DB63E /* UIImage+Category.m in Sources */,
 				3E1E452A1AFB0F47006DB63E /* NSString+Category.m in Sources */,
 				3E3F0A2A1B086C8700BF1EB9 /* SGRoomCell.m in Sources */,
+				3EB8F0111B2A67EF00C53AF6 /* MasterViewController.m in Sources */,
 				3EF915011AFE052300F823E7 /* XMLReader.m in Sources */,
 				3E3F0A401B08915800BF1EB9 /* SGSectionHeaderView.m in Sources */,
+				3EB8F0001B2A671800C53AF6 /* FRNodeModel.m in Sources */,
 				3EA2C13D1B0B600200A2B191 /* SGScanContainerViewController.m in Sources */,
+				3EB8EFFD1B2A671200C53AF6 /* FRModel.m in Sources */,
 				3EF914D01AFDF16E00F823E7 /* SGAPPConfig.m in Sources */,
 				3EF914CF1AFDF16E00F823E7 /* SGUtility.m in Sources */,
 				3EF914E51AFDF35800F823E7 /* MBProgressHUD.m in Sources */,
 				3E1E451C1AFB0D3D006DB63E /* SGCubicleViewController.m in Sources */,
 				3EF914F31AFDF91C00F823E7 /* SGBaseBussiness.m in Sources */,
+				3EB8F01A1B2A6A2E00C53AF6 /* FRSearchViewController.m in Sources */,
 				3E3F0A3A1B08800100BF1EB9 /* NSLayoutConstraint+PureLayout.m in Sources */,
+				3EB8F01D1B2AA92100C53AF6 /* SGBackViewController.m in Sources */,
 				3E3F0A571B08C3AA00BF1EB9 /* SGFiberViewController.m in Sources */,
 				3E3F0A541B08BA9C00BF1EB9 /* SGFiberPageBussiness.m in Sources */,
 				3E3F0A391B08800100BF1EB9 /* NSArray+PureLayout.m in Sources */,

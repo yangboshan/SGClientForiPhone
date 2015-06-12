@@ -8,11 +8,14 @@
 
 #import "SGAPPConfig.h"
 #import "SGUtility.h"
+#import "NSString+Category.h"
 
 
 @interface SGAPPConfig()
 
-@property(nonatomic,strong) NSUserDefaults *userDefaults;
+@property(nonatomic,strong) NSUserDefaults* userDefaults;
+@property(nonatomic,strong) NSArray* folderList;
+
 @end
 
 @implementation SGAPPConfig
@@ -58,10 +61,32 @@ static NSString *SETTING_FIRST_TIME_RUN = @"SETTING_FIRST_TIME_RUN";
                     NSLog(@"%@",[error description]);
                 }
             }
+            [self buildFolders];
             [self.userDefaults synchronize];
         }
     }
     return self;
+}
+
+-(void)buildFolders{
+    [self.folderList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:[[NSString documentPath] stringByAppendingPathComponent:obj] withIntermediateDirectories:NO attributes:nil error:nil];
+    }];
+}
+
+-(NSArray*)folderList{
+    if (!_folderList) {
+        _folderList = @[@"操作规程",@"说明书",@"调试纪录",@"定值单"];
+    }
+    return _folderList;
+}
+
+-(NSUserDefaults*)userDefaults{
+    
+    if (!_userDefaults) {
+        _userDefaults = [NSUserDefaults standardUserDefaults];
+    }
+    return _userDefaults;
 }
 
 @end
