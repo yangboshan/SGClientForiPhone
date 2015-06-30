@@ -70,8 +70,10 @@
     
     NSString* result = [NSString stringWithString:svgStr];
     
-    result = [result stringByReplacingOccurrencesOfString:@"++@@@++" withString:[NSString stringWithFormat:@"%f",self.offsetY + 200]];
-    result = [result stringByReplacingOccurrencesOfString:@"##@@@##" withString:[NSString stringWithFormat:@"%f",self.offsetX + 200]];
+    
+    
+    result = [result stringByReplacingOccurrencesOfString:@"++@@@++" withString:[NSString stringWithFormat:@"%f",(self.offsetY < self.offsetX) ? self.offsetX : self.offsetY]];
+    result = [result stringByReplacingOccurrencesOfString:@"##@@@##" withString:[NSString stringWithFormat:@"%f",self.offsetX]];
     
     result = [result stringByReplacingOccurrencesOfString:@"(null)" withString:@"--"];
     
@@ -255,11 +257,11 @@
     
     if (rightList.count) {
         
-        float offsetRight = self.leftMargin + self.cubicleWidth * 2 + self.lineLength;
+        float offsetRight = (leftList.count) ? (self.leftMargin + self.cubicleWidth * 2 + self.lineLength) : (self.leftMargin + self.cubicleWidth);
         NSArray* mergeList = [self generateSwitchMergeList:rightList];
         
-        float right = ([self getMaxLevel:rightList] + 1) * (self.cubicleWidth + self.lineLength);
-        
+        float right = (leftList.count) ? ([self getMaxLevel:rightList] + 1) * (self.cubicleWidth + self.lineLength) : ([self getMaxLevel:rightList] + 1) * (self.cubicleWidth + self.lineLength) + self.leftMargin + self.cubicleWidth + 100;
+
         self.offsetX += right;
         
         
