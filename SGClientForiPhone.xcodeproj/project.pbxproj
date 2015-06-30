@@ -56,6 +56,10 @@
 		3EB8F0171B2A688C00C53AF6 /* FRSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8F0161B2A688C00C53AF6 /* FRSearchResultViewController.m */; };
 		3EB8F01A1B2A6A2E00C53AF6 /* FRSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8F0191B2A6A2E00C53AF6 /* FRSearchViewController.m */; };
 		3EB8F01D1B2AA92100C53AF6 /* SGBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8F01C1B2AA92100C53AF6 /* SGBackViewController.m */; };
+		3EB8F01F1B2BC59E00C53AF6 /* qrcode_found.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3EB8F01E1B2BC59E00C53AF6 /* qrcode_found.wav */; };
+		3EC2488A1B39015400E7CFF6 /* SGDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC248891B39015400E7CFF6 /* SGDeviceViewController.m */; };
+		3EC2488E1B392BFC00E7CFF6 /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC2488D1B392BFC00E7CFF6 /* UIView+Category.m */; };
+		3EC248911B399ADB00E7CFF6 /* SGDeviceBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC248901B399ADB00E7CFF6 /* SGDeviceBussiness.m */; };
 		3EF914CF1AFDF16E00F823E7 /* SGUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914CC1AFDF16E00F823E7 /* SGUtility.m */; };
 		3EF914D01AFDF16E00F823E7 /* SGAPPConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914CE1AFDF16E00F823E7 /* SGAPPConfig.m */; };
 		3EF914DD1AFDF33D00F823E7 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914D41AFDF33D00F823E7 /* FMDatabase.m */; };
@@ -183,6 +187,13 @@
 		3EB8F0191B2A6A2E00C53AF6 /* FRSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRSearchViewController.m; sourceTree = "<group>"; };
 		3EB8F01B1B2AA92100C53AF6 /* SGBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBackViewController.h; sourceTree = "<group>"; };
 		3EB8F01C1B2AA92100C53AF6 /* SGBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBackViewController.m; sourceTree = "<group>"; };
+		3EB8F01E1B2BC59E00C53AF6 /* qrcode_found.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = qrcode_found.wav; sourceTree = "<group>"; };
+		3EC248881B39015400E7CFF6 /* SGDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGDeviceViewController.h; sourceTree = "<group>"; };
+		3EC248891B39015400E7CFF6 /* SGDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGDeviceViewController.m; sourceTree = "<group>"; };
+		3EC2488C1B392BFC00E7CFF6 /* UIView+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Category.h"; sourceTree = "<group>"; };
+		3EC2488D1B392BFC00E7CFF6 /* UIView+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Category.m"; sourceTree = "<group>"; };
+		3EC2488F1B399ADB00E7CFF6 /* SGDeviceBussiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGDeviceBussiness.h; sourceTree = "<group>"; };
+		3EC248901B399ADB00E7CFF6 /* SGDeviceBussiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGDeviceBussiness.m; sourceTree = "<group>"; };
 		3EF914CA1AFDF16E00F823E7 /* SGGCDSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGGCDSingleton.h; sourceTree = "<group>"; };
 		3EF914CB1AFDF16E00F823E7 /* SGUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGUtility.h; sourceTree = "<group>"; };
 		3EF914CC1AFDF16E00F823E7 /* SGUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGUtility.m; sourceTree = "<group>"; };
@@ -335,6 +346,7 @@
 			children = (
 				3EB8F00A1B2A67AB00C53AF6 /* FilerReader */,
 				3E1E450D1AFB0C3D006DB63E /* Base */,
+				3EC2488B1B39015900E7CFF6 /* Class_Device */,
 				3E1E45111AFB0C7D006DB63E /* Class_Cubicle */,
 				3E1E45121AFB0C89006DB63E /* Class_Cable */,
 				3E1E45131AFB0C90006DB63E /* Class_Fiber */,
@@ -410,6 +422,7 @@
 		3E1E45161AFB0CCB006DB63E /* Class_Scan */ = {
 			isa = PBXGroup;
 			children = (
+				3EB8F01E1B2BC59E00C53AF6 /* qrcode_found.wav */,
 				3EA2C13B1B0B600200A2B191 /* SGScanContainerViewController.h */,
 				3EA2C13C1B0B600200A2B191 /* SGScanContainerViewController.m */,
 				3E1E451D1AFB0D54006DB63E /* SGScanViewController.h */,
@@ -425,6 +438,8 @@
 				3E1E45271AFB0F47006DB63E /* NSString+Category.m */,
 				3E1E45281AFB0F47006DB63E /* UIImage+Category.h */,
 				3E1E45291AFB0F47006DB63E /* UIImage+Category.m */,
+				3EC2488C1B392BFC00E7CFF6 /* UIView+Category.h */,
+				3EC2488D1B392BFC00E7CFF6 /* UIView+Category.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -532,6 +547,15 @@
 			name = FilerReader;
 			sourceTree = "<group>";
 		};
+		3EC2488B1B39015900E7CFF6 /* Class_Device */ = {
+			isa = PBXGroup;
+			children = (
+				3EC248881B39015400E7CFF6 /* SGDeviceViewController.h */,
+				3EC248891B39015400E7CFF6 /* SGDeviceViewController.m */,
+			);
+			name = Class_Device;
+			sourceTree = "<group>";
+		};
 		3EF914C41AFDE0D000F823E7 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -601,6 +625,8 @@
 				3EB3A4CF1B0A19EC002EB7FA /* SGPortPageDataModel.m */,
 				3EA2C13E1B0B7D7000A2B191 /* SGScanBussiness.h */,
 				3EA2C13F1B0B7D7000A2B191 /* SGScanBussiness.m */,
+				3EC2488F1B399ADB00E7CFF6 /* SGDeviceBussiness.h */,
+				3EC248901B399ADB00E7CFF6 /* SGDeviceBussiness.m */,
 			);
 			name = Bussiness;
 			sourceTree = "<group>";
@@ -698,6 +724,7 @@
 				3EF914FD1AFE025C00F823E7 /* Localizable.strings in Resources */,
 				3E3F0A2B1B086C8700BF1EB9 /* SGRoomCell.xib in Resources */,
 				3E3F0A411B08915800BF1EB9 /* SGSectionHeaderView.xib in Resources */,
+				3EB8F01F1B2BC59E00C53AF6 /* qrcode_found.wav in Resources */,
 				3E42C4D21B1F3FCF00B340A8 /* 郁桥变标签.sqlite in Resources */,
 				3E1E44F01AFB0BD8006DB63E /* Main.storyboard in Resources */,
 				3E1E44F51AFB0BD8006DB63E /* LaunchScreen.xib in Resources */,
@@ -741,6 +768,7 @@
 				3EB3A4D71B0A2723002EB7FA /* SGDBViewController.m in Sources */,
 				3EF914DF1AFDF33D00F823E7 /* FMDatabaseQueue.m in Sources */,
 				3E1E45221AFB0D5E006DB63E /* SGSettingViewController.m in Sources */,
+				3EC2488A1B39015400E7CFF6 /* SGDeviceViewController.m in Sources */,
 				3EF914E01AFDF33D00F823E7 /* FMDatabaseAdditions.m in Sources */,
 				3EB8F0171B2A688C00C53AF6 /* FRSearchResultViewController.m in Sources */,
 				3EB3A4D41B0A1A27002EB7FA /* SGSelectViewController.m in Sources */,
@@ -753,12 +781,14 @@
 				3E3F0A2A1B086C8700BF1EB9 /* SGRoomCell.m in Sources */,
 				3EB8F0111B2A67EF00C53AF6 /* MasterViewController.m in Sources */,
 				3EF915011AFE052300F823E7 /* XMLReader.m in Sources */,
+				3EC2488E1B392BFC00E7CFF6 /* UIView+Category.m in Sources */,
 				3E3F0A401B08915800BF1EB9 /* SGSectionHeaderView.m in Sources */,
 				3EB8F0001B2A671800C53AF6 /* FRNodeModel.m in Sources */,
 				3EA2C13D1B0B600200A2B191 /* SGScanContainerViewController.m in Sources */,
 				3EB8EFFD1B2A671200C53AF6 /* FRModel.m in Sources */,
 				3EF914D01AFDF16E00F823E7 /* SGAPPConfig.m in Sources */,
 				3EF914CF1AFDF16E00F823E7 /* SGUtility.m in Sources */,
+				3EC248911B399ADB00E7CFF6 /* SGDeviceBussiness.m in Sources */,
 				3EF914E51AFDF35800F823E7 /* MBProgressHUD.m in Sources */,
 				3E1E451C1AFB0D3D006DB63E /* SGCubicleViewController.m in Sources */,
 				3EF914F31AFDF91C00F823E7 /* SGBaseBussiness.m in Sources */,
@@ -910,6 +940,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Han (7T2BFNJ439)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yang Han (7T2BFNJ439)";
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = SGClientForiPhone/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

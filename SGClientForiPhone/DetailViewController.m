@@ -54,7 +54,7 @@
         self.previewController.currentPreviewItemIndex = 0;
         [self addChildViewController:self.previewController];
         [self.view addSubview:self.previewController.view];
-        [self.previewController.view autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:0];
+        [self.previewController.view autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:49];
         [self.previewController.view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
         [self.previewController.view autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:0];
         [self.previewController.view autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:0];

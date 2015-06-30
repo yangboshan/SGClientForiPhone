@@ -188,6 +188,7 @@
     }
     
     NSLog(@"--------------------->>>>>>>>%@",stringValue);
+    [self playSound];
     
     [_session stopRunning];
     
@@ -285,6 +286,23 @@
     }
 }
 
+- (void)playSoundWithName:(NSString *)name type:(NSString *)type{
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:type];
+    
+    if([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        SystemSoundID sound;
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &sound);
+        AudioServicesPlaySystemSound(sound);
+    }
+    else {
+        NSLog(@"Error: audio file not found at path: %@", path);
+    }
+}
 
+- (void)playSound{
+    
+    [self playSoundWithName:@"qrcode_found" type:@"wav"];
+}
 @end
 

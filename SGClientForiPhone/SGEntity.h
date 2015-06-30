@@ -35,6 +35,14 @@
 @property(nonatomic,strong) NSString* rxiedport_id;
 @property(nonatomic,strong) NSString* rxied_id;
 @property(nonatomic,strong) NSString* txied_id;
+
+@property(nonatomic,strong) NSString* switch1_id;
+@property(nonatomic,strong) NSString* switch2_id;
+@property(nonatomic,strong) NSString* switch3_id;
+@property(nonatomic,strong) NSString* switch4_id;
+
+
+
 @end
 
 @interface SGVterminal : NSObject

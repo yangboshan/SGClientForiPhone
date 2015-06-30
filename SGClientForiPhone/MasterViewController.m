@@ -52,7 +52,7 @@ static NSString* cellId = @"cellId";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"文件目录";
+    self.title = @"文档";
     
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStyleBordered target:self action:@selector(editAction:)];
     self.addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createFolder:)];

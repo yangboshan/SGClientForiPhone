@@ -8,6 +8,9 @@
 
 #import "SGRoomCell.h"
 #import "SGMacro.h"
+#import "UIView+Category.h"
+#import "SGDeviceViewController.h"
+
 
 
 @implementation SGRoomCell
@@ -35,14 +38,12 @@
         self.deviceListView.dataSource = self;
         self.deviceListView.delegate = self;
         
-//        [self.deviceListView setBackgroundColor:NavBarColorAlpha(0.7)];
         [self.roomInfo setTextColor:[UIColor darkGrayColor]];
         [self.roomInfo setFont:Lantinghei(14)];
         [self.roomInfo setNumberOfLines:0];
- 
-        
+        [self.roomInfo setUserInteractionEnabled:YES];
         UITapGestureRecognizer* gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellTapped)];
-        [self addGestureRecognizer:gesture];
+        [self.roomInfo addGestureRecognizer:gesture];
     }
     return self;
 }
@@ -94,7 +95,6 @@
     
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
-//    cell.contentView.backgroundColor = NavBarColorAlpha(0.7);
     cell.textLabel.font = Lantinghei(12);
     cell.textLabel.textColor = [UIColor darkGrayColor];
     id deviceobj = [self.data objectForKey:@"device"];
@@ -114,6 +114,26 @@
     else
         cell.textLabel.text = @"";
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    id deviceobj = [self.data objectForKey:@"device"];
+    
+    NSString* deviceId = @"";
+    
+    if([deviceobj isKindOfClass:[NSArray class]]){
+        deviceId =[[[deviceobj objectAtIndex:indexPath.row] objectForKey:@"deviceid"] objectForKey:@"text"];
+    }else{
+        deviceId =[[deviceobj objectForKey:@"deviceid"] objectForKey:@"text"];
+    }
+
+    NSLog(@"------>>> %@",deviceId);
+    
+    SGDeviceViewController* deviceController = [SGDeviceViewController new];
+    deviceController.deviceId = deviceId;
+    [[self viewController].navigationController pushViewController:deviceController animated:YES];
 }
 
 @end
