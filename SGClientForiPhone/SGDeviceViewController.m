@@ -41,7 +41,7 @@
         _cubicleWidth   = 380;
         _cubicleHeight  = 70;
         _cubicleMargin  = 30;
-        _lineLength     = 200;
+        _lineLength     = 300;
         _offsetY = _topMargin;
     }
     
@@ -89,6 +89,24 @@
             textEncodingName:@"UTF-8"
                      baseURL:baseURL];
     
+}
+
+-(NSString*)infosetDescription:(SGInfoSetItem*)item{
+    
+    NSString* type = @"";
+    
+    if ([item.type isEqualToString:@"1"]) {
+        type = @"GS";
+    }else if ([item.type isEqualToString:@"2"]){
+        type = @"SV";
+    }else if ([item.type isEqualToString:@"3"]){
+        type = @"TM";
+    }else if([item.type isEqualToString:@"4"]){
+        type = @"GV";
+    }else{
+        type = @"";
+    }
+    return [NSString stringWithFormat:@"%@: %@",type,item.description];
 }
 
 -(NSString*)generateSvg{
@@ -184,6 +202,7 @@
                         groupL = [[SGDeviceBussiness sharedSGDeviceBussiness] queryPortById:nextInfoset.txiedport_id];
                     }
                     
+                    //两组端口
                     [svgStr appendString:DrawTextR(self.leftMargin + self.cubicleWidth,
                                                    offsetY - groupOffset + textOffset ,17,
                                                    @"white",
@@ -208,11 +227,24 @@
                                                    @"italic",
                                                    groupR)];
 
+                    //描述1
+                    [svgStr appendString:DrawTextL(self.leftMargin + self.cubicleWidth + 5,
+                                                   offsetY - groupOffset + textOffset - 10,12,
+                                                   @"gray",
+                                                   @"italic",
+                                                   [self infosetDescription:infoset])];
+                    //描述2
+                    [svgStr appendString:DrawTextL(self.leftMargin + self.cubicleWidth + 5,
+                                                   offsetY + groupOffset + textOffset + 10,12,
+                                                   @"gray",
+                                                   @"italic",
+                                                   [self infosetDescription:nextInfoset])];
+                    //线1
                     [svgStr appendString:DrawLineArrow(self.leftMargin + self.cubicleWidth,
                                                        offsetY + groupOffset,
                                                        self.leftMargin + self.cubicleWidth + self.lineLength - arrowOffset,
                                                        offsetY + groupOffset,@"")];
-                    
+                    //线2
                     [svgStr appendString:DrawLineArrow(self.leftMargin + self.cubicleWidth + self.lineLength,
                                                        offsetY - groupOffset,
                                                        self.leftMargin + self.cubicleWidth + arrowOffset,
@@ -222,6 +254,7 @@
                 //非group
                 }else{
                     
+                     //一组端口
                     [svgStr appendString:DrawTextR(self.leftMargin + self.cubicleWidth,
                                                   offsetY + 5,17,
                                                   @"white",
@@ -234,6 +267,13 @@
                                                   @"italic",
                                                   portR)];
                     
+                    //描述
+                    [svgStr appendString:DrawTextL(self.leftMargin + self.cubicleWidth + 5,
+                                                   offsetY - 10,12,
+                                                   @"gray",
+                                                   @"italic",
+                                                   [self infosetDescription:infoset])];
+                    //线
                     if ([infoset.txied_id isEqualToString:self.deviceId]) {
                         
                         [svgStr appendString:DrawLineArrow(self.leftMargin + self.cubicleWidth + self.lineLength,
@@ -302,7 +342,12 @@
                     NSString* rxField = [NSString stringWithFormat:@"switch%d_rxport_id",level];
                     
                     BOOL hasGroup = NO;
-                    for(SGInfoSetItem* infoset in list){
+                    
+                    float offsetY = self.topMargin + (self.cubicleHeight + self.cubicleMargin) * [self preCount:c entity:entity] + (self.cubicleHeight*entity.count + self.cubicleMargin * (entity.count - 1))/2.0;
+                    
+                    int p1 = 0;
+                    for(NSInteger p = list.count-1; p >= 0; p--){
+                        SGInfoSetItem* infoset = list[p];
                         
                         if ([infoset.txied_id isEqualToString:self.deviceId]) {
                             if (level == 1) {
@@ -314,16 +359,25 @@
                                 portL = [[SGDeviceBussiness sharedSGDeviceBussiness] queryPortById:[infoset valueForKey:preTxField]];
                                 portR = [[SGDeviceBussiness sharedSGDeviceBussiness] queryPortById:[infoset valueForKey:rxField]];
                             }
-                            break;
+                            
+                            //描述
+                            [svgStr appendString:DrawTextL(offsetRight + i * (self.cubicleWidth + self.lineLength),
+                                                           offsetY - groupOffset - 5 - p1 * 20,12,
+                                                           @"gray",
+                                                           @"italic",
+                                                           [self infosetDescription:infoset])];
+                            p1++;
                         }
                     }
                     
-                    //<----- 接受
-                    for(SGInfoSetItem* infoset in list){
+                    int p2 = 0;
+                    for(NSInteger p = 0; p < list.count; p++){
+                        SGInfoSetItem* infoset = list[p];
+                        
                         if ([infoset.rxied_id isEqualToString:self.deviceId]) {
                             hasGroup = YES;
                             if (level == 1) {
- 
+                                
                                 groupL = [[SGDeviceBussiness sharedSGDeviceBussiness] queryPortById:infoset.rxiedport_id];
                                 groupR = [[SGDeviceBussiness sharedSGDeviceBussiness] queryPortById:infoset.switch1_txport_id];
                                 
@@ -331,11 +385,50 @@
                                 groupL = [[SGDeviceBussiness sharedSGDeviceBussiness] queryPortById:[infoset valueForKey:preTxField]];
                                 groupR = [[SGDeviceBussiness sharedSGDeviceBussiness] queryPortById:[infoset valueForKey:rxField]];
                             }
-                            break;
+                            
+                            //描述
+                            [svgStr appendString:DrawTextL(offsetRight + i * (self.cubicleWidth + self.lineLength),
+                                                           offsetY + groupOffset + 15 + p2*20,12,
+                                                           @"gray",
+                                                           @"italic",
+                                                           [self infosetDescription:infoset])];
+                            p2++;
                         }
                     }
                     
-                    float offsetY = self.topMargin + (self.cubicleHeight + self.cubicleMargin) * [self preCount:c entity:entity] + (self.cubicleHeight*entity.count + self.cubicleMargin * (entity.count - 1))/2.0;
+                    
+//                    for(SGInfoSetItem* infoset in list){
+//                        
+//                        if ([infoset.txied_id isEqualToString:self.deviceId]) {
+//                            if (level == 1) {
+//                                
+//                                portL = [[SGDeviceBussiness sharedSGDeviceBussiness] queryPortById:infoset.txiedport_id];
+//                                portR = [[SGDeviceBussiness sharedSGDeviceBussiness] queryPortById:infoset.switch1_rxport_id];
+//                                
+//                            }else{
+//                                portL = [[SGDeviceBussiness sharedSGDeviceBussiness] queryPortById:[infoset valueForKey:preTxField]];
+//                                portR = [[SGDeviceBussiness sharedSGDeviceBussiness] queryPortById:[infoset valueForKey:rxField]];
+//                            }
+//                        }
+//                    }
+//                    
+//                    //<----- 接受
+//                    for(SGInfoSetItem* infoset in list){
+//                        if ([infoset.rxied_id isEqualToString:self.deviceId]) {
+//                            hasGroup = YES;
+//                            if (level == 1) {
+// 
+//                                groupL = [[SGDeviceBussiness sharedSGDeviceBussiness] queryPortById:infoset.rxiedport_id];
+//                                groupR = [[SGDeviceBussiness sharedSGDeviceBussiness] queryPortById:infoset.switch1_txport_id];
+//                                
+//                            }else{
+//                                groupL = [[SGDeviceBussiness sharedSGDeviceBussiness] queryPortById:[infoset valueForKey:preTxField]];
+//                                groupR = [[SGDeviceBussiness sharedSGDeviceBussiness] queryPortById:[infoset valueForKey:rxField]];
+//                            }
+//                        }
+//                    }
+                    
+
                     
                     if (hasGroup) {
                         
@@ -374,9 +467,7 @@
                                                            offsetY + groupOffset,@"")];
                         
                     }else{
-                    
-                        
-                        
+
                         [svgStr appendString:DrawTextR(offsetRight + i * (self.cubicleWidth + self.lineLength),
                                                        offsetY,17,
                                                        @"white",
@@ -467,6 +558,7 @@
                         groupR = [[SGDeviceBussiness sharedSGDeviceBussiness] queryPortById:nextInfoset.txiedport_id];
                     }
                     
+                    //两组端口
                     [svgStr appendString:DrawTextR(offsetRight + (self.cubicleWidth+self.lineLength)*currentLevel,
                                                    offsetY - groupOffset + textOffset ,17,
                                                    @"white",
@@ -491,6 +583,20 @@
                                                    @"italic",
                                                    groupR)];
                     
+                    //描述1
+                    [svgStr appendString:DrawTextL(offsetRight + (self.cubicleWidth+self.lineLength)*currentLevel,
+                                                   offsetY - groupOffset + textOffset  - 10,12,
+                                                   @"gray",
+                                                   @"italic",
+                                                   [self infosetDescription:infoset])];
+                    //描述2
+                    [svgStr appendString:DrawTextL(offsetRight + (self.cubicleWidth+self.lineLength)*currentLevel,
+                                                   offsetY + groupOffset + textOffset + 10,12,
+                                                   @"gray",
+                                                   @"italic",
+                                                   [self infosetDescription:nextInfoset])];
+                    
+                    //线条
                     [svgStr appendString:DrawLineArrow(offsetRight + (self.cubicleWidth+self.lineLength)*currentLevel,
                                                        offsetY + groupOffset,
                                                        offsetRight + (self.cubicleWidth+self.lineLength)*currentLevel + self.lineLength - arrowOffset,
@@ -504,6 +610,14 @@
                     
                     //非group
                 }else{
+                    
+                    //描述
+                    [svgStr appendString:DrawTextL(offsetRight + (self.cubicleWidth+self.lineLength)*currentLevel + 5,
+                                                   offsetY - 5,12,
+                                                   @"gray",
+                                                   @"italic",
+                                                   [self infosetDescription:infoset])];
+                    
                     
                     [svgStr appendString:DrawTextR(offsetRight + (self.cubicleWidth+self.lineLength)*currentLevel,
                                                    offsetY + 5,17,
