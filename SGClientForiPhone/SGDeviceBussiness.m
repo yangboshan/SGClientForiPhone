@@ -34,10 +34,71 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGDeviceBussiness)
     NSArray* leftList = [infosetList filteredArrayUsingPredicate:predicate1];
     NSArray* rightList = [infosetList filteredArrayUsingPredicate:predicate2];
     
-//    NSSortDescriptor *sorter = [NSSortDescriptor sortDescriptorWithKey:@"type" ascending:YES];
-//    NSArray *leftListSorted = [leftList sortedArrayUsingDescriptors:[NSArray arrayWithObject:sorter]];
+    for(SGInfoSetItem* infoset in rightList){
+        if ([infoset.rxied_id isEqualToString:deviceId]) {
+
+            if (![infoset.switch4_id isEqualToString:@"0"]) {
+                [self handleSwitchOrder:infoset index:4];
+            }
+            if (![infoset.switch3_id isEqualToString:@"0"]) {
+                [self handleSwitchOrder:infoset index:3];
+            }
+            if (![infoset.switch2_id isEqualToString:@"0"]) {
+                [self handleSwitchOrder:infoset index:2];
+            }
+        }
+    }
+    
+    NSSortDescriptor *sorter = [NSSortDescriptor sortDescriptorWithKey:@"type" ascending:YES];
+    NSSortDescriptor *sorter1 = [NSSortDescriptor sortDescriptorWithKey:@"switch1_id" ascending:YES];
+    NSSortDescriptor *sorter2 = [NSSortDescriptor sortDescriptorWithKey:@"switch2_id" ascending:YES];
+    NSSortDescriptor *sorter3 = [NSSortDescriptor sortDescriptorWithKey:@"switch3_id" ascending:YES];
+    NSSortDescriptor *sorter4 = [NSSortDescriptor sortDescriptorWithKey:@"switch4_id" ascending:YES];
+    NSSortDescriptor *sorter5 = [NSSortDescriptor sortDescriptorWithKey:@"group" ascending:YES];
+    rightList = [rightList sortedArrayUsingDescriptors:@[sorter1,sorter2,sorter3,sorter4,sorter5,sorter]];
+    
     
     return @[leftList,rightList];
+}
+
+-(void)handleSwitchOrder:(SGInfoSetItem*)infoset index:(NSInteger)index{
+    
+    NSString* fieldTmp = [infoset valueForKey:[self field:index]];
+    NSString* fieldTxTmp = [infoset valueForKey:[self fieldtx:index]];
+    NSString* fieldRxTmp = [infoset valueForKey:[self fieldrx:index]];
+    
+    [infoset setValue:[infoset valueForKey:[self field:1]] forKey:[self field:index]];
+    [infoset setValue:[infoset valueForKey:[self fieldtx:1]] forKey:[self fieldtx:index]];
+    [infoset setValue:[infoset valueForKey:[self fieldrx:1]] forKey:[self fieldrx:index]];
+    
+    [infoset setValue:fieldTmp forKey:[self field:1]];
+    [infoset setValue:fieldTxTmp forKey:[self fieldtx:1]];
+    [infoset setValue:fieldRxTmp forKey:[self fieldrx:1]];
+    
+    if (index == 4) {
+        
+        NSString* fieldTmp = [infoset valueForKey:[self field:index-1]];
+        NSString* fieldTxTmp = [infoset valueForKey:[self fieldtx:index-1]];
+        NSString* fieldRxTmp = [infoset valueForKey:[self fieldrx:index-1]];
+        
+        [infoset setValue:[infoset valueForKey:[self field:index - 2]] forKey:[self field:index - 1]];
+        [infoset setValue:[infoset valueForKey:[self fieldtx:index - 2]] forKey:[self fieldtx:index - 1]];
+        [infoset setValue:[infoset valueForKey:[self fieldrx:index - 2]] forKey:[self fieldrx:index - 1]];
+        
+        [infoset setValue:fieldTmp forKey:[self field:index - 2]];
+        [infoset setValue:fieldTxTmp forKey:[self fieldtx:index - 2]];
+        [infoset setValue:fieldRxTmp forKey:[self fieldrx:index - 2]];
+    }
+}
+
+-(NSString*)field:(NSInteger)index{
+    return [NSString stringWithFormat:@"switch%ld_id",(long)index];
+}
+-(NSString*)fieldtx:(NSInteger)index{
+    return [NSString stringWithFormat:@"switch%ld_txport_id",(long)index];
+}
+-(NSString*)fieldrx:(NSInteger)index{
+    return [NSString stringWithFormat:@"switch%ld_rxport_id",(long)index];
 }
 
 -(NSString*)queryDeviceById:(NSString*)deviceId{
