@@ -19,6 +19,7 @@ switch2_rxport_id,switch2_txport_id,switch3_id,switch3_rxport_id,switch3_txport_
 where (txied_id = %@ or rxied_id = %@) and type!=0 order by type,switch1_id,switch2_id,switch3_id,switch4_id,[group]",d,d]
 
 #define DP_GetDeviceInfo(d) [NSString stringWithFormat:@"select description from device where device_id = %@",d]
+#define DP_GetDeviceType(d) [NSString stringWithFormat:@"select device_type as description from device where device_id = %@",d]
 #define DP_GetPortInfo(p) [NSString stringWithFormat:@"select  board.position || '/' ||port.name as type   from port inner join board on port.board_id = board.board_id where port_id =  %@",p]
 
 @implementation SGDeviceBussiness
@@ -113,4 +114,9 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGDeviceBussiness)
     return [l[0] type];
 }
 
+- (NSString*)queryDeviceTypeById:(NSString*)deviceId{
+    
+    NSArray* l = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:DP_GetDeviceType(deviceId)] withEntity:@"SGDeviceInfo"];
+    return [l[0] description];
+}
 @end

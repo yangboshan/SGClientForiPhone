@@ -11,8 +11,10 @@
 @interface SGDeviceBussiness : SGBaseBussiness
 +(SGDeviceBussiness*)sharedSGDeviceBussiness;
 
--(NSArray*)queryInfoSetListByDeviceId:(NSString*)deviceId;
--(NSString*)queryDeviceById:(NSString*)deviceId;
--(NSString*)queryPortById:(NSString*)portId;
+- (NSArray*)queryInfoSetListByDeviceId:(NSString*)deviceId;
+- (NSString*)queryDeviceById:(NSString*)deviceId;
+- (NSString*)queryPortById:(NSString*)portId;
+
+- (NSString*)queryDeviceTypeById:(NSString*)deviceId;
 
 @end

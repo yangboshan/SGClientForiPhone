@@ -38,6 +38,8 @@
 		3E3F0A571B08C3AA00BF1EB9 /* SGFiberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A561B08C3AA00BF1EB9 /* SGFiberViewController.m */; };
 		3E42C4D21B1F3FCF00B340A8 /* 郁桥变标签.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3E42C4D11B1F3FCF00B340A8 /* 郁桥变标签.sqlite */; };
 		3E7774C21B09E47300ED6FE9 /* SGPortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7774C11B09E47300ED6FE9 /* SGPortViewController.m */; };
+		3E828C6A1B8ABFA500019254 /* SGSwitchBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E828C691B8ABFA500019254 /* SGSwitchBussiness.m */; };
+		3E828C6E1B8ABFDC00019254 /* SGSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E828C6D1B8ABFDC00019254 /* SGSwitchViewController.m */; };
 		3EA2C13D1B0B600200A2B191 /* SGScanContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2C13C1B0B600200A2B191 /* SGScanContainerViewController.m */; };
 		3EA2C1401B0B7D7000A2B191 /* SGScanBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2C13F1B0B7D7000A2B191 /* SGScanBussiness.m */; };
 		3EB3A4D01B0A19EC002EB7FA /* SGPortPageBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A4CD1B0A19EC002EB7FA /* SGPortPageBussiness.m */; };
@@ -152,6 +154,10 @@
 		3E42C4D11B1F3FCF00B340A8 /* 郁桥变标签.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "郁桥变标签.sqlite"; sourceTree = "<group>"; };
 		3E7774C01B09E47300ED6FE9 /* SGPortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPortViewController.h; sourceTree = "<group>"; };
 		3E7774C11B09E47300ED6FE9 /* SGPortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGPortViewController.m; sourceTree = "<group>"; };
+		3E828C681B8ABFA500019254 /* SGSwitchBussiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSwitchBussiness.h; sourceTree = "<group>"; };
+		3E828C691B8ABFA500019254 /* SGSwitchBussiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSwitchBussiness.m; sourceTree = "<group>"; };
+		3E828C6C1B8ABFDC00019254 /* SGSwitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSwitchViewController.h; sourceTree = "<group>"; };
+		3E828C6D1B8ABFDC00019254 /* SGSwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSwitchViewController.m; sourceTree = "<group>"; };
 		3EA2C13B1B0B600200A2B191 /* SGScanContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGScanContainerViewController.h; sourceTree = "<group>"; };
 		3EA2C13C1B0B600200A2B191 /* SGScanContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGScanContainerViewController.m; sourceTree = "<group>"; };
 		3EA2C13E1B0B7D7000A2B191 /* SGScanBussiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGScanBussiness.h; sourceTree = "<group>"; };
@@ -346,6 +352,7 @@
 			children = (
 				3EB8F00A1B2A67AB00C53AF6 /* FilerReader */,
 				3E1E450D1AFB0C3D006DB63E /* Base */,
+				3E828C6B1B8ABFBA00019254 /* Class_Switch */,
 				3EC2488B1B39015900E7CFF6 /* Class_Device */,
 				3E1E45111AFB0C7D006DB63E /* Class_Cubicle */,
 				3E1E45121AFB0C89006DB63E /* Class_Cable */,
@@ -506,6 +513,15 @@
 			name = ScrollFullScreen;
 			sourceTree = "<group>";
 		};
+		3E828C6B1B8ABFBA00019254 /* Class_Switch */ = {
+			isa = PBXGroup;
+			children = (
+				3E828C6C1B8ABFDC00019254 /* SGSwitchViewController.h */,
+				3E828C6D1B8ABFDC00019254 /* SGSwitchViewController.m */,
+			);
+			name = Class_Switch;
+			sourceTree = "<group>";
+		};
 		3EB8EFFA1B2A670200C53AF6 /* FileReader */ = {
 			isa = PBXGroup;
 			children = (
@@ -627,6 +643,8 @@
 				3EA2C13F1B0B7D7000A2B191 /* SGScanBussiness.m */,
 				3EC2488F1B399ADB00E7CFF6 /* SGDeviceBussiness.h */,
 				3EC248901B399ADB00E7CFF6 /* SGDeviceBussiness.m */,
+				3E828C681B8ABFA500019254 /* SGSwitchBussiness.h */,
+				3E828C691B8ABFA500019254 /* SGSwitchBussiness.m */,
 			);
 			name = Bussiness;
 			sourceTree = "<group>";
@@ -749,11 +767,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E1E44ED1AFB0BD8006DB63E /* ViewController.m in Sources */,
+				3E828C6A1B8ABFA500019254 /* SGSwitchBussiness.m in Sources */,
 				3EB3A4D11B0A19EC002EB7FA /* SGPortPageDataModel.m in Sources */,
 				3EB3A4D01B0A19EC002EB7FA /* SGPortPageBussiness.m in Sources */,
 				3E1E45101AFB0C65006DB63E /* SGBaseViewController.m in Sources */,
 				3EB8F0031B2A673600C53AF6 /* FRSettingManager.m in Sources */,
 				3E3F0A441B08934900BF1EB9 /* SGCableViewController.m in Sources */,
+				3E828C6E1B8ABFDC00019254 /* SGSwitchViewController.m in Sources */,
 				3EB8F0141B2A67F600C53AF6 /* DetailViewController.m in Sources */,
 				3E3F0A381B08800100BF1EB9 /* ALView+PureLayout.m in Sources */,
 				3EF914DE1AFDF33D00F823E7 /* FMResultSet.m in Sources */,
@@ -930,7 +950,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2170ca0b-3c29-4ed8-b4c7-b6c802efffb2";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -945,7 +965,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2170ca0b-3c29-4ed8-b4c7-b6c802efffb2";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

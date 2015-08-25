@@ -62,7 +62,10 @@
 
 @interface SGPortInfo : NSObject
 @property(nonatomic,strong) NSString* type;
+@property(nonatomic,strong) NSString* group;
 @property(nonatomic,strong) NSString* port_id;
+@property(nonatomic,strong) NSString* board_id;
+@property(nonatomic,strong) NSString* name;
 @property(nonatomic,strong) NSString* direction;
 @end
 

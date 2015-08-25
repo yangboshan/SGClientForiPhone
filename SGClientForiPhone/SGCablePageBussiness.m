@@ -750,12 +750,16 @@ inner join board on device.device_id=board.device_id inner join port on board.bo
 
     for(NSMutableArray* a in self.gllist){
         
+        SGCPDataItem* item = a[1];
+        if ([item.cable_name isEqualToString:@"1B-GL104A"]) {
+            NSLog(@"");
+        }
+        
 
         NSArray* fiberList = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetFiberItemList([a[1] valueForKey:@"cable_id"])]
                                                    withEntity:@"SGFiberItem"];
         
         BOOL flag = NO;
-        BOOL swapped = NO;
         for(SGFiberItem* fiberItem in fiberList){
             
             NSMutableArray* tmp = [NSMutableArray array];
@@ -766,6 +770,8 @@ inner join board on device.device_id=board.device_id inner join port on board.bo
             BOOL flag1 = NO;
             BOOL flag2 = NO;
             if ([fiberItem.reserve isEqualToString:@"1"]) {
+                [self.gllistFinal addObject:a];
+
                 continue;
             }
             
@@ -778,7 +784,6 @@ inner join board on device.device_id=board.device_id inner join port on board.bo
                                                      withEntity:@"SGFiberItem"];
             if (!desc1.count) {
                 portList = [[[portList reverseObjectEnumerator] allObjects] copy];
-//                swapped = YES;
             }
             
             NSArray *desc2 = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetCubicleIdWithPort(fiberItem.port1_id)]
@@ -792,7 +797,6 @@ inner join board on device.device_id=board.device_id inner join port on board.bo
                     fiberItem.port2_id = tmp;
                     
                     portList = [[[portList reverseObjectEnumerator] allObjects] copy];
-//                    swapped = YES;
                 }
             }
             
@@ -814,17 +818,7 @@ inner join board on device.device_id=board.device_id inner join port on board.bo
                             [c insertObject:cu[0] atIndex:0];
                             
                         }else{
-                            
-//                            SGCPDataItem* item = cu[0];
-//                            item.cable_id = [desc[0] valueForKey:@"cable_id"];
-//                            item.cable_name = [desc[0] valueForKey:@"cable_name"];
-//                            
-//                            
-//                            [c insertObject:item atIndex:c.count];
                         }
-                        
-                        
-
                     }
                 }
             }
@@ -846,12 +840,6 @@ inner join board on device.device_id=board.device_id inner join port on board.bo
                             [c insertObject:item atIndex:c.count];
                             
                         }else{
-//                            SGCPDataItem* item = c[0];
-//                            item.cable_id = [desc[0] valueForKey:@"cable_id"];
-//                            item.cable_name = [desc[0] valueForKey:@"cable_name"];
-//                            
-//                            [c insertObject:cu[0] atIndex:0];
-
                         }
 
                         

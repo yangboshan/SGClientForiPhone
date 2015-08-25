@@ -10,7 +10,8 @@
 #import "SGMacro.h"
 #import "UIView+Category.h"
 #import "SGDeviceViewController.h"
-
+#import "SGSwitchViewController.h"
+#import "SGDeviceBussiness.h"
 
 
 @implementation SGRoomCell
@@ -131,9 +132,18 @@
 
     NSLog(@"------>>> %@",deviceId);
     
-    SGDeviceViewController* deviceController = [SGDeviceViewController new];
-    deviceController.deviceId = deviceId;
-    [[self viewController].navigationController pushViewController:deviceController animated:YES];
+    if ([[[SGDeviceBussiness sharedSGDeviceBussiness] queryDeviceTypeById:deviceId] isEqualToString:@"0"]) {
+        SGDeviceViewController* deviceController = [SGDeviceViewController new];
+        deviceController.deviceId = deviceId;
+        [[self viewController].navigationController pushViewController:deviceController animated:YES];
+    }
+    if ([[[SGDeviceBussiness sharedSGDeviceBussiness] queryDeviceTypeById:deviceId] isEqualToString:@"1"]) {
+        SGSwitchViewController* switchController = [SGSwitchViewController new];
+        switchController.deviceId = deviceId;
+        [[self viewController].navigationController pushViewController:switchController animated:YES];
+    }
+    
+
 }
 
 @end

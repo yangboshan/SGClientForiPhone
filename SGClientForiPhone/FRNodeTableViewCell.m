@@ -18,6 +18,7 @@
     [self.contentView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
     [self.contentView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:0];
     [self.contentView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:0];
+    [self.contentView autoSetDimension:ALDimensionHeight toSize:40];
 
  }
 
