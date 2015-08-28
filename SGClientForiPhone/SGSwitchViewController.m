@@ -315,15 +315,16 @@
                 for(NSString* connecter in chain){
                     if ([[infoset valueForKey:connecter] isEqualToString:port.port_id]){
                         if ([connecter containsString:@"tx"]) {
+                            
                             retD[@"mainTxPort"] = port.port_id;
                             retD[@"ctedRxPort"] = [infoset valueForKey:chain[[chain indexOfObject:connecter] + 1]];
-                            retD[@"ctedDeviceId"] = infoset.rxied_id;
+                            
+                            NSString* field = [self getCntedDeviceIdByField:connecter infoset:infoset];
+                            retD[@"ctedDeviceId"] = [infoset valueForKey:field];
                         }
                         if ([connecter containsString:@"rx"]) {
                             retD[@"mainRxPort"] = port.port_id;
                             retD[@"ctedTxPort"] = [infoset valueForKey:chain[[chain indexOfObject:connecter] - 1]];
-                            retD[@"ctedDeviceId"] = infoset.txied_id;
-
                         }
                     }
                 }
@@ -338,6 +339,20 @@
 
     return  retV;
 }
+
+- (NSString*)getCntedDeviceIdByField:(NSString*)field infoset:(SGInfoSetItem*)infoset{
+    
+    NSString* tmp = [[field componentsSeparatedByString:@"_"] firstObject];
+    int index =  [[tmp substringFromIndex:tmp.length - 1] intValue];
+    index++;
+    
+    NSString* deviceField = [NSString stringWithFormat:@"switch%d_id",index];
+    if (![[infoset valueForKey:deviceField] isEqualToString:@"0"]) {
+        return [NSString stringWithFormat:@"switch%d_id",index];
+    }
+    return @"rxied_id";
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
