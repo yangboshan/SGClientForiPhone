@@ -7,9 +7,8 @@
 //
 
 #import "SGBaseViewController.h"
-#import "NJKScrollFullScreen.h"
 
-@interface SGCubicleViewController : SGBaseViewController<NJKScrollFullscreenDelegate>
+@interface SGCubicleViewController : SGBaseViewController 
 
 //扫码功能调用接口
 -(void)scanModeWithCubicleId:(NSInteger)cubicleId withCableId:(NSInteger)cableId;

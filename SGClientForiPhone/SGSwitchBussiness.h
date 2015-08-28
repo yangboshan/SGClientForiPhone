@@ -14,6 +14,9 @@
 
 - (NSArray*)queryAllPortListByDeviceId:(NSString*)deviceId;
 
+- (NSArray*)queryPortConnectionInfoByPort1:(NSString*)port1 port2:(NSString*)port2;
+
+- (NSString*)queryPortById:(NSString*)portId;
 
 @end
  

@@ -25,8 +25,8 @@
 
 @property (nonatomic,strong) NSArray* roomList;
 @property (nonatomic,strong) UICollectionView* roomView;
+@property (nonatomic,strong) UIImageView* bgImageView;
 @property (nonatomic,assign) CGSize itemSize;
-@property (nonatomic) NJKScrollFullScreen *scrollProxy;
 
 
 @end
@@ -66,10 +66,6 @@
     [self.roomView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
     [self.roomView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:0];
     [self.roomView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:0];
-    
-//    _scrollProxy = [[NJKScrollFullScreen alloc] initWithForwardTarget:self];
-//    self.roomView.delegate = (id)_scrollProxy;
-//    _scrollProxy.delegate = self;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -81,11 +77,8 @@
     }else{
         self.itemSize = CGSizeMake((CGRectGetWidth(self.view.frame) - 15*3) /2., 200);
     }
-    
     [self.roomView reloadData];
     
-    
-    //设置数据库后 reload数据
     self.title = [[SGUtility getCurrentDB] componentsSeparatedByString:@"."][0];
     
     if ([SGUtility getDBChangeFlag]) {
@@ -101,15 +94,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
-//- (void)viewWillDisappear:(BOOL)animated
-//{
-//    [super viewWillDisappear:animated];
-//    [_scrollProxy reset];
-//    [self showNavigationBar:animated];
-//    [self showTabBar:animated];
-//}
-
 
 #pragma mark - UICollectionView delegate & datasource
 
@@ -143,7 +127,6 @@
         [cell setData:cubicles];
         [cell setDelegate:self];
     }
-    
     return cell;
 }
 
@@ -198,10 +181,6 @@
     }
     
     [self.roomView reloadData];
-    
-//    [_scrollProxy reset];
-//    [self showNavigationBar:YES];
-//    [self showTabBar:YES];
 }
 
 #pragma cell - delegate
@@ -213,41 +192,7 @@
  }
 
 
-#pragma mark NJKScrollFullScreenDelegate
-
-//- (void)resetBars
-//{
-//    [_scrollProxy reset];
-//    [self showNavigationBar:NO];
-//    [self showTabBar:NO];
-//}
-//
-//- (void)scrollFullScreen:(NJKScrollFullScreen *)proxy scrollViewDidScrollUp:(CGFloat)deltaY
-//{
-//    [self moveNavigationBar:deltaY animated:YES];
-//    [self moveTabBar:-deltaY animated:YES]; // move to revese direction
-//}
-//
-//- (void)scrollFullScreen:(NJKScrollFullScreen *)proxy scrollViewDidScrollDown:(CGFloat)deltaY
-//{
-//    [self moveNavigationBar:deltaY animated:YES];
-//    [self moveTabBar:-deltaY animated:YES];
-//}
-//
-//- (void)scrollFullScreenScrollViewDidEndDraggingScrollUp:(NJKScrollFullScreen *)proxy
-//{
-//    [self hideNavigationBar:YES];
-//    [self hideTabBar:YES];
-//}
-//
-//- (void)scrollFullScreenScrollViewDidEndDraggingScrollDown:(NJKScrollFullScreen *)proxy
-//{
-//    [self showNavigationBar:YES];
-//    [self showTabBar:YES];
-//}
-
 #pragma mark - property
-
 
 -(UICollectionView*)roomView{
     
@@ -261,9 +206,16 @@
         
         [_roomView registerClass:[SGRoomCell class] forCellWithReuseIdentifier:kCellIdentifier];
         
-        [_roomView setBackgroundColor:RGB(245, 245, 245)];
+        UIImageView* imageView = [UIImageView new];
+        imageView.image = [UIImage imageNamed:@"bg1.jpg"];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [_roomView setBackgroundView:imageView];
+        
+        [_roomView setBackgroundColor:[UIColor clearColor]];
         [_roomView setDelegate:self];
         [_roomView setDataSource:self];
+ 
     }
     return _roomView;
 }

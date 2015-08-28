@@ -12,7 +12,8 @@
 
 
 
-#define DrawWhiteCircle(x,y,r) [NSString stringWithFormat:@"<circle cx=\"%f\" cy=\"%f\" r=\"%f\" style=\"fill:#0061b0;stroke:white;stroke-width:1;fill-opacity:0.0\" />",x,y,r]
+#define DrawWhiteCircle(x,y,r) [NSString stringWithFormat:@"<circle cx=\"%f\" cy=\"%f\" r=\"%f\" style=\"fill:none;stroke:white;stroke-width:1;fill-opacity:1.0\" />",x,y,r]
+#define DrawPolyline(x1,y1,x2,y2,x3,y3) [NSString stringWithFormat:@"<polyline points=\"%f,%f %f,%f %f,%f\" style=\"fill:none;stroke:gray;stroke-width:1\" />",x1,y1,x2,y2,x3,y3]
 
 @interface SGSwitchViewController ()
 
@@ -23,6 +24,7 @@
 @property(nonatomic,assign) float offsetY;
 @property(nonatomic,assign) float offsetX;
 
+
 @end
 
 @implementation SGSwitchViewController
@@ -31,7 +33,7 @@
     
     if (self = [super init]) {
         
-        _leftMargin = 20;
+        _leftMargin = 200;
         _topMargin = 50;
         _offsetY = _topMargin;
     }
@@ -80,26 +82,31 @@
 
 -(NSString*)generateSvg{
     
+    //port列表
     NSArray* list  = [[SGSwitchBussiness sharedSGSwitchBussiness] queryAllPortListByDeviceId:self.deviceId];
     NSMutableString* svgStr = [NSMutableString string];
 
+    //单行数目
     int rowCount = ceil(list.count/2.0);
     
+    int halfRowCount  = ceil(rowCount/2.0);
+    
+    float baseLength = 50;
+    float lineOffset = 30;
+    
+    float halfHeight = baseLength + lineOffset * halfRowCount;
     float circleMargin = 20;
     float circleD = 60;
     
-    float cubicleWidth = 100;
-    float cubicleHeight = 60;
-    float cubicleLineLen = 100;
+    
 
     //矩形
-    
     float mainWidth = circleMargin * (rowCount + 1) + circleD * rowCount;
     self.offsetX = mainWidth + 2 * self.leftMargin;
-    self.offsetY = self.topMargin * 2 + circleD * 3 + cubicleLineLen * 2 + cubicleHeight * 2;
+    self.offsetY = self.topMargin * 2 + circleD * 3 + halfHeight * 2;
     
     [svgStr appendString:DrawRect(self.leftMargin,
-                                  self.topMargin + cubicleHeight + cubicleLineLen,
+                                  self.topMargin + halfHeight,
                                   mainWidth,
                                   circleD * 3)];
     
@@ -108,21 +115,24 @@
 
     //设备
     [svgStr appendString:DrawText(self.leftMargin + mainWidth / 2.0 - size.width / 2.0,
-                                  self.topMargin + cubicleHeight + cubicleLineLen + circleD + 30,17,
+                                  self.topMargin + halfHeight + circleD + 30,17,
                                   @"white",
                                   @"italic",
                                   [[SGDeviceBussiness sharedSGDeviceBussiness] queryDeviceById:self.deviceId])];
     
-    //上排
-    for(int i = 1; i <= rowCount; i++){
-        
-        float offsetCircleX = self.leftMargin + i * circleMargin + (i - 0.5) * circleD;
-        float offsetCircleY = self.topMargin + cubicleHeight + cubicleLineLen + circleD/2.0;
 
+    //**********************************************************************************************************************
+    //画左上
+    int topLeftOffset = 0;
+    for(int i = 1; i <= halfRowCount; i++){
+        float offsetCircleX = self.leftMargin + i * circleMargin + (i - 0.5) * circleD;
+        float offsetCircleY = self.topMargin + halfHeight + circleD/2.0;
+        
         [svgStr appendString:DrawWhiteCircle(offsetCircleX,
                                              offsetCircleY,
                                              circleD/2.0)];
         NSArray* a = list[i-1];
+        
         for(int i = 0; i < 2; i++){
             SGPortInfo *p = a[i];
             [svgStr appendString:DrawText(offsetCircleX + 10 - circleD/2.0 ,
@@ -132,13 +142,72 @@
                                           @"italic",
                                           p.name)];
         }
+        NSString* retV = [self getConnectionDescByInfosetList:[[SGSwitchBussiness sharedSGSwitchBussiness] queryPortConnectionInfoByPort1:[a[0] port_id] port2:[a[1] port_id]] ports:a];
+        
+        if (retV) {
+            
+            topLeftOffset++;
+            
+            [svgStr appendString:DrawPolyline(self.leftMargin - 150, self.topMargin + halfHeight - baseLength - lineOffset * topLeftOffset,
+                                              offsetCircleX, self.topMargin + halfHeight - baseLength - lineOffset * topLeftOffset,
+                                              offsetCircleX, self.topMargin + halfHeight)];
+            
+            
+            [svgStr appendString:DrawText(self.leftMargin - 150,
+                                          self.topMargin + halfHeight - baseLength - lineOffset * topLeftOffset - 5,17,
+                                          @"gray",
+                                          @"italic",
+                                          retV)];
+        }
     }
-    
-    //下排
-    for(int i = 1; i <= list.count - rowCount; i++){
+    //**********************************************************************************************************************
+    //画右上
+    int topRightOffset = 0;
+    for(int i = rowCount; i >= halfRowCount + 1; i--){
         
         float offsetCircleX = self.leftMargin + i * circleMargin + (i - 0.5) * circleD;
-        float offsetCircleY = self.topMargin + cubicleHeight + cubicleLineLen + circleD*3 - circleD/2.0;
+        float offsetCircleY = self.topMargin + halfHeight + circleD/2.0;
+
+        [svgStr appendString:DrawWhiteCircle(offsetCircleX,
+                                             offsetCircleY,
+                                             circleD/2.0)];
+        NSArray* a = list[i-1];
+        
+        for(int i = 0; i < 2; i++){
+            SGPortInfo *p = a[i];
+            [svgStr appendString:DrawText(offsetCircleX + 10 - circleD/2.0 ,
+                                          offsetCircleY + i * 20,
+                                          17,
+                                          @"white",
+                                          @"italic",
+                                          p.name)];
+        }
+        
+        
+        NSString* retV = [self getConnectionDescByInfosetList:[[SGSwitchBussiness sharedSGSwitchBussiness] queryPortConnectionInfoByPort1:[a[0] port_id] port2:[a[1] port_id]] ports:a];
+        
+        if (retV) {
+            topRightOffset++;
+            
+            [svgStr appendString:DrawPolyline(2*self.leftMargin + mainWidth - 50, self.topMargin + halfHeight - baseLength - lineOffset * topRightOffset,
+                                              offsetCircleX, self.topMargin + halfHeight - baseLength - lineOffset * topRightOffset,
+                                              offsetCircleX, self.topMargin + halfHeight)];
+            
+            [svgStr appendString:DrawTextR(2*self.leftMargin + mainWidth - 50,
+                                          self.topMargin + halfHeight - baseLength - lineOffset * topRightOffset - 5,17,
+                                          @"gray",
+                                          @"italic",
+                                          retV)];
+        }
+    }
+    //**********************************************************************************************************************
+    //画左下
+    float bottomLeftOffset = 0;
+    
+    for(int i = 1; i <= halfRowCount; i++){
+        
+        float offsetCircleX = self.leftMargin + i * circleMargin + (i - 0.5) * circleD;
+        float offsetCircleY = self.topMargin +halfHeight + circleD*3 - circleD/2.0;
         
         [svgStr appendString:DrawWhiteCircle(offsetCircleX,
                                              offsetCircleY,
@@ -154,15 +223,124 @@
                                           p.name)];
         }
         
+        NSString* retV = [self getConnectionDescByInfosetList:[[SGSwitchBussiness sharedSGSwitchBussiness] queryPortConnectionInfoByPort1:[a[0] port_id] port2:[a[1] port_id]] ports:a];
+        
+        if (retV) {
+            
+            bottomLeftOffset++;
+            
+            [svgStr appendString:DrawPolyline(self.leftMargin - 150, self.topMargin + halfHeight + circleD * 3 + baseLength +  lineOffset * bottomLeftOffset,
+                                              offsetCircleX, self.topMargin + halfHeight + circleD * 3 + baseLength +  lineOffset * bottomLeftOffset,
+                                              offsetCircleX, self.topMargin + halfHeight + circleD * 3)];
+            
+            [svgStr appendString:DrawText(self.leftMargin - 150,
+                                           self.topMargin + halfHeight + circleD * 3 + baseLength +  lineOffset * bottomLeftOffset - 5,17,
+                                           @"gray",
+                                           @"italic",
+                                           retV)];
+        }
+        
     }
     
+    //**********************************************************************************************************************
+    //画右下
+    float bottomRightOffset = 0;
+    
+    for(int i = rowCount; i >= halfRowCount + 1; i--){
+        float offsetCircleX = self.leftMargin + i * circleMargin + (i - 0.5) * circleD;
+        float offsetCircleY = self.topMargin +halfHeight + circleD*3 - circleD/2.0;
+        
+        [svgStr appendString:DrawWhiteCircle(offsetCircleX,
+                                             offsetCircleY,
+                                             circleD/2.0)];
+        NSArray* a = list[list.count - rowCount + i - 1];
+        for(int i = 0; i < 2; i++){
+            SGPortInfo *p = a[i];
+            [svgStr appendString:DrawText(offsetCircleX + 10 - circleD/2.0 ,
+                                          offsetCircleY + i * 20,
+                                          17,
+                                          @"white",
+                                          @"italic",
+                                          p.name)];
+        }
+        
+        NSString* retV = [self getConnectionDescByInfosetList:[[SGSwitchBussiness sharedSGSwitchBussiness] queryPortConnectionInfoByPort1:[a[0] port_id] port2:[a[1] port_id]] ports:a];
+        
+        if (retV) {
+            
+            bottomRightOffset++;
+            
+            [svgStr appendString:DrawPolyline(2*self.leftMargin + mainWidth - 50, self.topMargin + halfHeight + circleD * 3 + baseLength +  lineOffset * bottomRightOffset,
+                                              offsetCircleX, self.topMargin + halfHeight + circleD * 3 + baseLength +  lineOffset * bottomRightOffset,
+                                              offsetCircleX, self.topMargin + halfHeight + circleD * 3)];
+            
+            [svgStr appendString:DrawTextR(2*self.leftMargin + mainWidth - 50,
+                                          self.topMargin + halfHeight + circleD * 3 + baseLength +  lineOffset * bottomRightOffset - 5,17,
+                                          @"gray",
+                                          @"italic",
+                                          retV)];
+        }
+        
+    }
     
     return svgStr;
+}
+
+
+- (NSString*)getConnectionDescByInfosetList:(NSArray*)infosets ports:(NSArray*)ports{
+    
+    NSString* retV = nil;
+    NSMutableDictionary* retD = [NSMutableDictionary dictionary];
+    NSMutableArray* chain = [@[@"txiedport_id",@"switch1_rxport_id",@"switch1_txport_id",@"rxiedport_id"] mutableCopy];
+    
+    if(infosets){
+        SGInfoSetItem* infoset = infosets[0];
+        if (![infoset.switch2_id isEqualToString:@"0"]) {
+            [chain insertObject:@"switch2_rxport_id" atIndex:chain.count - 1];
+            [chain insertObject:@"switch2_txport_id" atIndex:chain.count - 1];
+        }
+        
+        if (![infoset.switch3_id isEqualToString:@"0"]) {
+            [chain insertObject:@"switch3_rxport_id" atIndex:chain.count - 1];
+            [chain insertObject:@"switch3_txport_id" atIndex:chain.count - 1];
+        }
+        
+        if (![infoset.switch4_id isEqualToString:@"0"]) {
+            [chain insertObject:@"switch4_rxport_id" atIndex:chain.count - 1];
+            [chain insertObject:@"switch4_txport_id" atIndex:chain.count - 1];
+        }
+        
+        for(SGPortInfo* port in ports){
+            for(SGInfoSetItem* infoset in infosets){
+                for(NSString* connecter in chain){
+                    if ([[infoset valueForKey:connecter] isEqualToString:port.port_id]){
+                        if ([connecter containsString:@"tx"]) {
+                            retD[@"mainTxPort"] = port.port_id;
+                            retD[@"ctedRxPort"] = [infoset valueForKey:chain[[chain indexOfObject:connecter] + 1]];
+                            retD[@"ctedDeviceId"] = infoset.rxied_id;
+                        }
+                        if ([connecter containsString:@"rx"]) {
+                            retD[@"mainRxPort"] = port.port_id;
+                            retD[@"ctedTxPort"] = [infoset valueForKey:chain[[chain indexOfObject:connecter] - 1]];
+                            retD[@"ctedDeviceId"] = infoset.txied_id;
+
+                        }
+                    }
+                }
+            }
+        }
+        
+        NSString* device = [[SGDeviceBussiness sharedSGDeviceBussiness] queryDeviceById:retD[@"ctedDeviceId"]];
+        NSString* portTx = [[SGSwitchBussiness sharedSGSwitchBussiness] queryPortById:retD[@"ctedTxPort"]];
+        NSString* portRx = [[SGSwitchBussiness sharedSGSwitchBussiness] queryPortById:retD[@"ctedRxPort"]];
+        retV = [NSString stringWithFormat:@"%@   %@/%@",device,portTx,portRx];
+    }
+
+    return  retV;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
 
 @end

@@ -40,6 +40,7 @@
 		3E7774C21B09E47300ED6FE9 /* SGPortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7774C11B09E47300ED6FE9 /* SGPortViewController.m */; };
 		3E828C6A1B8ABFA500019254 /* SGSwitchBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E828C691B8ABFA500019254 /* SGSwitchBussiness.m */; };
 		3E828C6E1B8ABFDC00019254 /* SGSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E828C6D1B8ABFDC00019254 /* SGSwitchViewController.m */; };
+		3E828D101B8DDE7D00019254 /* bg1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E828D0F1B8DDE7D00019254 /* bg1.jpg */; };
 		3EA2C13D1B0B600200A2B191 /* SGScanContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2C13C1B0B600200A2B191 /* SGScanContainerViewController.m */; };
 		3EA2C1401B0B7D7000A2B191 /* SGScanBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2C13F1B0B7D7000A2B191 /* SGScanBussiness.m */; };
 		3EB3A4D01B0A19EC002EB7FA /* SGPortPageBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A4CD1B0A19EC002EB7FA /* SGPortPageBussiness.m */; };
@@ -158,6 +159,7 @@
 		3E828C691B8ABFA500019254 /* SGSwitchBussiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSwitchBussiness.m; sourceTree = "<group>"; };
 		3E828C6C1B8ABFDC00019254 /* SGSwitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSwitchViewController.h; sourceTree = "<group>"; };
 		3E828C6D1B8ABFDC00019254 /* SGSwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSwitchViewController.m; sourceTree = "<group>"; };
+		3E828D0F1B8DDE7D00019254 /* bg1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg1.jpg; sourceTree = "<group>"; };
 		3EA2C13B1B0B600200A2B191 /* SGScanContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGScanContainerViewController.h; sourceTree = "<group>"; };
 		3EA2C13C1B0B600200A2B191 /* SGScanContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGScanContainerViewController.m; sourceTree = "<group>"; };
 		3EA2C13E1B0B7D7000A2B191 /* SGScanBussiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGScanBussiness.h; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 		3E1E452D1AFB0FCA006DB63E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				3E828D0F1B8DDE7D00019254 /* bg1.jpg */,
 				3E42C4D11B1F3FCF00B340A8 /* 郁桥变标签.sqlite */,
 				3EF914FC1AFE025C00F823E7 /* Localizable.strings */,
 				3E1E452E1AFB0FD8006DB63E /* Lantinghei_0.ttf */,
@@ -743,6 +746,7 @@
 				3E3F0A2B1B086C8700BF1EB9 /* SGRoomCell.xib in Resources */,
 				3E3F0A411B08915800BF1EB9 /* SGSectionHeaderView.xib in Resources */,
 				3EB8F01F1B2BC59E00C53AF6 /* qrcode_found.wav in Resources */,
+				3E828D101B8DDE7D00019254 /* bg1.jpg in Resources */,
 				3E42C4D21B1F3FCF00B340A8 /* 郁桥变标签.sqlite in Resources */,
 				3E1E44F01AFB0BD8006DB63E /* Main.storyboard in Resources */,
 				3E1E44F51AFB0BD8006DB63E /* LaunchScreen.xib in Resources */,
