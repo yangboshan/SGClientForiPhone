@@ -948,13 +948,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Han (7T2BFNJ439)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yang Han (7T2BFNJ439)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing Bright City Information Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nanjing Bright City Information Co., Ltd.";
 				INFOPLIST_FILE = SGClientForiPhone/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "87f92722-72f7-450b-868c-e500c4e2e7c6";
 			};
 			name = Debug;
 		};
@@ -962,14 +962,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Han (7T2BFNJ439)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yang Han (7T2BFNJ439)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing Bright City Information Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nanjing Bright City Information Co., Ltd.";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = SGClientForiPhone/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "87f92722-72f7-450b-868c-e500c4e2e7c6";
 			};
 			name = Release;
 		};

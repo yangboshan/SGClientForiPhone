@@ -13,11 +13,14 @@
 
 
 #define DrawWhiteCircle(x,y,r) [NSString stringWithFormat:@"<circle cx=\"%f\" cy=\"%f\" r=\"%f\" style=\"fill:none;stroke:white;stroke-width:1;fill-opacity:1.0\" />",x,y,r]
-#define DrawPolyline(x1,y1,x2,y2,x3,y3) [NSString stringWithFormat:@"<polyline points=\"%f,%f %f,%f %f,%f\" style=\"fill:none;stroke:gray;stroke-width:1\" />",x1,y1,x2,y2,x3,y3]
+#define DrawPolyline(x1,y1,x2,y2,x3,y3) [NSString stringWithFormat:@"<polyline points=\"%f,%f %f,%f %f,%f\" style=\"fill:none;stroke:gray;stroke-width:1\" marker-start=\"url(#triangle)\" />",x1,y1,x2,y2,x3,y3]
+
 
 @interface SGSwitchViewController ()
 
 @property(nonatomic,assign) float leftMargin;
+@property(nonatomic,assign) float marginOffset;
+
 @property(nonatomic,assign) float topMargin;
 
 
@@ -33,7 +36,8 @@
     
     if (self = [super init]) {
         
-        _leftMargin = 200;
+        _leftMargin = 300;
+        _marginOffset = 20;
         _topMargin = 50;
         _offsetY = _topMargin;
     }
@@ -58,7 +62,7 @@
     
     [svgStr appendString:@"<defs><style type=\"text/css\"><![CDATA[ rect {fill:white;stroke:black;stroke-width:2;opacity:0.1;}]]></style>"];
     
-    [svgStr appendString:@"<marker id=\"triangle\" viewBox=\"0 0 10 10\" refX=\"0\" refY=\"5\" markerUnits=\"strokeWidth\" markerWidth=\"7\" markerHeight=\"10\" orient=\"auto\"> <path d=\"M 0 0 L 10 5 L 0 10 z\" /> </marker></defs>"];
+    [svgStr appendString:@"<marker id=\"triangle\" viewBox=\"0 0 20 10\" refX=\"0\" refY=\"5\" markerUnits=\"strokeWidth\" markerWidth=\"15\" markerHeight=\"10\" orient=\"auto\"> <path d=\"M 0 5 L 20 0 L 20 10 z\" /> </marker></defs>"];
     
     [svgStr appendString:[self generateSvg]];
     [svgStr appendString:@"</svg>"];
@@ -70,7 +74,7 @@
     NSData *svgData = [result dataUsingEncoding:NSUTF8StringEncoding];
     NSString* dbPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)
                         objectAtIndex:0];
-    dbPath = [dbPath stringByAppendingPathComponent:@"device.svg"];
+    dbPath = [dbPath stringByAppendingPathComponent:@"switch.svg"];
     [svgData writeToFile:dbPath atomically:YES];
     NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
     NSURL *baseURL = [[NSURL alloc] initFileURLWithPath:resourcePath isDirectory:YES];
@@ -92,8 +96,10 @@
     int halfRowCount  = ceil(rowCount/2.0);
     
     float baseLength = 50;
-    float lineOffset = 30;
+    float lineOffset = 35;
+    float textMargin = 15;
     
+
     float halfHeight = baseLength + lineOffset * halfRowCount;
     float circleMargin = 20;
     float circleD = 60;
@@ -148,13 +154,13 @@
             
             topLeftOffset++;
             
-            [svgStr appendString:DrawPolyline(self.leftMargin - 150, self.topMargin + halfHeight - baseLength - lineOffset * topLeftOffset,
+            [svgStr appendString:DrawPolyline(self.marginOffset, self.topMargin + halfHeight - baseLength - lineOffset * topLeftOffset,
                                               offsetCircleX, self.topMargin + halfHeight - baseLength - lineOffset * topLeftOffset,
                                               offsetCircleX, self.topMargin + halfHeight)];
             
             
-            [svgStr appendString:DrawText(self.leftMargin - 150,
-                                          self.topMargin + halfHeight - baseLength - lineOffset * topLeftOffset - 5,17,
+            [svgStr appendString:DrawText(self.marginOffset + textMargin,
+                                          self.topMargin + halfHeight - baseLength - lineOffset * topLeftOffset - 5,15,
                                           @"gray",
                                           @"italic",
                                           retV)];
@@ -189,12 +195,12 @@
         if (retV) {
             topRightOffset++;
             
-            [svgStr appendString:DrawPolyline(2*self.leftMargin + mainWidth - 50, self.topMargin + halfHeight - baseLength - lineOffset * topRightOffset,
+            [svgStr appendString:DrawPolyline(2*self.leftMargin + mainWidth - self.marginOffset, self.topMargin + halfHeight - baseLength - lineOffset * topRightOffset,
                                               offsetCircleX, self.topMargin + halfHeight - baseLength - lineOffset * topRightOffset,
                                               offsetCircleX, self.topMargin + halfHeight)];
             
-            [svgStr appendString:DrawTextR(2*self.leftMargin + mainWidth - 50,
-                                          self.topMargin + halfHeight - baseLength - lineOffset * topRightOffset - 5,17,
+            [svgStr appendString:DrawTextR(2*self.leftMargin + mainWidth - self.marginOffset - textMargin,
+                                          self.topMargin + halfHeight - baseLength - lineOffset * topRightOffset - 5,15,
                                           @"gray",
                                           @"italic",
                                           retV)];
@@ -229,12 +235,12 @@
             
             bottomLeftOffset++;
             
-            [svgStr appendString:DrawPolyline(self.leftMargin - 150, self.topMargin + halfHeight + circleD * 3 + baseLength +  lineOffset * bottomLeftOffset,
+            [svgStr appendString:DrawPolyline(self.marginOffset, self.topMargin + halfHeight + circleD * 3 + baseLength +  lineOffset * bottomLeftOffset,
                                               offsetCircleX, self.topMargin + halfHeight + circleD * 3 + baseLength +  lineOffset * bottomLeftOffset,
                                               offsetCircleX, self.topMargin + halfHeight + circleD * 3)];
             
-            [svgStr appendString:DrawText(self.leftMargin - 150,
-                                           self.topMargin + halfHeight + circleD * 3 + baseLength +  lineOffset * bottomLeftOffset - 5,17,
+            [svgStr appendString:DrawText(self.marginOffset + textMargin,
+                                           self.topMargin + halfHeight + circleD * 3 + baseLength +  lineOffset * bottomLeftOffset - 5,15,
                                            @"gray",
                                            @"italic",
                                            retV)];
@@ -270,12 +276,12 @@
             
             bottomRightOffset++;
             
-            [svgStr appendString:DrawPolyline(2*self.leftMargin + mainWidth - 50, self.topMargin + halfHeight + circleD * 3 + baseLength +  lineOffset * bottomRightOffset,
+            [svgStr appendString:DrawPolyline(2*self.leftMargin + mainWidth - self.marginOffset, self.topMargin + halfHeight + circleD * 3 + baseLength +  lineOffset * bottomRightOffset,
                                               offsetCircleX, self.topMargin + halfHeight + circleD * 3 + baseLength +  lineOffset * bottomRightOffset,
                                               offsetCircleX, self.topMargin + halfHeight + circleD * 3)];
             
-            [svgStr appendString:DrawTextR(2*self.leftMargin + mainWidth - 50,
-                                          self.topMargin + halfHeight + circleD * 3 + baseLength +  lineOffset * bottomRightOffset - 5,17,
+            [svgStr appendString:DrawTextR(2*self.leftMargin + mainWidth - self.marginOffset - textMargin,
+                                          self.topMargin + halfHeight + circleD * 3 + baseLength +  lineOffset * bottomRightOffset - 5,15,
                                           @"gray",
                                           @"italic",
                                           retV)];
@@ -332,7 +338,11 @@
         }
         
         NSString* device = [[SGDeviceBussiness sharedSGDeviceBussiness] queryDeviceById:retD[@"ctedDeviceId"]];
-        NSString* portTx = [[SGSwitchBussiness sharedSGSwitchBussiness] queryPortById:retD[@"ctedTxPort"]];
+        NSString* portTx = [[SGDeviceBussiness sharedSGDeviceBussiness] queryPortById:retD[@"ctedTxPort"]];
+        portTx = [portTx stringByReplacingOccurrencesOfString:@"/" withString:@"-"];
+        if ([[portTx substringToIndex:1] isEqualToString:@"-"]) {
+            portTx = [portTx substringFromIndex:1];
+        }
         NSString* portRx = [[SGSwitchBussiness sharedSGSwitchBussiness] queryPortById:retD[@"ctedRxPort"]];
         retV = [NSString stringWithFormat:@"%@   %@/%@",device,portTx,portRx];
     }
