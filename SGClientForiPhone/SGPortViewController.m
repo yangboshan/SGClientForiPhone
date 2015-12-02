@@ -40,20 +40,29 @@
     NSString* n = [self.deviceName isEqual:[NSNull null]] ? @"" : self.deviceName;
     self.title = [NSString stringWithFormat:@"%@虚端子图",n];
     
-    self.showAll = NO;
-    
     __weak typeof(self) weakSelf = self;
-    
-    [[SGPortPageBussiness sharedSGPortPageBussiness] setController:self];
-    [[SGPortPageBussiness sharedSGPortPageBussiness] setMultiFlag:NO];
-    [[SGPortPageBussiness sharedSGPortPageBussiness] setCableType:self.cableType];
-    [[SGPortPageBussiness sharedSGPortPageBussiness] queryResultWithType:0 portId:self.portId complete:^(NSArray *result) {
-        SGPortPageDataModel*model = result[0];
-        NSString* n = model ? model.mainDeviceName : @"";
-        weakSelf.title = [NSString stringWithFormat:@"%@虚端子图",n];
-        weakSelf.result = result;
-        [weakSelf loadSVG];
-    }];
+    if (self.isForDevice) {
+        [[SGPortPageBussiness sharedSGPortPageBussiness] queryResultWithDeviceId:self.deviceId complete:^(NSArray *result) {
+            SGPortPageDataModel*model = result[0];
+            NSString* n = model ? model.mainDeviceName : @"";
+            weakSelf.title = [NSString stringWithFormat:@"%@虚端子图",n];
+            weakSelf.result = result;
+            [weakSelf loadSVG];
+        }];
+    }else{
+        self.showAll = NO;
+        [[SGPortPageBussiness sharedSGPortPageBussiness] setController:self];
+        [[SGPortPageBussiness sharedSGPortPageBussiness] setMultiFlag:NO];
+        [[SGPortPageBussiness sharedSGPortPageBussiness] setCableType:self.cableType];
+        [[SGPortPageBussiness sharedSGPortPageBussiness] queryResultWithType:0 portId:self.portId complete:^(NSArray *result) {
+            SGPortPageDataModel*model = result[0];
+            NSString* n = model ? model.mainDeviceName : @"";
+            weakSelf.title = [NSString stringWithFormat:@"%@虚端子图",n];
+            weakSelf.result = result;
+            [weakSelf loadSVG];
+        }];
+    }
+
 }
 
 -(void)loadSVG{

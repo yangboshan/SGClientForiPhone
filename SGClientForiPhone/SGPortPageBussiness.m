@@ -116,6 +116,22 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
     return portInfo.description;
 }
 
+-(void)queryResultWithDeviceId:(NSString *)deviceId complete:(finishBlock)finish{
+    
+    self.dataModel0 = [SGPortPageDataModel new];
+    self.dataModel0.type = @"0";
+    self.dataModel0.mainDeviceId = deviceId;
+    self.dataModel0.mainDeviceName = [self getDeviceInfoById:deviceId];
+
+    self.dataModel1 = [SGPortPageDataModel new];
+    self.dataModel1.type = @"1";
+    self.dataModel1.mainDeviceId = deviceId;
+    self.dataModel1.mainDeviceName = [self getDeviceInfoById:deviceId];
+    self.completeBlock = finish;
+    NSArray* ret = [self queryAllSub];
+    finish(ret);
+}
+
 //入口
 -(void)queryResultWithType:(NSInteger)type portId:(NSString*)portId complete:(finishBlock)finish{
     
@@ -373,111 +389,6 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
     return YES;
 }
 
-
-
-
-//设定主设备ID NAME等
-//-(BOOL)getCenterDeviceIdT{
-//
-//    SGPortInfo* portInfo = [[SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetPortInfo(self.mainPortId)] withEntity:@"SGPortInfo"] objectAtIndex:0];
-//    
-//    self.direction = portInfo.direction;
-//    
-//    if ([portInfo.direction isEqualToString:@"0"]) {
-//        
-//        self.tmpInfoSetLists = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetInfoSetList0(self.mainPortId)] withEntity:@"SGInfoSetItem"];
-//        
-//        if (self.tmpInfoSetLists.count == 1||self.multiFlag) {
-//            
-//            self.selectedInfoset = self.tmpInfoSetLists[0];
-//            if (self.multiFlag) {
-//                self.selectedInfoset = self.tmpInfoSetLists[self.multiIndex];
-//            }
-//            
-//            NSArray* glist = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetGroupInfo(self.selectedInfoset.group,self.selectedInfoset.infoset_id)] withEntity:@"SGInfoSetItem"];
-//            if (glist.count>0) {
-//                self.groupInfoset = glist[0];
-//            }else{
-//                self.groupInfoset = nil;
-//            }
-//            
-//            
-//            self.dataModel0.mainDeviceId = self.selectedInfoset.rxied_id;
-//            self.dataModel0.mainDeviceName = [self getDeviceInfoById:self.dataModel0.mainDeviceId];
-//            self.dataModel0.mainPortId = self.mainPortId;
-// 
-//
-//            self.dataModel1.mainDeviceId = self.selectedInfoset.rxied_id;
-//            self.dataModel1.mainDeviceName = [self getDeviceInfoById:self.dataModel1.mainDeviceId];
-//            self.dataModel1.mainPortId = self.mainPortId;
-// 
-//            
-//            
-//            self.cntedDeviceId = self.selectedInfoset.txied_id;
-//        }else{
-//            NSMutableArray* ls = [NSMutableArray array];
-//            for(SGInfoSetItem* item in self.tmpInfoSetLists){
-//                NSString* deviceName = [self getDeviceInfoById:item.rxied_id];
-//                [ls addObject:[NSString stringWithFormat:@"%@****%@",item.rxied_id,deviceName]];
-//            }
-//            
-//            SGSelectViewController* select = [SGSelectViewController new];
-//            [select setDelegate:self];
-//            select.dataSource = ls;
-//            [self.controller presentViewController:select animated:YES completion:nil];
-//            return NO;
-//
-//        }
-//    }
-//    if ([portInfo.direction isEqualToString:@"1"]) {
-//        self.tmpInfoSetLists = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetInfoSetList1(self.mainPortId)] withEntity:@"SGInfoSetItem"];
-//        
-//        if (self.tmpInfoSetLists.count == 1||self.multiFlag) {
-//            
-//            self.selectedInfoset = self.tmpInfoSetLists[0];
-//            
-//            if (self.multiFlag) {
-//                self.selectedInfoset = self.tmpInfoSetLists[self.multiIndex];
-//            }
-//            
-//            NSArray* glist = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetGroupInfo(self.selectedInfoset.group,self.selectedInfoset.infoset_id)] withEntity:@"SGInfoSetItem"];
-//            if (glist.count>0) {
-//                self.groupInfoset = glist[0];
-//            }else{
-//                self.groupInfoset = nil;
-//            }
-//            
-//            
-//            self.dataModel0.mainDeviceId = self.selectedInfoset.txied_id;
-//            self.dataModel0.mainDeviceName = [self getDeviceInfoById:self.dataModel0.mainDeviceId];
-//            self.dataModel0.mainPortId = self.mainPortId;
-// 
-//            
-//            
-//            
-//            self.dataModel1.mainDeviceId = self.selectedInfoset.txied_id;
-//            self.dataModel1.mainDeviceName = [self getDeviceInfoById:self.dataModel1.mainDeviceId];
-//            self.dataModel1.mainPortId = self.mainPortId;
-// 
-//
-//            self.cntedDeviceId = self.selectedInfoset.rxied_id;
-//        }else{
-//            NSMutableArray* ls = [NSMutableArray array];
-//            for(SGInfoSetItem* item in self.tmpInfoSetLists){
-//                NSString* deviceName = [self getDeviceInfoById:item.txied_id];
-//                [ls addObject:[NSString stringWithFormat:@"%@****%@",item.txied_id,deviceName]];
-//            }
-//            
-//            SGSelectViewController* select = [SGSelectViewController new];
-//            [select setDelegate:self];
-//            select.dataSource = ls;
-//            [self.controller presentViewController:select animated:YES completion:nil];
-//            return NO;
-//            
-//        }
-//    }
-//    return YES;
-//}
 
 -(void)userDidSelectItem:(NSInteger)index{
 

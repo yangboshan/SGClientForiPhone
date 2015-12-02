@@ -19,6 +19,8 @@ typedef void(^finishBlock)(NSArray* result);
 
 
 -(void)queryResultWithType:(NSInteger)type portId:(NSString*)portId complete:(finishBlock)finish;
+-(void)queryResultWithDeviceId:(NSString *)deviceId complete:(finishBlock)finish;
+
 -(NSString*)queryPortIdByDeviceName:(NSString*)deviceName boardPostion:(NSString*)boardPostion portName:(NSString*)portName;
 
 @property (nonatomic,weak) UIViewController* controller;

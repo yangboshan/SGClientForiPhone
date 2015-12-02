@@ -8,6 +8,7 @@
 
 #import "SGDeviceViewController.h"
 #import "SGDeviceBussiness.h"
+#import "SGPortViewController.h"
 #import "SGEntity.h"
 
 @implementation SGDeviceEntity
@@ -819,9 +820,30 @@
     
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    
+    NSString* _url = [request URL].description;
+    
+    NSLog(@"%@",_url);
+    if ([_url rangeOfString:@"@@@@"].location != NSNotFound) {
+        
+        if ([_url rangeOfString:@"*"].location==NSNotFound) {
+            _url = [_url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            
+            NSString *retValue = [[_url componentsSeparatedByString:@"@@@@"] objectAtIndex:1];
+            
+            if (retValue) {
+                if (![retValue isEqualToString:@""]) {
+                    SGPortViewController* controller = [SGPortViewController new];
+                    [controller setDeviceName:[[SGDeviceBussiness sharedSGDeviceBussiness] queryDeviceById:retValue]];
+                    [controller setDeviceId:retValue];
+                    [controller setIsForDevice:YES];
+                    [self.navigationController pushViewController:controller animated:YES];
+                }
+            }
+        }
+    }
+    return YES;
 }
 
 @end
