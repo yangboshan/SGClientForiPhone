@@ -203,10 +203,16 @@
                 NSInteger cubicileId = [[SGCablePageBussiness sharedSGCablePageBussiness] queryCubicleIdByInfo:a[0]];
                 NSInteger cableId = [[SGCablePageBussiness sharedSGCablePageBussiness] queryCableIdByInfo:a[1]];
                 
-                SGCubicleViewController* cubicleController = (SGCubicleViewController*)[self.tabBarController.viewControllers[0] viewControllers][0];
-                [cubicleController.navigationController popToRootViewControllerAnimated:NO];
-                [cubicleController scanModeWithCubicleId:cubicileId withCableId:cableId];
-                self.tabBarController.selectedIndex = 0;
+                if (cableId) {
+                    SGCubicleViewController* cubicleController = (SGCubicleViewController*)[self.tabBarController.viewControllers[0] viewControllers][0];
+                    [cubicleController.navigationController popToRootViewControllerAnimated:NO];
+                    [cubicleController scanModeWithCubicleId:cubicileId withCableId:cableId];
+                    self.tabBarController.selectedIndex = 0;
+                }else{
+                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:stringValue delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [alert show];
+                }
+
                 
             }else if ([[stringValue substringToIndex:2] isEqualToString:@"F:"]){
                 

@@ -151,12 +151,14 @@
             [[SGDeviceBussiness sharedSGDeviceBussiness] queryDeviceById:infoset.rxied_id] :
             [[SGDeviceBussiness sharedSGDeviceBussiness] queryDeviceById:infoset.txied_id];
             
+            NSString* deId = [infoset.txied_id isEqualToString:self.deviceId] ?infoset.rxied_id : infoset.txied_id;
+            
             float offsetY = self.topMargin + (self.cubicleHeight + self.cubicleMargin) * leftOffset + self.cubicleHeight/2.0;
 
-            [svgStr appendString:DrawRect(self.leftMargin,
+            [svgStr appendString:DrawRectW(self.leftMargin,
                                           self.topMargin + (self.cubicleHeight + self.cubicleMargin) * leftOffset,
                                           self.cubicleWidth,
-                                          self.cubicleHeight)];
+                                          self.cubicleHeight,deId)];
             
             [svgStr appendString:DrawText(self.leftMargin + 100,
                                           offsetY ,17,

@@ -70,7 +70,9 @@
  
  获取该Id相关的Cable信息
  －－－－－－－－－－－－－－－－－*/
-#define CP_GetCablelist(v,t) [NSString stringWithFormat:@"select cable_id,cubicle1_id,cubicle2_id,(case cable_type when '0' then name_bay||'-'||name_prefix||(case length(name_number) when 3 then name_number when 2 then '0' ||name_number when 1 then '00' || name_number end) ||name_set when '1' then name_bay||'-'||name_prefix||(case length(name_number) when 3 then name_number when 2 then '0' || name_number when 1 then '00' || name_number end) ||name_set when '2' then name_prefix||(case length(name_number) when 3 then name_number when 2 then '0' || name_number when 1 then '00' || name_number end ) end) as cable_name,cable_type,\
+
+
+#define CP_GetCablelist(v,t) [NSString stringWithFormat:@"select cable_id,cubicle1_id,cubicle2_id,name as cable_name,cable_type,\
                            (select name from cubicle where cable.cubicle1_id =cubicle.cubicle_id) as cubicle1_name, \
                            (select name from cubicle where cable.cubicle2_id =cubicle.cubicle_id) as cubicle2_name \
                             from cable where (cubicle1_id in ( \
@@ -106,20 +108,24 @@
  
  获取Cable信息  type = 2
  －－－－－－－－－－－－－－－－－*/
-#define CP_GetCubicleItem(v,t) [NSString stringWithFormat:@"select cable.cable_id,cable.cable_type,(case cable_type when '0' then name_bay||'-'||name_prefix||(case length(name_number) when 3 then name_number when 2 then '0' ||name_number when 1 then '00' || name_number end) ||name_set when '1' then name_bay||'-'||name_prefix||(case length(name_number) when 3 then name_number when 2 then '0' || name_number when 1 then '00' || name_number end) ||name_set when '2' then name_prefix||(case length(name_number) when 3 then name_number when 2 then '0' || name_number when 1 then '00' || name_number end ) end) as cable_name,%d as cubicle_id,\
+#define CP_GetCubicleItem(v,t) [NSString stringWithFormat:@"select cable.cable_id,cable.cable_type,name as cable_name,%d as cubicle_id,\
                                           (select name from cubicle where cubicle_id = %d) as cubicle_name from cable where \
                                           (cable.cubicle1_id = %d  and cable.cubicle2_id = %d)   \
                                             and cable_type = %d",v,v,v,v,t]
 
-
+//#define CP_GetCubicleItem(v,t) [NSString stringWithFormat:@"select cable.cable_id,cable.cable_type,(case cable_type when '0' then name_bay||'-'||name_prefix||(case length(name_number) when 3 then name_number when 2 then '0' ||name_number when 1 then '00' || name_number end) ||name_set when '1' then name_bay||'-'||name_prefix||(case length(name_number) when 3 then name_number when 2 then '0' || name_number when 1 then '00' || name_number end) ||name_set when '2' then name_prefix||(case length(name_number) when 3 then name_number when 2 then '0' || name_number when 1 then '00' || name_number end ) end) as cable_name,%d as cubicle_id,\
+//(select name from cubicle where cubicle_id = %d) as cubicle_name from cable where \
+//(cable.cubicle1_id = %d  and cable.cubicle2_id = %d)   \
+//and cable_type = %d",v,v,v,v,t]
 
 /*－－－－－－－－－－－－－－－－－
  SQL 根据cableId
  
  获取Cable信息
  －－－－－－－－－－－－－－－－－*/
-#define CP_GetCableInfo(c) [NSString stringWithFormat:@"select cable_id,cable_type,(case cable_type when '0' then name_bay||'-'||name_prefix||(case length(name_number) when 3 then name_number when 2 then '0' ||name_number when 1 then '00' || name_number end) ||name_set when '1' then name_bay||'-'||name_prefix||(case length(name_number) when 3 then name_number when 2 then '0' || name_number when 1 then '00' || name_number end) ||name_set when '2' then name_prefix||(case length(name_number) when 3 then name_number when 2 then '0' || name_number when 1 then '00' || name_number end ) end ) as cable_name from cable where cable_id = %d",c]
+#define CP_GetCableInfo(c) [NSString stringWithFormat:@"select cable_id,cable_type,name as cable_name from cable where cable_id = %d",c]
 
+//#define CP_GetCableInfo(c) [NSString stringWithFormat:@"select cable_id,cable_type,(case cable_type when '0' then name_bay||'-'||name_prefix||(case length(name_number) when 3 then name_number when 2 then '0' ||name_number when 1 then '00' || name_number end) ||name_set when '1' then name_bay||'-'||name_prefix||(case length(name_number) when 3 then name_number when 2 then '0' || name_number when 1 then '00' || name_number end) ||name_set when '2' then name_prefix||(case length(name_number) when 3 then name_number when 2 then '0' || name_number when 1 then '00' || name_number end ) end ) as cable_name from cable where cable_id = %d",c]
 
 /*－－－－－－－－－－－－－－－－－
  SQL 根据info
@@ -134,7 +140,9 @@
  
  获取Cable信息
  －－－－－－－－－－－－－－－－－*/
-#define CP_GetCableId(i) [NSString stringWithFormat:@"select cable_id  from cable where   name_bay || '-' ||  name_prefix   || name_number || name_set ='%@'",i]
+#define CP_GetCableId(i) [NSString stringWithFormat:@"select cable_id  from cable where  name  ='%@'",i]
+
+//#define CP_GetCableId(i) [NSString stringWithFormat:@"select cable_id  from cable where   name_bay || '-' ||  name_prefix   || name_number || name_set ='%@'",i]
 
 @implementation SGCablePageBussiness
 
@@ -730,9 +738,13 @@ where a.port1_id not in (%@,%@)",p1,p1,p1,p1,p2,p2,p2,p2,p1,p2]
 inner join board on device.device_id=board.device_id inner join port on board.board_id=port.board_id \
 where port.port_id = %@",p]
 
-#define FP_GetTXInfo(p1,p2) [NSString stringWithFormat:@"select cable.cable_id,(case cable.cable_type when '0' then cable.name_bay||'-'||name_prefix||(case length(cable.name_number) when 3 then cable.name_number when 2 then '0' ||cable.name_number when 1 then '00' || cable.name_number end) ||cable.name_set when '1' then cable.name_bay||'-'||name_prefix||(case length(cable.name_number) when 3 then cable.name_number when 2 then '0' || cable.name_number when 1 then '00' || cable.name_number end) ||cable.name_set when '2' then name_prefix||(case length(cable.name_number) when 3 then cable.name_number when 2 then '0' || cable.name_number when 1 then '00' || cable.name_number end ) end) as cable_name,cable.cable_type from cable \
+#define FP_GetTXInfo(p1,p2) [NSString stringWithFormat:@"select cable.cable_id,name as cable_name,cable.cable_type from cable \
 inner join fiber on cable.cable_id = fiber.cable_id \
 where (fiber.port1_id = %@ and fiber.port2_id = %@) or (fiber.port2_id = %@ and fiber.port1_id = %@)",p1,p2,p1,p2]
+
+//#define FP_GetTXInfo(p1,p2) [NSString stringWithFormat:@"select cable.cable_id,(case cable.cable_type when '0' then cable.name_bay||'-'||name_prefix||(case length(cable.name_number) when 3 then cable.name_number when 2 then '0' ||cable.name_number when 1 then '00' || cable.name_number end) ||cable.name_set when '1' then cable.name_bay||'-'||name_prefix||(case length(cable.name_number) when 3 then cable.name_number when 2 then '0' || cable.name_number when 1 then '00' || cable.name_number end) ||cable.name_set when '2' then name_prefix||(case length(cable.name_number) when 3 then cable.name_number when 2 then '0' || cable.name_number when 1 then '00' || cable.name_number end ) end) as cable_name,cable.cable_type from cable \
+//inner join fiber on cable.cable_id = fiber.cable_id \
+//where (fiber.port1_id = %@ and fiber.port2_id = %@) or (fiber.port2_id = %@ and fiber.port1_id = %@)",p1,p2,p1,p2]
 
 #define FP_GetCubicleId(p) [NSString stringWithFormat:@"select cubicle.cubicle_id,cubicle.name as cubicle_name from device \
 inner join board on device.device_id=board.device_id inner join port on board.board_id=port.board_id inner join cubicle on cubicle.cubicle_id = device.cubicle_id  \

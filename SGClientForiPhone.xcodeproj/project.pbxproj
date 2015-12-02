@@ -36,11 +36,11 @@
 		3E3F0A511B08BA8200BF1EB9 /* SGCablePageBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A501B08BA8200BF1EB9 /* SGCablePageBussiness.m */; };
 		3E3F0A541B08BA9C00BF1EB9 /* SGFiberPageBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A531B08BA9C00BF1EB9 /* SGFiberPageBussiness.m */; };
 		3E3F0A571B08C3AA00BF1EB9 /* SGFiberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F0A561B08C3AA00BF1EB9 /* SGFiberViewController.m */; };
-		3E42C4D21B1F3FCF00B340A8 /* 郁桥变标签.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3E42C4D11B1F3FCF00B340A8 /* 郁桥变标签.sqlite */; };
 		3E7774C21B09E47300ED6FE9 /* SGPortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7774C11B09E47300ED6FE9 /* SGPortViewController.m */; };
 		3E828C6A1B8ABFA500019254 /* SGSwitchBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E828C691B8ABFA500019254 /* SGSwitchBussiness.m */; };
 		3E828C6E1B8ABFDC00019254 /* SGSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E828C6D1B8ABFDC00019254 /* SGSwitchViewController.m */; };
 		3E828D101B8DDE7D00019254 /* bg1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E828D0F1B8DDE7D00019254 /* bg1.jpg */; };
+		3E96324E1BE0B82A001F4748 /* 观鹤变.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3E96324D1BE0B82A001F4748 /* 观鹤变.sqlite */; };
 		3EA2C13D1B0B600200A2B191 /* SGScanContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2C13C1B0B600200A2B191 /* SGScanContainerViewController.m */; };
 		3EA2C1401B0B7D7000A2B191 /* SGScanBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2C13F1B0B7D7000A2B191 /* SGScanBussiness.m */; };
 		3EB3A4D01B0A19EC002EB7FA /* SGPortPageBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A4CD1B0A19EC002EB7FA /* SGPortPageBussiness.m */; };
@@ -152,7 +152,6 @@
 		3E3F0A531B08BA9C00BF1EB9 /* SGFiberPageBussiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFiberPageBussiness.m; sourceTree = "<group>"; };
 		3E3F0A551B08C3AA00BF1EB9 /* SGFiberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFiberViewController.h; sourceTree = "<group>"; };
 		3E3F0A561B08C3AA00BF1EB9 /* SGFiberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFiberViewController.m; sourceTree = "<group>"; };
-		3E42C4D11B1F3FCF00B340A8 /* 郁桥变标签.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "郁桥变标签.sqlite"; sourceTree = "<group>"; };
 		3E7774C01B09E47300ED6FE9 /* SGPortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPortViewController.h; sourceTree = "<group>"; };
 		3E7774C11B09E47300ED6FE9 /* SGPortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGPortViewController.m; sourceTree = "<group>"; };
 		3E828C681B8ABFA500019254 /* SGSwitchBussiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSwitchBussiness.h; sourceTree = "<group>"; };
@@ -160,6 +159,7 @@
 		3E828C6C1B8ABFDC00019254 /* SGSwitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSwitchViewController.h; sourceTree = "<group>"; };
 		3E828C6D1B8ABFDC00019254 /* SGSwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSwitchViewController.m; sourceTree = "<group>"; };
 		3E828D0F1B8DDE7D00019254 /* bg1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg1.jpg; sourceTree = "<group>"; };
+		3E96324D1BE0B82A001F4748 /* 观鹤变.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "观鹤变.sqlite"; sourceTree = "<group>"; };
 		3EA2C13B1B0B600200A2B191 /* SGScanContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGScanContainerViewController.h; sourceTree = "<group>"; };
 		3EA2C13C1B0B600200A2B191 /* SGScanContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGScanContainerViewController.m; sourceTree = "<group>"; };
 		3EA2C13E1B0B7D7000A2B191 /* SGScanBussiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGScanBussiness.h; sourceTree = "<group>"; };
@@ -352,8 +352,8 @@
 		3E1E450C1AFB0BEE006DB63E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				3EB8F00A1B2A67AB00C53AF6 /* FilerReader */,
 				3E1E450D1AFB0C3D006DB63E /* Base */,
+				3EB8F00A1B2A67AB00C53AF6 /* FilerReader */,
 				3E828C6B1B8ABFBA00019254 /* Class_Switch */,
 				3EC2488B1B39015900E7CFF6 /* Class_Device */,
 				3E1E45111AFB0C7D006DB63E /* Class_Cubicle */,
@@ -468,8 +468,8 @@
 		3E1E452D1AFB0FCA006DB63E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				3E96324D1BE0B82A001F4748 /* 观鹤变.sqlite */,
 				3E828D0F1B8DDE7D00019254 /* bg1.jpg */,
-				3E42C4D11B1F3FCF00B340A8 /* 郁桥变标签.sqlite */,
 				3EF914FC1AFE025C00F823E7 /* Localizable.strings */,
 				3E1E452E1AFB0FD8006DB63E /* Lantinghei_0.ttf */,
 			);
@@ -710,7 +710,7 @@
 				TargetAttributes = {
 					3E1E44E01AFB0BD8006DB63E = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = W2S49VS6FE;
+						DevelopmentTeam = 4M8GQR5QN8;
 					};
 					3E1E44F91AFB0BD8006DB63E = {
 						CreatedOnToolsVersion = 6.2;
@@ -747,8 +747,8 @@
 				3E3F0A411B08915800BF1EB9 /* SGSectionHeaderView.xib in Resources */,
 				3EB8F01F1B2BC59E00C53AF6 /* qrcode_found.wav in Resources */,
 				3E828D101B8DDE7D00019254 /* bg1.jpg in Resources */,
-				3E42C4D21B1F3FCF00B340A8 /* 郁桥变标签.sqlite in Resources */,
 				3E1E44F01AFB0BD8006DB63E /* Main.storyboard in Resources */,
+				3E96324E1BE0B82A001F4748 /* 观鹤变.sqlite in Resources */,
 				3E1E44F51AFB0BD8006DB63E /* LaunchScreen.xib in Resources */,
 				3E1E452F1AFB0FD8006DB63E /* Lantinghei_0.ttf in Resources */,
 				3E1E44F21AFB0BD8006DB63E /* Images.xcassets in Resources */,
@@ -954,7 +954,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "87f92722-72f7-450b-868c-e500c4e2e7c6";
+				PROVISIONING_PROFILE = "0f869ee3-3319-4042-a267-09d5b1aee650";
 			};
 			name = Debug;
 		};
@@ -969,7 +969,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "87f92722-72f7-450b-868c-e500c4e2e7c6";
+				PROVISIONING_PROFILE = "0f869ee3-3319-4042-a267-09d5b1aee650";
 			};
 			name = Release;
 		};
