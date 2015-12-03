@@ -454,50 +454,58 @@ float offsetY_ = 0;
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
+    
     NSString* _url = [request URL].description;
     NSLog(@"%@",_url);
     
-    if ([_url rangeOfString:@"@@@@"].location != NSNotFound) {
+    if (!self.isForDevice) {
         
-        CATransition *animation = [CATransition animation];
-        animation.delegate = self;
-        animation.duration = 0.5;
-        animation.timingFunction = UIViewAnimationCurveEaseInOut;
-        animation.type = @"cube";
         
-        NSString *portId = [[_url componentsSeparatedByString:@"@@@@"] objectAtIndex:1];
-        
-        __weak typeof(self) weakSelf = self;
-        [[SGPortPageBussiness sharedSGPortPageBussiness] setController:self];
-        
-        if (!self.showAll) {
+        if ([_url rangeOfString:@"@@@@"].location != NSNotFound) {
             
-            [[SGPortPageBussiness sharedSGPortPageBussiness] queryResultWithType:1 portId:portId complete:^(NSArray *result) {
-                weakSelf.result = result;
-                [weakSelf loadSVG];
-            }];
+            CATransition *animation = [CATransition animation];
+            animation.delegate = self;
+            animation.duration = 0.5;
+            animation.timingFunction = UIViewAnimationCurveEaseInOut;
+            animation.type = @"cube";
             
-            self.showAll = YES;
-            animation.subtype = kCATransitionFromLeft;
+            NSString *portId = [[_url componentsSeparatedByString:@"@@@@"] objectAtIndex:1];
             
-        }else{
-            [[SGPortPageBussiness sharedSGPortPageBussiness] queryResultWithType:0 portId:portId complete:^(NSArray *result) {
-                weakSelf.result = result;
-                [weakSelf loadSVG];
-            }];
+            __weak typeof(self) weakSelf = self;
+            [[SGPortPageBussiness sharedSGPortPageBussiness] setController:self];
             
-            self.showAll = NO;
-            animation.subtype = kCATransitionFromRight;
+            if (!self.showAll) {
+                
+                [[SGPortPageBussiness sharedSGPortPageBussiness] queryResultWithType:1 portId:portId complete:^(NSArray *result) {
+                    weakSelf.result = result;
+                    [weakSelf loadSVG];
+                }];
+                
+                self.showAll = YES;
+                animation.subtype = kCATransitionFromLeft;
+                
+            }else{
+                [[SGPortPageBussiness sharedSGPortPageBussiness] queryResultWithType:0 portId:portId complete:^(NSArray *result) {
+                    weakSelf.result = result;
+                    [weakSelf loadSVG];
+                }];
+                
+                self.showAll = NO;
+                animation.subtype = kCATransitionFromRight;
+            }
+            
+            
+            [[self.view layer] addAnimation:animation forKey:@"animation"];
         }
-        
-        
-        [[self.view layer] addAnimation:animation forKey:@"animation"];
     }
     return YES;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
+    if (self.isForDevice) {
+        return;
+    }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 

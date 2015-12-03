@@ -461,11 +461,12 @@
             float offsetY = self.topMargin + (self.cubicleHeight + self.cubicleMargin) * rightOffset + self.cubicleHeight/2.0;
             NSUInteger currentLevel = [self getItemLevel:infoset];
             
+            NSString* deId = ([infoset.txied_id isEqualToString:self.deviceId]) ? infoset.rxied_id : infoset.txied_id;
             
-            [svgStr appendString:DrawRect(offsetRight + (self.cubicleWidth + self.lineLength)*currentLevel  + self.lineLength,
+            [svgStr appendString:DrawRectW(offsetRight + (self.cubicleWidth + self.lineLength)*currentLevel  + self.lineLength,
                                           self.topMargin + (self.cubicleHeight + self.cubicleMargin) * rightOffset,
                                           self.cubicleWidth,
-                                          self.cubicleHeight)];
+                                          self.cubicleHeight,deId)];
             
             [svgStr appendString:DrawText(offsetRight + (self.cubicleWidth + self.lineLength)*currentLevel + self.lineLength + 100,
                                           offsetY ,17,
