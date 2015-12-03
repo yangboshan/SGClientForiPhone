@@ -124,11 +124,13 @@
     self.offsetY = height;
     
     float margin = (leftList.count) ? self.leftMargin + self.lineLength + self.cubicleWidth : self.leftMargin;
+    
+    
     //画主设
-    [svgStr appendString:DrawRect(margin,
+    [svgStr appendString:DrawRectW(margin,
                                     self.topMargin,
                                     self.cubicleWidth,
-                                    height)];
+                                    height,self.deviceId)];
     //主设名称
     [svgStr appendString:DrawText(margin + 100,
                                   self.topMargin + height/2.0 ,17,

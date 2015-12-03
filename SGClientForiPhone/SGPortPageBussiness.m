@@ -633,6 +633,11 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
     NSMutableDictionary* type1LeftCache = [NSMutableDictionary dictionary];
     NSMutableDictionary* type1RightCache = [NSMutableDictionary dictionary];
     
+    self.dataModel0.leftChilds = [NSMutableArray array];
+    self.dataModel0.rightChilds = [NSMutableArray array];
+    self.dataModel1.leftChilds = [NSMutableArray array];
+    self.dataModel1.rightChilds = [NSMutableArray array];
+    
     NSArray* vterminalList = [SGUtility getResultlistForFMSet:[self.dataBase executeQuery:FP_GetVterminalList(self.dataModel0.mainDeviceId)] withEntity:@"SGVterminal"];
     
     if (YES) {
@@ -655,6 +660,7 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
             [@[d0list,d1list] enumerateObjectsUsingBlock:^(id obj2, NSUInteger idx2, BOOL *stop2) {
 
                 for(SGVterminal* vterminalItem in obj2){
+                    
                     
                     NSString* conditions;
                     if (idx2 == 0) {
@@ -684,6 +690,10 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
                         if ([tmpVterminal count]) {
                             
                             SGVterminal* item = tmpVterminal[0];
+                            
+                            if ([item.device_id isEqualToString:@"56"]) {
+                                NSLog(@"AAA");
+                            }
                             
                             NSArray* list = [self queryInfosetForAllWithDeviceId1:item.device_id deviceId2:vterminalItem.device_id type:vterminalItem.type straight:connection.straight];
                             NSMutableArray* tmpList = [NSMutableArray array];
