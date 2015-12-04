@@ -711,6 +711,62 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
                                 }
                             }
                             
+                            //infoset表没有对应关系 只画出设备
+                            if (!list.count) {
+                                if (idx1 == 0) {
+                                    if ([vterminalItem.direction isEqualToString:@"1"]) {
+                                        if (![type0RightCache valueForKey:item.device_id]){
+                                            
+                                            SGPortPageChildData* child = [SGPortPageChildData new];
+                                            child.cntedDeviceId = item.device_id;
+                                            child.cntedDeviceName = [self getDeviceInfoById:child.cntedDeviceId];
+                                            [child.cntedProDes addObject:item.pro_desc];
+                                            [child.mainProDes addObject:vterminalItem.pro_desc];
+                                            [self.dataModel0.rightChilds addObject:child];
+                                            [type0RightCache setValue:child forKey:item.device_id];
+                                        }
+                                    }
+                                    if ([vterminalItem.direction isEqualToString:@"0"]) {
+                                        if (![type0LeftCache valueForKey:item.device_id]){
+                                            
+                                            SGPortPageChildData* child = [SGPortPageChildData new];
+                                            child.cntedDeviceId = item.device_id;
+                                            child.cntedDeviceName = [self getDeviceInfoById:child.cntedDeviceId];
+                                            [child.cntedProDes addObject:item.pro_desc];
+                                            [child.mainProDes addObject:vterminalItem.pro_desc];
+                                            [self.dataModel0.leftChilds addObject:child];
+                                            [type0LeftCache setValue:child forKey:item.device_id];
+                                        }
+                                    }
+                                }
+                                if (idx1 == 1) {
+                                    if ([vterminalItem.direction isEqualToString:@"1"]) {
+                                        if (![type1RightCache valueForKey:item.device_id]){
+                                            
+                                            SGPortPageChildData* child = [SGPortPageChildData new];
+                                            child.cntedDeviceId = item.device_id;
+                                            child.cntedDeviceName = [self getDeviceInfoById:child.cntedDeviceId];
+                                            [child.cntedProDes addObject:item.pro_desc];
+                                            [child.mainProDes addObject:vterminalItem.pro_desc];
+                                            [self.dataModel1.rightChilds addObject:child];
+                                            [type1RightCache setValue:child forKey:item.device_id];
+                                        }
+                                    }
+                                    if ([vterminalItem.direction isEqualToString:@"0"]) {
+                                        if (![type1LeftCache valueForKey:item.device_id]){
+                                            
+                                            SGPortPageChildData* child = [SGPortPageChildData new];
+                                            child.cntedDeviceId = item.device_id;
+                                            child.cntedDeviceName = [self getDeviceInfoById:child.cntedDeviceId];
+                                            [child.cntedProDes addObject:item.pro_desc];
+                                            [child.mainProDes addObject:vterminalItem.pro_desc];
+                                            [self.dataModel1.leftChilds addObject:child];
+                                            [type1LeftCache setValue:child forKey:item.device_id];
+                                        }
+                                    }
+                                }
+                            }
+                            
                             for(SGInfoSetItem* infoset in tmpList){
                                 
                                 if (idx1 == 0) {
