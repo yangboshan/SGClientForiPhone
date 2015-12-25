@@ -38,8 +38,12 @@
 
 @property(nonatomic,strong) NSString *roomid;
 @property(nonatomic,strong) NSString *roomname;
+@property(nonatomic,strong) NSString *roomnumber;
+
 @property(nonatomic,strong) NSString *cubicleid;
 @property(nonatomic,strong) NSString *cubiclename;
+@property(nonatomic,strong) NSString *cubiclenumber;
+
 @property(nonatomic,strong) NSString *deviceid;
 @property(nonatomic,strong) NSString *devicename;
 

@@ -24,20 +24,20 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGMainPageBussiness)
  SQL 获得指定ROOM ID 的DEVICE列表
  INPUT: ROOM_ID (INT)
  －－－－－－－－－－－－－－－－－*/
-#define MP_GetDevicelistForRoom  "select room.room_id as roomid,room.name as roomname,cubicle.cubicle_id as cubicleid,cubicle.name as cubiclename,device.device_id as deviceid,device.description as devicename from device,cubicle,room where room.room_id = cubicle.room_id and device.cubicle_id = cubicle.cubicle_id and cubicle.room_id = ?  and device.device_type !=2 order by room.room_id, cubicle.cubicle_id, device.cubicle_pos"
+#define MP_GetDevicelistForRoom  "select room.room_id as roomid,room.name as roomname,cubicle.cubicle_id as cubicleid,cubicle.name as cubiclename,device.device_id as deviceid,device.description as devicename from device,cubicle,room where room.room_id = cubicle.room_id and device.cubicle_id = cubicle.cubicle_id and cubicle.room_id = ?  and device.device_type !=2 order by room.number, cubicle.number, device.cubicle_pos"
 
 /*－－－－－－－－－－－－－－－－－
  SQL 获得所有室内ROOM的DEVICE列表
  INPUT: NULL
  －－－－－－－－－－－－－－－－－*/
-#define MP_GetDevicelistForAllInnerRoom  "select room.room_id as roomid,room.name as roomname,cubicle.cubicle_id as cubicleid,cubicle.name as cubiclename,device.device_id as deviceid,device.description as devicename from device,cubicle,room where room.room_id = cubicle.room_id and device.cubicle_id = cubicle.cubicle_id and device.device_type !=2 order by room.room_id, cubicle.cubicle_id, device.cubicle_pos"
+#define MP_GetDevicelistForAllInnerRoom  "select room.number as roomnumber,room.room_id as roomid,room.name as roomname,cubicle.cubicle_id as cubicleid,cubicle.name as cubiclename,cubicle.number as cubiclenumber,device.device_id as deviceid,device.description as devicename from device,cubicle,room where room.room_id = cubicle.room_id and device.cubicle_id = cubicle.cubicle_id and device.device_type !=2 order by roomnumber, cubiclenumber, device.cubicle_pos"
 
 
 /*－－－－－－－－－－－－－－－－－
  SQL 获得ROOM ID ＝ 0 设备列表
  INPUT: NULL
  －－－－－－－－－－－－－－－－－*/
-#define MP_GetDevicelistForOuterRoom  "select 9999 as roomid, '户外' as roomname, cubicle.cubicle_id as cubicleid,cubicle.name as cubiclename,device.device_id as deviceid,device.description as devicename from device,cubicle where device.cubicle_id = cubicle.cubicle_id and cubicle.room_id = 0 and device.device_type !=2 order by  cubicle.cubicle_id, device.cubicle_pos"
+#define MP_GetDevicelistForOuterRoom  "select 'Z99' as roomnumber, 9999 as roomid, '户外' as roomname, cubicle.cubicle_id as cubicleid,cubicle.name as cubiclename, cubicle.number as cubiclenumber,device.device_id as deviceid,device.description as devicename from device,cubicle where device.cubicle_id = cubicle.cubicle_id and cubicle.room_id = 0 and device.device_type !=2 order by cubiclenumber, device.cubicle_pos"
 
 #pragma mark - Query
 /*－－－－－－－－－－－－－－－－－
@@ -121,16 +121,16 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGMainPageBussiness)
     __block NSPredicate* predicate;
     NSMutableString* xMLString = [NSMutableString stringWithString:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>"];
     
-    [[[resultList valueForKeyPath:@"@distinctUnionOfObjects.roomid"] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        predicate = [NSPredicate predicateWithFormat:@"roomid == %@",
+    [[[resultList valueForKeyPath:@"@distinctUnionOfObjects.roomnumber"] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        predicate = [NSPredicate predicateWithFormat:@"roomnumber == %@",
                      (NSString*)obj];
         NSArray* firstClasslist = [resultList filteredArrayUsingPredicate:predicate];
         [xMLString appendString:[NSString stringWithFormat:@"<room id=\"%@\" name=\"%@\">",
                                  [(SGDataBaseRowItem*)[firstClasslist objectAtIndex:0] roomid],
                                  [(SGDataBaseRowItem*)[firstClasslist objectAtIndex:0] roomname]]];
         
-        [[[firstClasslist valueForKeyPath:@"@distinctUnionOfObjects.cubicleid"] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            predicate = [NSPredicate predicateWithFormat:@"cubicleid == %@",
+        [[[firstClasslist valueForKeyPath:@"@distinctUnionOfObjects.cubiclenumber"] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            predicate = [NSPredicate predicateWithFormat:@"cubiclenumber == %@",
                          (NSString*)obj];
             NSArray* secondClasslist = [firstClasslist filteredArrayUsingPredicate:predicate];
             [xMLString appendString:[NSString stringWithFormat:@"<cubicle id=\"%@\" name=\"%@\">",
@@ -159,10 +159,10 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGMainPageBussiness)
     __block NSPredicate* predicate;
     NSMutableString* jsonString = [NSMutableString stringWithString:@"{\"Data\":["];
     
-    NSArray* resultListArray = [resultList valueForKeyPath:@"@distinctUnionOfObjects.roomid"];
+    NSArray* resultListArray = [resultList valueForKeyPath:@"@distinctUnionOfObjects.roomnumber"];
     [[resultListArray sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
-        predicate = [NSPredicate predicateWithFormat:@"roomid == %@",
+        predicate = [NSPredicate predicateWithFormat:@"roomnumber == %@",
                      (NSString*)obj];
         NSArray* firstClasslist = [resultList filteredArrayUsingPredicate:predicate];
         [jsonString appendString:[NSString stringWithFormat:@"{\"roomid\":\"%@\",\"roomname\":\"%@\",\"cubicles\":[",
@@ -170,10 +170,10 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGMainPageBussiness)
                                   [(SGDataBaseRowItem*)[firstClasslist objectAtIndex:0] roomname]]];
         
         
-        NSArray* firstClasslistArray = [firstClasslist valueForKeyPath:@"@distinctUnionOfObjects.cubicleid"];
+        NSArray* firstClasslistArray = [firstClasslist valueForKeyPath:@"@distinctUnionOfObjects.cubiclenumber"];
         [[firstClasslistArray sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             
-            predicate = [NSPredicate predicateWithFormat:@"cubicleid == %@",
+            predicate = [NSPredicate predicateWithFormat:@"cubiclenumber == %@",
                          (NSString*)obj];
             NSArray* secondClasslist = [firstClasslist filteredArrayUsingPredicate:predicate];
             [jsonString appendString:[NSString stringWithFormat:@"{\"cubicleid\":\"%@\",\"cubiclename\":\"%@\",\"devices\":[",

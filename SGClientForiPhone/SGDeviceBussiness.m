@@ -57,7 +57,8 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGDeviceBussiness)
     NSSortDescriptor *sorter4 = [NSSortDescriptor sortDescriptorWithKey:@"switch4_id" ascending:YES];
     NSSortDescriptor *sorter5 = [NSSortDescriptor sortDescriptorWithKey:@"group" ascending:YES];
     rightList = [rightList sortedArrayUsingDescriptors:@[sorter1,sorter2,sorter3,sorter4,sorter5,sorter]];
-    
+    leftList = [leftList sortedArrayUsingDescriptors:@[sorter1,sorter2,sorter3,sorter4,sorter5,sorter]];
+
     
     return @[leftList,rightList];
 }

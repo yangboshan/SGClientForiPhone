@@ -724,6 +724,10 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
                                             [child.mainProDes addObject:vterminalItem.pro_desc];
                                             [self.dataModel0.rightChilds addObject:child];
                                             [type0RightCache setValue:child forKey:item.device_id];
+                                        }else{
+                                            SGPortPageChildData* child = [type0RightCache valueForKey:item.device_id];
+                                            [child.cntedProDes addObject:item.pro_desc];
+                                            [child.mainProDes addObject:vterminalItem.pro_desc];
                                         }
                                     }
                                     if ([vterminalItem.direction isEqualToString:@"0"]) {
@@ -736,6 +740,10 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
                                             [child.mainProDes addObject:vterminalItem.pro_desc];
                                             [self.dataModel0.leftChilds addObject:child];
                                             [type0LeftCache setValue:child forKey:item.device_id];
+                                        }else{
+                                            SGPortPageChildData* child = [type0LeftCache valueForKey:item.device_id];
+                                            [child.cntedProDes addObject:item.pro_desc];
+                                            [child.mainProDes addObject:vterminalItem.pro_desc];
                                         }
                                     }
                                 }
@@ -750,6 +758,10 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
                                             [child.mainProDes addObject:vterminalItem.pro_desc];
                                             [self.dataModel1.rightChilds addObject:child];
                                             [type1RightCache setValue:child forKey:item.device_id];
+                                        }else{
+                                            SGPortPageChildData* child = [type1RightCache valueForKey:item.device_id];
+                                            [child.cntedProDes addObject:item.pro_desc];
+                                            [child.mainProDes addObject:vterminalItem.pro_desc];
                                         }
                                     }
                                     if ([vterminalItem.direction isEqualToString:@"0"]) {
@@ -762,6 +774,10 @@ GCD_SYNTHESIZE_SINGLETON_FOR_CLASS(SGPortPageBussiness)
                                             [child.mainProDes addObject:vterminalItem.pro_desc];
                                             [self.dataModel1.leftChilds addObject:child];
                                             [type1LeftCache setValue:child forKey:item.device_id];
+                                        }else{
+                                            SGPortPageChildData* child = [type1LeftCache valueForKey:item.device_id];
+                                            [child.cntedProDes addObject:item.pro_desc];
+                                            [child.mainProDes addObject:vterminalItem.pro_desc];
                                         }
                                     }
                                 }
